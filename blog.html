@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Anish Panthi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="blog-page">
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="index.html" class="logo-link">
+                    <div class="logo-container">
+                        <img src="logo.png" alt="Logo" class="nav-logo">
+                        <span class="logo-text">A. PANTHI</span>
+                    </div>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#library">E-Library</a></li>
+                <li><a href="blog.html" class="active">My Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="page-section" style="text-align: center; padding-top: 120px;">
+            <h2>Reflections & Insights</h2>
+            <p>Sharing my journey through Engineering and Leadership.</p>
+            
+            <div id="blog-grid">Loading posts from Sanity...</div>
+        </section>
+    </main>
+
+    <script>
+        const PROJECT_ID = 'e7hia29y';
+
+        async function fetchBlogs() {
+            // FIX: Changed "post" to "blog" to match your Sanity schema
+            const query = `*[_type == "blog"] | order(publishedAt desc)`;
+            
+            // Adding a timestamp (nocache) forces the browser to get fresh data
+            const url = `https://${PROJECT_ID}.api.sanity.io/v2023-01-01/data/query/production?query=${encodeURIComponent(query)}&nocache=${Date.now()}`;
+            
+            try {
+                const r = await fetch(url);
+                const d = await r.json();
+                
+                // Debugging: This will show you exactly what Sanity is sending back
+                console.log("Sanity Data:", d.result);
+                
+                renderBlogs(d.result);
+            } catch (e) {
+                console.error("Blog Fetch Error:", e);
+                document.getElementById('blog-grid').innerText = "Failed to load blogs.";
+            }
+        }
+        function renderBlogs(posts) {
+            const blogGrid = document.getElementById('blog-grid');
+            if (!posts || posts.length === 0) {
+                blogGrid.innerHTML = "<p>No posts published yet!</p>";
+                return;
+            }
+
+            blogGrid.innerHTML = posts.map(post => {
+                const date = new Date(post.publishedAt).toLocaleDateString();
+                let imgUrl = 'https://via.placeholder.com/600x400';
+                
+                if (post.mainImage?.asset?._ref) {
+                    const ref = post.mainImage.asset._ref;
+                    imgUrl = `https://cdn.sanity.io/images/${PROJECT_ID}/production/${ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}`;
+                }
+
+                return `
+                    <article class="blog-card">
+                        <img src="${imgUrl}" alt="${post.title}" class="blog-thumbnail">
+                        <div class="blog-card-content">
+                            <span class="blog-date">${date}</span>
+                            <h3>${post.title}</h3>
+                            <p>${post.excerpt || "Click to read the full story..."}</p>
+                            <a href="post.html?slug=${post.slug.current}" class="read-btn">Read Article</a>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        // Standard Canvas Background Logic (Same as index.html)
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+        window.dispatchEvent(new Event('resize'));
+        // ... (Include your Particle class and animate function here to keep background consistent)
+
+        window.onload = fetchBlogs;
+    </script>
+</body>
+</html>

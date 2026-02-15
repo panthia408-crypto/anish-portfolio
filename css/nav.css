@@ -1,0 +1,222 @@
+/* ==========================================
+   1. NAVIGATION BAR CONTAINER
+   ========================================== */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 80px;
+    
+    /* THE GLASS FIX: Using a transparent version of the background variable */
+    background: var(--nav-bg); 
+    backdrop-filter: blur(12px); /* This creates the frost effect */
+    -webkit-backdrop-filter: blur(12px); 
+
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    
+    /* Professional subtle border */
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    transition: background 0.5s ease, border 0.5s ease;
+}
+
+/* --- Logo Styling --- */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.nav-logo { height: 40px; width: auto; }
+
+.logo-text {
+    color: var(--text-main); /* Fixes logo color in light mode */
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* ==========================================
+   2. DESKTOP NAVIGATION (Visible on PC)
+   ========================================== */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* Animated underline for desktop */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* ==========================================
+   3. RIGHT SECTION (Theme Toggle & Mobile Icon)
+   ========================================== */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Improved Theme Button */
+.theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-main);
+}
+
+.theme-btn i {
+    position: absolute;
+    font-size: 1.2rem;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Logic for spinning the icons */
+.sun-icon { 
+    transform: translateY(40px) rotate(180deg); 
+    opacity: 0; 
+}
+
+body.light-theme .moon-icon { 
+    transform: translateY(-40px) rotate(-180deg); 
+    opacity: 0; 
+}
+
+body.light-theme .sun-icon { 
+    transform: translateY(0) rotate(0deg); 
+    opacity: 1; 
+    color: #f1c40f; /* Warm sun color */
+}
+.mobile-menu-icon {
+    display: none; /* Hidden on Desktop */
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.bar { 
+    width: 25px; 
+    height: 3px; 
+    background: var(--text-main); /* Auto-matches theme color */
+    border-radius: 5px; 
+    transition: 0.3s; 
+}
+
+/* ==========================================
+   4. MOBILE RESPONSIVE (Max 900px)
+   ========================================== */
+@media (max-width: 900px) {
+    .mobile-menu-icon { 
+        display: flex !important; 
+    }
+
+    .nav-links {
+        /* Reset and Position */
+        display: flex;
+        position: absolute;
+        top: 85px;
+        right: 5%;
+        width: 220px;
+        flex-direction: column;
+        gap: 0;
+        
+        /* Glassmorphism Design */
+        background: var(--bg-card);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(128, 128, 128, 0.2);
+        border-radius: 18px;
+        padding: 12px 0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+        /* Animation State */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px) scale(0.95);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        pointer-events: none;
+        z-index: 3000;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    .nav-links li {
+        width: 100%;
+        margin: 0;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-main);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+    }
+
+    /* Professional Hover State for Mobile */
+    .nav-links a:active, 
+    .nav-links a:hover {
+        background: rgba(128, 128, 128, 0.1);
+        color: var(--accent);
+    }
+
+    .nav-links li:last-child a {
+        border-bottom: none;
+    }
+
+    /* Animation for individual items */
+    .nav-links li {
+        opacity: 0;
+        transform: translateX(10px);
+        transition: 0.3s ease;
+    }
+
+    .nav-links.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

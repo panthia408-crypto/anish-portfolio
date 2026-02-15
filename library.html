@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Archive | Anish Panthi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/library-page.css">
+</head>
+
+<body class="library-page">
+
+    <nav id="main-nav">
+        <div class="nav-left">
+            <a href="index.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+        <div class="nav-title">Academic Archive</div>
+        <div class="nav-right-meta">TCIOE | Industrial Engineering</div>
+    </nav>
+
+    <main class="library-container">
+        
+        <section id="selection-view" class="gateway-grid">
+            <div class="gateway-header">
+                <span class="gold-text">E-Library</span>
+                <h1>Select a Resource Category</h1>
+            </div>
+
+            <div class="tiles-container">
+                <div class="premium-tile" onclick="openCategory('1')">
+                    <div class="tile-banner s1-bg"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="tile-bg-num">01</div>
+                    <h3>Semester I</h3>
+                    <span>Foundational Engineering</span>
+                </div>
+
+                <div class="premium-tile" onclick="openCategory('2')">
+                    <div class="tile-banner s2-bg"><i class="fa-solid fa-flask"></i></div>
+                    <div class="tile-bg-num">02</div>
+                    <h3>Semester II</h3>
+                    <span>Notes & Resources</span>
+                </div>
+
+                <div class="premium-tile" onclick="openCategory('3')">
+                    <div class="tile-banner s3-bg"><i class="fa-solid fa-gears"></i></div>
+                    <div class="tile-bg-num">03</div>
+                    <h3>Semester III</h3>
+                    <span>Notes & Resources</span>
+                </div>
+
+                <div class="premium-tile" onclick="openCategory('4')">
+                    <div class="tile-banner s4-bg"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="tile-bg-num">04</div>
+                    <h3>Semester IV</h3>
+                    <span>Notes & Resources</span>
+                </div>
+
+                <div class="premium-tile" onclick="openCategory('5')">
+                    <div class="tile-banner s5-bg"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="tile-bg-num">05</div>
+                    <h3>Semester V</h3>
+                    <span>Notes & Resources</span>
+                </div>
+
+             <div class="premium-tile sem-highlight" onclick="openCategory('6')">
+    <div class="tile-banner s6-bg">
+        <i class="fa-solid fa-industry"></i>
+    </div>
+    <div class="tile-bg-num">06</div>
+    <h3>Semester VI</h3>
+    <span>Notes & Resources</span>
+</div>
+
+                <div class="premium-tile" onclick="openCategory('7')">
+                    <div class="tile-banner s7-bg"><i class="fa-solid fa-compass-drafting"></i></div>
+                    <div class="tile-bg-num">07</div>
+                    <h3>Semester VII</h3>
+                    <span>Notes & Resources</span>
+                </div>
+
+                <div class="premium-tile" onclick="openCategory('8')">
+                    <div class="tile-banner s8-bg"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="tile-bg-num">08</div>
+                    <h3>Semester VIII</h3>
+                    <span>Notes & Resources</span>
+                </div>
+
+                <div class="premium-tile specialized" onclick="openCategory('research-docs')">
+                    <div class="tile-banner res-bg"><i class="fa-solid fa-microscope"></i></div>
+                    <div class="tile-bg-num"><i class="fa-solid fa-star"></i></div>
+                    <h3>Research & Papers</h3>
+                    <span>Official Documents & Studies</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="display-view" class="files-view" style="display: none;">
+            <div class="view-controls">
+                <button class="close-view" onclick="closeCategory()">
+                    <i class="fa-solid fa-chevron-left"></i> Back to Categories
+                </button>
+                <h2 id="current-category-title">Semester Resources</h2>
+            </div>
+            <div class="book-grid" id="book-display">
+                </div>
+        </section>
+
+    </main>
+
+    <script src="js/library-logic.js"></script>
+</body>
+</html>

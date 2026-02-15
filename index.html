@@ -3,331 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anish Panthi | Portfolio</title>
+   <title>Anish Panthi | Industrial Engineer</title>
+<meta name="description" content="Portfolio of Anish Panthi - Industrial Engineering at TCIOE & Web Development.">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/content.css"> 
 </head>
+
 <body>
-    <canvas id="bg-canvas"></canvas>
+
     <div class="bg-animation">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
     </div>
 
-    <header>
-        <nav class="main-nav">
-            <div class="nav-left">
-                <a href="index.html" class="logo-link">
-                    <div class="logo-container">
-                        <img src="logo.png" alt="TU Logo" class="nav-logo">
-                        <span class="logo-text">A. PANTHI</span>
-                    </div>
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#timeline">Experience</a></li>
-                <li><a href="#library">E-Library</a></li>
-                <li><a href="blog.html">My Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-right">
-                <button id="theme-toggle" class="theme-btn" title="Toggle Theme">
-                    <div class="theme-icon-container">
-                        <i class="fas fa-sun sun-icon"></i>
-                        <i class="fas fa-moon moon-icon"></i>
-                    </div>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <div class="library-access">
+        <a href="library.html" class="notes-link">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span>Open E-Library</span>
+        </a>
+    </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <img id="hero-img-display" src="" alt="Anish" class="profile-img">
-            <div class="hero-text-container">
-                <h1 id="hero-name">Loading...</h1>
-                <p class="hero-subtitle" id="hero-tagline"></p>
-                <p class="hero-description" id="hero-desc"></p>
-                <div class="hero-buttons">
-                    <a href="#about" class="btn-primary">Learn More</a>
-                    <a href="#library" class="btn-secondary">Educational Content</a>
-                </div>
-            </div>
-        </div>
-        <a href="#about" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="about-layout">
-            <div class="about-left">
-                <h2>About Me</h2>
-                <p id="about-bio" class="main-bio">Loading bio...</p>
-                <div id="role-buttons" class="tag-container"></div>
-                <div id="role-display-box" class="highlight-box">
-                    <div class="box-header">
-                        <i id="role-icon" class="fas fa-info-circle"></i>
-                        <h3 id="role-title">Select a role</h3>
-                    </div>
-                    <p id="role-desc">Click one of the tags above to see my work as an Engineer and Leader.</p>
-                </div>
-            </div>
-            <div class="about-right">
-                <img id="role-img-display" src="" alt="Role Image" style="display:none; width: 100%; border-radius: 20px;">
-                <div id="role-img-placeholder" class="img-placeholder">
-                    <i class="fas fa-user-circle"></i>
-                    <p>Select a role to see image</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="timeline" class="page-section">
-        <h2>Journey & Experience</h2>
-        <div id="timeline-container" class="timeline-chart"></div>
-    </section>
-
-    <main class="content-wrapper">
-        <section id="library" class="page-section">
-            <h2>Academic E-Library</h2>
-            <div id="semester-grid" class="grid">Syncing with Sanity...</div>
-            <div id="subject-display" class="details-panel" style="display:none;">
-                <h3 id="selected-sem-title"></h3>
-                <div id="subject-list"></div>
-            </div>
-        </section>
-
-        <section id="contact" class="page-section">
-            <h2>Get In Touch</h2>
-            <form class="contact-form" id="contact-form">
-                <div class="input-group">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="input-group">
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <textarea name="message" placeholder="How can I help you?" rows="5" required></textarea>
-                <button type="submit" class="btn-blue" id="submit-btn">Send Message</button>
-                <p id="form-status" style="text-align: center; margin-top: 15px;"></p>
-            </form>
-        </section>
-    </main>
-
-   <script>
-    const PROJECT_ID = 'e7hia29y';
-
-    // 1. SANITY FETCHING
-    async function fetchSanity(query) {
-        const url = `https://${PROJECT_ID}.api.sanity.io/v2023-01-01/data/query/production?query=${encodeURIComponent(query)}`;
-        try {
-            const r = await fetch(url);
-            const d = await r.json();
-            return d.result || [];
-        } catch (e) {
-            console.error("Sanity Fetch Error:", e);
-            return [];
-        }
-    }
-
-    // 2. FORM HANDLING
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submit-btn');
-
-    if (form) {
-        form.addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Sending...";
-            
-            fetch("https://formspree.io/f/mvzbkowo", {
-                method: "POST",
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    status.innerHTML = "Success! Message sent.";
-                    status.style.color = "#00f2fe";
-                    form.reset();
-                } else {
-                    status.innerHTML = "Oops! Error sending message.";
-                    status.style.color = "#ff4fac";
-                }
-            }).catch(() => {
-                status.innerHTML = "Connection error. Try again.";
-            }).finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Send Message";
-            });
-        });
-    }
-
-    // 3. UI HELPER FUNCTIONS
-    window.updateRoleBox = (title, desc, icon, imageUrl, btnElement) => {
-        document.getElementById('role-title').innerText = title;
-        document.getElementById('role-desc').innerText = desc;
-        document.getElementById('role-icon').className = `fas ${icon || 'fa-info-circle'}`;
-        
-        const imgEl = document.getElementById('role-img-display');
-        const placeholderEl = document.getElementById('role-img-placeholder');
-
-        document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
-        if (btnElement) btnElement.classList.add('active');
-
-        if (imageUrl && imageUrl !== 'null') {
-            imgEl.src = imageUrl;
-            imgEl.style.display = 'block';
-            placeholderEl.style.display = 'none';
-        } else {
-            imgEl.style.display = 'none';
-            placeholderEl.style.display = 'flex';
-        }
-    };
-
-    window.toggleTimelineCard = (element) => {
-        const isExpanded = element.classList.contains('expanded');
-        document.querySelectorAll('.timeline-card').forEach(card => card.classList.remove('expanded'));
-        if (!isExpanded) element.classList.add('expanded');
-    };
-
-    window.openCategory = (id, element) => {
-        const category = window.allNotes.find(c => c._id === id);
-        const panel = document.getElementById('subject-display');
-        const list = document.getElementById('subject-list');
-        const titleDisplay = document.getElementById('selected-sem-title');
-        
-        panel.style.display = 'block';
-        document.querySelectorAll('.sem-card').forEach(c => c.classList.remove('active-sem'));
-        if(element) element.classList.add('active-sem');
-
-        titleDisplay.innerHTML = `<span style="font-size:0.8rem; color:#4facfe; display:block;">Resource Vault</span> ${category.semesterName}`;
-        
-        if (category.subjects) {
-            list.innerHTML = category.subjects.map(sub => `
-                <div class="subject-item">
-                    <div class="sub-info"><i class="fas fa-file-pdf"></i> <span>${sub.title}</span></div>
-                    <a href="${sub.externalLink || '#'}" target="_blank" class="download-btn"><i class="fas fa-external-link-alt"></i></a>
-                </div>`).join('');
-        }
-        panel.scrollIntoView({ behavior: 'smooth' });
-    };
-
-    // 4. MAIN INITIALIZER
-    // 6. INITIALIZE DATA
-        async function init() {
-            const data = await fetchSanity('*[_type in ["note", "hero", "about", "timeline", "blog"]] | order(_updatedAt desc)');
-            
-            if (!data || data.length === 0) {
-                console.warn("No data found in Sanity.");
-                return;
-            }
-
-            // --- HERO SECTION ---
-            const heroData = data.find(i => i._type === 'hero');
-            if (heroData) {
-                document.getElementById('hero-name').innerText = heroData.name || "Anish Panthi";
-                document.getElementById('hero-tagline').innerText = heroData.tagline || "";
-                document.getElementById('hero-desc').innerText = heroData.description || "";
-                
-                if (heroData.profileImage?.asset?._ref) {
-                    const ref = heroData.profileImage.asset._ref;
-                    document.getElementById('hero-img-display').src = `https://cdn.sanity.io/images/${PROJECT_ID}/production/${ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}`;
-                }
-
-                // Social Icons
-                const socialContainer = document.getElementById('footer-socials');
-                const socials = [
-                    { key: 'linkedin', icon: 'fab fa-linkedin' },
-                    { key: 'facebook', icon: 'fab fa-facebook' },
-                    { key: 'instagram', icon: 'fab fa-instagram' },
-                    { key: 'twitter', icon: 'fab fa-x-twitter' },
-                    { key: 'discord', icon: 'fab fa-discord' }
-                ];
-                if (socialContainer) {
-                    socialContainer.innerHTML = socials
-                        .filter(s => heroData[s.key])
-                        .map(s => `<a href="${heroData[s.key]}" target="_blank"><i class="${s.icon}"></i></a>`)
-                        .join('');
-                }
-            }
-
-            // --- ABOUT SECTION ---
-            const about = data.find(i => i._type === 'about');
-            if (about) {
-                document.getElementById('about-bio').innerText = about.mainText || "";
-                document.getElementById('role-buttons').innerHTML = about.roles.map((role, index) => {
-                    const imgUrl = role.roleImage?.asset?._ref ? `https://cdn.sanity.io/images/${PROJECT_ID}/production/${role.roleImage.asset._ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}` : 'null';
-                    return `<button class="role-btn ${index === 0 ? 'active' : ''}" onclick="window.updateRoleBox('${role.title}', '${role.description.replace(/'/g, "\\'")}', '${role.icon}', '${imgUrl}', this)">${role.title}</button>`;
-                }).join('');
-                
-                if(about.roles[0]) {
-                    const r = about.roles[0];
-                    updateRoleBox(r.title, r.description, r.icon, r.roleImage?.asset?._ref ? `https://cdn.sanity.io/images/${PROJECT_ID}/production/${r.roleImage.asset._ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}` : 'null');
-                }
-            }
-
-            // --- TIMELINE SECTION ---
-            const timeline = data.filter(i => i._type === 'timeline').sort((a,b) => (b.year || "").localeCompare(a.year || ""));
-            const timelineContainer = document.getElementById('timeline-container');
-            if (timelineContainer) {
-                timelineContainer.innerHTML = timeline.map(item => `
-                    <div class="timeline-card" onclick="window.toggleTimelineCard(this)">
-                        <div class="timeline-main">
-                            <div class="timeline-info">
-                                <span class="timeline-year">${item.year}</span>
-                                <h3>${item.title}</h3>
-                                <h4>${item.institution}</h4>
-                                <span class="view-more">Details <i class="fas fa-chevron-down"></i></span>
-                            </div>
-                        </div>
-                        <div class="timeline-details"><div class="details-inner"><p>${item.description}</p></div></div>
-                    </div>`).join('');
-            }
-
-            // --- LIBRARY SECTION ---
-            window.allNotes = data.filter(n => n._type === "note");
-            const libGrid = document.getElementById('semester-grid');
-            if (libGrid) {
-                libGrid.innerHTML = window.allNotes.map(cat => `
-                    <div class="sem-card" onclick="window.openCategory('${cat._id}', this)">
-                        <i class="fas ${cat.category === 'semester' ? 'fa-university' : 'fa-flask'}"></i>
-                        <h3>${cat.semesterName}</h3>
-                        <p>${cat.subjects ? cat.subjects.length : 0} Items</p>
-                    </div>`).join('');
-            }
-        }
-
-        // 7. THEME & GLOBAL EVENTS
-        window.onload = init;
-        document.getElementById('theme-toggle').addEventListener('click', () => document.body.classList.toggle('light-theme'));
-</script>
-    
-
-    <footer class="main-footer">
-    <div class="footer-content">
-        <div class="footer-nav">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#timeline">Experience</a>
-            <a href="#library">Library</a>
-        </div>
-
-        <div class="footer-socials" id="footer-socials">
-            </div>
-
-        <div class="footer-actions">
-            <a id="footer-cv-link" href="#" target="_blank" class="btn-cv">
-                <i class="fas fa-file-download"></i> Download CV
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="/" class="logo-link">
+                <img src="logo.png" alt="Logo" class="nav-logo">
+                <span class="logo-text">A.Panthi</span>
             </a>
         </div>
 
-        <div class="footer-bottom">
-            <p>C: Anish Panthi</p>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#library-entrance">Library</a></li>
+            <li><a href="#blog" id="blog-nav-btn">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <div class="theme-btn" id="theme-toggle">
+                <i class="fas fa-moon moon-icon"></i>
+                <i class="fas fa-sun sun-icon"></i>
+            </div>
+            <div class="mobile-menu-icon" id="mobile-menu-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-image">
+                    <img id="hero-img" src="assets/placeholder.jpg" alt="Anish Panthi">
+                </div>
+
+                <div class="hero-text">
+                    <h1>Hi, I'm <span>Anish Panthi</span></h1>
+                    <p class="hero-tagline">RESEARCHER | STUDENT</p>
+                    <p class="hero-description">Hello, I am Anish Panthi. I am an Industrial Engineering student at TCIOE.</p>
+                    
+                    <div class="hero-btns">
+                        <a href="#contact" class="btn-primary">Get In Touch</a>
+                        <a href="#" class="btn-cv" target="_blank">Download CV</a>
+                    </div>
+
+                    <div class="social-links"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="about-glass-card">
+                <div class="about-top-row">
+                    <div class="about-image-side">
+                        <div class="img-wrapper">
+                            <img id="about-img" src="" alt="Profile">
+                        </div>
+                    </div>
+
+                    <div class="about-content-side">
+                        <div id="default-bio-content">
+                            <span class="about-label">Engineer Profile</span>
+                            <h2>About Me</h2>
+                            <div id="about-description"></div>
+                        </div>
+                        <div id="role-details-container" class="magazine-container"></div>
+                    </div>
+                </div>
+                <div class="skills-container"></div>
+            </div>
+        </section>
+
+        <section id="library-entrance">
+            <div class="entrance-container">
+                <div class="entrance-visual">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <div class="entrance-content">
+                    <span class="entrance-label">Academic Repository</span>
+                    <h2>The Engineer's Library</h2>
+                    <p>Access a curated premium collection of Semester-wise notes, textbooks, and industrial resources.</p>
+                    
+                    <a href="library.html" class="premium-btn">
+                        <span>ENTER ARCHIVE</span>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="blog-section">
+    <div class="section-header">
+        <span class="gold-text">Insights</span>
+        <h2>Latest Blogs</h2>
+    </div>
+
+    <div class="blog-grid">
+        <div class="blog-placeholder-card">
+            <div class="placeholder-icon">
+                <i class="fa-solid fa-pen-nib"></i>
+            </div>
+            <h3>Thoughts in Progress</h3>
+            <p>I'm currently documenting my journey in Industrial Engineering and Web Development. Stay tuned for upcoming articles!</p>
+            <div class="loading-bar-container">
+                <div class="loading-bar-fill"></div>
+            </div>
+            <span class="status-tag">Drafting...</span>
         </div>
     </div>
+</section>
+        <section id="contact">
+            <h2>Get In Touch</h2>
+
+
+         <form id="contact-form" class="contact-form">
+    <div class="input-group">
+        <input type="text" name="user_name" placeholder="Your Name" required>
+        <input type="email" name="user_email" placeholder="Your Email" required>
+    </div>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+</form>
+        </section>
+
+    </main>
+
+ <footer class="premium-footer">
+    <div class="footer-content">
+        <div class="footer-logo">A.Panthi</div>
+        
+        <div class="footer-social-grid" id="footer-socials">
+            </div>
+
+        <p class="copyright">&copy; 2026 Anish Panthi. All rights reserved.</p>
+        <p class="footer-meta">TCIOE | Industrial Engineering & Web Development</p>
+    </div>
 </footer>
+
+
+    <script src="index.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

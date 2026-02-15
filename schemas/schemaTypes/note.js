@@ -32,9 +32,30 @@ export default {
           fields: [
             { name: 'title', title: 'Subject Title', type: 'string' },
             { name: 'externalLink', title: 'Link (Drive/PDF)', type: 'url' },
-          ]
+          ],
+          // This ensures the individual subjects in the list also show their titles
+          preview: {
+            select: { title: 'title' }
+          }
         }
       ]
     }
-  ]
+  ],
+  // THIS FIXES THE "SEMESTER" NAME CONFUSION IN THE SIDEBAR
+  preview: {
+    select: {
+      title: 'semesterName',
+      cat: 'category',
+      subjectList: 'subjects'
+    },
+    prepare(selection) {
+      const {title, cat, subjectList} = selection;
+      const count = subjectList ? subjectList.length : 0;
+      return {
+        title: title || 'Unnamed Bundle',
+        subtitle: `${cat.toUpperCase()} — (${count} Subjects)`,
+        media: () => '📚'
+      }
+    }
+  }
 }

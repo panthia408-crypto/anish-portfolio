@@ -1,0 +1,108 @@
+/* ==========================================
+   1. DESIGN SYSTEM (Studio Palette)
+   ========================================== */
+:root {
+    /* Deep Ink Dark Theme */
+    --bg-main: #0a0a0c;        
+    --bg-card: #16161a;        
+    --text-main: #ffffff;      
+    --text-dim: #a1a1aa;       
+    --accent: #ffffff;
+    --accent-glow: rgba(255, 255, 255, 0.05);
+    --nav-bg: rgba(10, 10, 12, 0.75);
+}
+
+body.light-theme {
+    /* Soft Slate Light Theme */
+    --bg-main: #f8f9fa;        
+    --bg-card: #ffffff;        
+    --text-main: #121212;
+    --text-dim: #475569;       
+    --accent: #121212;         
+    --accent-glow: rgba(0, 0, 0, 0.05);
+    --nav-bg: rgba(248, 249, 250, 0.75);
+}
+
+/* ==========================================
+   2. RESET & GLOBAL STYLES
+   ========================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html { 
+    scroll-behavior: smooth; 
+    font-size: 16px; 
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================
+   3. STUDIO BACKGROUND & TYPOGRAPHY
+   ========================================== */
+.bg-animation {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% -20%, var(--accent-glow) 0%, transparent 70%);
+}
+
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+}
+
+p {
+    color: var(--text-dim);
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+ul { list-style: none; }
+
+/* ==========================================
+   4. GLOBAL LIGHT THEME FIXES
+   ========================================== */
+body.light-theme h1, 
+body.light-theme h2, 
+body.light-theme h3, 
+body.light-theme p,
+body.light-theme a,
+body.light-theme span:not(.about-tags span) {
+    color: var(--text-main) !important;
+}
+
+body.light-theme .about-text p,
+body.light-theme .contact-text p,
+body.light-theme .footer-content p {
+    color: var(--text-dim) !important;
+}
+
+/* Menu Bar Fix */
+body.light-theme .mobile-menu-icon .bar {
+    background-color: var(--text-main) !important;
+}

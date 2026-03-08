@@ -75,6 +75,92 @@
     .entrance-container { flex-direction: column; text-align: center; padding: 60px 30px; }
     .entrance-content { text-align: center; }
 }
+/* Contact Section */
+#contact {
+  max-width: 700px;
+  margin: 80px auto;
+  padding: 0 5%;
+  text-align: center;
+}
+
+#contact h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: 10px;
+}
+
+.contact-subtitle {
+  color: var(--text-dim);
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form .input-group {
+  display: flex;
+  gap: 16px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 16px 20px;
+  color: var(--text-main);
+  font-size: .95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .3s, box-shadow .3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 0 3px rgba(79,172,254,.12);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-dim);
+  opacity: .5;
+}
+
+.contact-form textarea { min-height: 140px; resize: vertical; }
+
+.contact-form button {
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: .95rem;
+  font-family: inherit;
+  background: linear-gradient(135deg, #4facfe, #7c3aed);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+  align-self: center;
+}
+.contact-form button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(79,172,254,.25);
+}
+
+body.light-theme .contact-form input,
+body.light-theme .contact-form textarea {
+  background: rgba(0,0,0,.03);
+  border-color: rgba(0,0,0,.1);
+}
+
+@media (max-width: 600px) {
+  .contact-form .input-group { flex-direction: column; }
+}
+
 /* --- PREMIUM FOOTER STYLE --- */
 .premium-footer {
     padding: 60px 5% 40px 5%;

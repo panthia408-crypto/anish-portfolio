@@ -14,17 +14,27 @@
         <nav class="main-nav">
             <div class="nav-left">
                 <a href="index.html" class="logo-link">
-                    <div class="logo-container">
-                        <img src="logo.png" alt="Logo" class="nav-logo">
-                        <span class="logo-text">A. PANTHI</span>
-                    </div>
+                    <img src="logo.png" alt="Logo" class="nav-logo">
+                    <span class="logo-text">A.Panthi</span>
                 </a>
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#library">E-Library</a></li>
-                <li><a href="blog.html" class="active">My Blog</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="timeline.html">Timeline</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
+            <div class="nav-right">
+                <div class="mobile-menu-icon" id="mobile-menu-btn">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -90,14 +100,26 @@
             }).join('');
         }
 
-        // Standard Canvas Background Logic (Same as index.html)
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
-        window.dispatchEvent(new Event('resize'));
-        // ... (Include your Particle class and animate function here to keep background consistent)
-
+        // Standard Canvas Background Logic
         window.onload = fetchBlogs;
     </script>
+
+    <footer class="premium-footer">
+        <div class="footer-content">
+            <div class="footer-logo">A.Panthi</div>
+            <div class="footer-social-grid">
+                <a href="https://www.linkedin.com/in/anish-panthi-057326281/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/panthia408-crypto" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/AnishPanthi6" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/anish.panthi.549" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/anish.panthi/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Anish Panthi. All rights reserved.</p>
+            <p class="footer-meta">TCIOE | Industrial Engineering</p>
+        </div>
+    </footer>
+
+    <script src="js/page-bg.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

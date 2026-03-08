@@ -1,14 +1,12 @@
 const PROJECT_ID = "e7hia29y";
-let allNotes = []; // This stores the raw documents from Sanity
+let allNotes = [];
 
 /**
  * 1. INITIAL FETCH
- * Pulls the 'note' documents which contain the subject arrays.
  */
 async function fetchBooks() {
     const grid = document.getElementById('book-display');
-    
-    // We query 'note' (your actual schema name) and get the subjects array
+
     const QUERY = encodeURIComponent(`*[_type == "note"]{
         category,
         semesterName,
@@ -19,15 +17,15 @@ async function fetchBooks() {
     }`);
 
     const REQ_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/production?query=${QUERY}`;
-    
+
     try {
         const response = await fetch(REQ_URL);
         const { result } = await response.json();
-        allNotes = result; 
-        console.log("Vault Synced: " + allNotes.length + " bundles found.");
-    } catch (e) { 
-        console.error("Archive Load Error:", e);
-        if(grid) grid.innerHTML = `<div class="error" style="color:red; text-align:center; padding:50px;">Vault Connection Failed.</div>`;
+        allNotes = result;
+        console.log("Library Synced: " + allNotes.length + " bundles found.");
+    } catch (e) {
+        console.error("Library Load Error:", e);
+        if (grid) grid.innerHTML = `<div class="empty-state">Connection failed. Please try again later.</div>`;
     }
 }
 
@@ -48,7 +46,14 @@ function openCategory(cat) {
         titleElement.innerText = `Semester ${cat} Resources`;
     }
 
+    // Clear resource search
+    const resSearch = document.getElementById('resource-search');
+    if (resSearch) resSearch.value = '';
+
     filterByCategory(cat);
+
+    // Store current category for search filtering
+    displayView.dataset.cat = cat;
 }
 
 function closeCategory() {
@@ -59,17 +64,14 @@ function closeCategory() {
 
 /**
  * 3. FILTER & RENDER ENGINE
- * This part "unpacks" the subjects array so each subject gets its own card.
  */
 function filterByCategory(cat) {
     let subjectsToDisplay = [];
-    
+
     allNotes.forEach(doc => {
-        // Convert everything to lowercase to avoid "Semester" vs "semester" bugs
         const semName = (doc.semesterName || "").toLowerCase();
         const category = (doc.category || "").toLowerCase();
 
-        // Check if the clicked category (e.g., '6') is found inside the Sanity name (e.g., '6th Semester')
         const isSemesterMatch = (category === 'semester' && semName.includes(cat.toLowerCase()));
         const isSpecializedMatch = (cat === 'research-docs' && (category === 'research' || category === 'work'));
 
@@ -89,52 +91,134 @@ function filterByCategory(cat) {
     renderBooks(subjectsToDisplay);
 }
 
-  // Helper to assign a specific theme to each subject card
-function getSubjectStyle(title) {
+/**
+ * 4. ICON MAPPING
+ */
+function getSubjectIcon(title) {
     const t = title.toLowerCase();
-    
-    // Industrial/Mechanical specific icons
-    if (t.includes('english')) 
-        return { icon: 'fa-language', bg: 'linear-gradient(135deg, #8E2DE2, #4A00E0)' };
-    if (t.includes('machine') || t.includes('theory')) 
-        return { icon: 'fa-gears', bg: 'linear-gradient(135deg, #FF416C, #FF4B2B)' };
-    if (t.includes('engineering') || t.includes('maintainance')) 
-        return { icon: 'fa-hard-hat', bg: 'linear-gradient(135deg, #00B09B, #96C93D)' };
-    if (t.includes('development') || t.includes('entre')) 
-        return { icon: 'fa-rocket', bg: 'linear-gradient(135deg, #f7971e, #ffd200)' };
-    if (t.includes('syllabus')) 
-        return { icon: 'fa-book-bookmark', bg: 'linear-gradient(135deg, #30E8BF, #FF8235)' };
-    
-    // Default refined look
-    return { icon: 'fa-file-lines', bg: 'linear-gradient(135deg, #434343, #000000)' };
+    if (t.includes('english') || t.includes('language')) return 'fa-language';
+    if (t.includes('machine') || t.includes('theory'))  return 'fa-gears';
+    if (t.includes('engineering') || t.includes('maintainance')) return 'fa-hard-hat';
+    if (t.includes('development') || t.includes('entre')) return 'fa-rocket';
+    if (t.includes('syllabus')) return 'fa-book-bookmark';
+    if (t.includes('math') || t.includes('calculus') || t.includes('algebra')) return 'fa-square-root-variable';
+    if (t.includes('physics')) return 'fa-atom';
+    if (t.includes('chemistry')) return 'fa-flask-vial';
+    if (t.includes('computer') || t.includes('programming')) return 'fa-laptop-code';
+    if (t.includes('electric') || t.includes('circuit')) return 'fa-bolt';
+    if (t.includes('drawing') || t.includes('graphics')) return 'fa-ruler-combined';
+    if (t.includes('thermo')) return 'fa-temperature-high';
+    if (t.includes('workshop') || t.includes('lab')) return 'fa-screwdriver-wrench';
+    return 'fa-file-lines';
 }
 
 function renderBooks(subjects) {
     const grid = document.getElementById('book-display');
-    
-    if(!subjects || subjects.length === 0) {
+
+    if (!subjects || subjects.length === 0) {
         grid.innerHTML = `<div class="empty-state">No resources found here yet.</div>`;
         return;
     }
-    
+
     grid.innerHTML = subjects.map(sub => {
-        const theme = getSubjectStyle(sub.title);
-        
+        const icon = getSubjectIcon(sub.title);
         return `
-        <div class="book-card">
-            <div class="cover" style="background: ${theme.bg};">
-                <i class="fa-solid ${theme.icon} fa-4x" style="color: rgba(255,255,255,0.4)"></i>
+        <div class="book-card" data-title="${sub.title.toLowerCase()}">
+            <div class="cover">
+                <i class="fa-solid ${icon}"></i>
             </div>
             <div class="info">
                 <span class="sem-tag">${sub.sem}</span>
                 <h4>${sub.title}</h4>
                 <a href="${sub.url}" target="_blank" class="download-tag">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> VIEW RESOURCE
+                    View Resource <i class="fa-solid fa-arrow-up-right-from-square"></i>
                 </a>
             </div>
-        </div>
-        `;
+        </div>`;
     }).join('');
+}
+
+/**
+ * 5. SEARCH — Semester tiles + Global subject search
+ */
+const libSearch = document.getElementById('lib-search');
+if (libSearch) {
+    libSearch.addEventListener('input', () => {
+        const q = libSearch.value.toLowerCase().trim();
+
+        // Filter semester tiles
+        document.querySelectorAll('.lib-tile').forEach(tile => {
+            const label = (tile.dataset.label || '').toLowerCase();
+            const text = tile.textContent.toLowerCase();
+            tile.style.display = (!q || label.includes(q) || text.includes(q)) ? '' : 'none';
+        });
+
+        // Global subject search across all semesters
+        const globalResults = document.getElementById('global-results');
+        const globalGrid = document.getElementById('global-book-display');
+        if (!globalResults || !globalGrid) return;
+
+        if (!q || q.length < 2) {
+            globalResults.style.display = 'none';
+            return;
+        }
+
+        const matched = [];
+        allNotes.forEach(doc => {
+            if (doc.subjects) {
+                doc.subjects.forEach(sub => {
+                    if ((sub.title || '').toLowerCase().includes(q)) {
+                        matched.push({
+                            title: sub.title,
+                            url: sub.externalLink,
+                            sem: doc.semesterName || 'Unknown'
+                        });
+                    }
+                });
+            }
+        });
+
+        if (matched.length > 0) {
+            globalResults.style.display = 'block';
+            globalGrid.innerHTML = matched.map(sub => {
+                const icon = getSubjectIcon(sub.title);
+                return `
+                <div class="book-card">
+                    <div class="cover">
+                        <i class="fa-solid ${icon}"></i>
+                    </div>
+                    <div class="info">
+                        <span class="sem-tag">${sub.sem}</span>
+                        <h4>${sub.title}</h4>
+                        <a href="${sub.url}" target="_blank" class="download-tag">
+                            View Resource <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>`;
+            }).join('');
+        } else {
+            globalResults.style.display = 'none';
+        }
+    });
+}
+
+function clearGlobalSearch() {
+    const libSearch = document.getElementById('lib-search');
+    if (libSearch) { libSearch.value = ''; libSearch.dispatchEvent(new Event('input')); }
+}
+
+/**
+ * 6. SEARCH — Resource cards
+ */
+const resSearch = document.getElementById('resource-search');
+if (resSearch) {
+    resSearch.addEventListener('input', () => {
+        const q = resSearch.value.toLowerCase().trim();
+        document.querySelectorAll('.book-card').forEach(card => {
+            const title = card.dataset.title || '';
+            card.style.display = (!q || title.includes(q)) ? '' : 'none';
+        });
+    });
 }
 
 fetchBooks();

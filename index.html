@@ -3,20 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Anish Panthi | Industrial Engineer</title>
-<meta name="description" content="Portfolio of Anish Panthi - Industrial Engineering at TCIOE & Web Development.">
+    <title>Anish Panthi | Industrial Engineer</title>
+    <meta name="description" content="Portfolio of Anish Panthi - Industrial Engineering at TCIOE & Web Development.">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
-    
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/hero.css">
-    <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/content.css"> 
 </head>
 
 <body>
-
     <div class="bg-animation">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
@@ -32,25 +26,24 @@
 
     <nav class="main-nav">
         <div class="nav-left">
-            <a href="/" class="logo-link">
+            <a href="index.html" class="logo-link">
                 <img src="logo.png" alt="Logo" class="nav-logo">
                 <span class="logo-text">A.Panthi</span>
             </a>
         </div>
 
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#library-entrance">Library</a></li>
-            <li><a href="#blog" id="blog-nav-btn">Blog</a></li>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="certifications.html">Certifications</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
 
         <div class="nav-right">
-            <div class="theme-btn" id="theme-toggle">
-                <i class="fas fa-moon moon-icon"></i>
-                <i class="fas fa-sun sun-icon"></i>
-            </div>
             <div class="mobile-menu-icon" id="mobile-menu-btn">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -61,23 +54,28 @@
 
     <main>
         <section id="home" class="hero">
+            <canvas id="hero-canvas"></canvas>
+
             <div class="hero-container">
                 <div class="hero-image">
-                    <img id="hero-img" src="assets/placeholder.jpg" alt="Anish Panthi">
-                </div>
-
-                <div class="hero-text">
-                    <h1>Hi, I'm <span>Anish Panthi</span></h1>
-                    <p class="hero-tagline">RESEARCHER | STUDENT</p>
-                    <p class="hero-description">Hello, I am Anish Panthi. I am an Industrial Engineering student at TCIOE.</p>
-                    
-                    <div class="hero-btns">
-                        <a href="#contact" class="btn-primary">Get In Touch</a>
-                        <a href="#" class="btn-cv" target="_blank">Download CV</a>
+                    <div class="hero-ring">
+                        <img id="hero-img" src="assets/placeholder.jpg" alt="Anish Panthi">
                     </div>
-
-                    <div class="social-links"></div>
                 </div>
+
+                <div class="hero-socials">
+                    <a href="https://www.linkedin.com/in/anish-panthi-057326281/" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/panthia408-crypto" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/AnishPanthi6" target="_blank" rel="noopener" class="social-icon" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/anish.panthi.549" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/anish.panthi/?hl=en" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <h1 class="hero-name">Anish Panthi</h1>
+                <p class="hero-tagline">ENGINEER <span class="accent">&</span> DREAMER</p>
+                <p class="hero-desc">Industrial Engineering Student at Thapathali Campus, Institute of Engineering.</p>
+
+                <a href="#work" class="hero-cta">Explore My Work</a>
             </div>
         </section>
 
@@ -86,7 +84,7 @@
                 <div class="about-top-row">
                     <div class="about-image-side">
                         <div class="img-wrapper">
-                            <img id="about-img" src="" alt="Profile">
+                            <img id="about-img" src="assets/placeholder.jpg" alt="Profile">
                         </div>
                     </div>
 
@@ -94,12 +92,106 @@
                         <div id="default-bio-content">
                             <span class="about-label">Engineer Profile</span>
                             <h2>About Me</h2>
-                            <div id="about-description"></div>
+                            <div id="about-description">
+                                <p>I'm Anish Panthi — a 6th-semester Industrial Engineering student at Thapathali Campus, Institute of Engineering, Tribhuvan University.</p>
+                                <p>From leading SOIES Nepal as President to researching omnidirectional wind turbines under an NEC grant, I believe engineers don't just solve problems — they shape what's possible. I've organized national-level tech fests, built an open-access digital library, and led student communities that bridge academia and industry.</p>
+                                <p class="about-motto">Hamsafar — I go where the wind takes me.</p>
+                            </div>
                         </div>
                         <div id="role-details-container" class="magazine-container"></div>
                     </div>
                 </div>
-                <div class="skills-container"></div>
+
+
+        <section id="skills" class="skills-section">
+            <div class="section-header-center">
+                <span class="section-label">Expertise</span>
+                <h2>Skills &amp; Tools</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-cat-icon"><i class="fas fa-drafting-compass"></i></div>
+                    <h3>Engineering</h3>
+                    <div class="skill-tags">
+                        <a href="https://www.autodesk.com/products/autocad" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/autodesk.svg?color=%2394a3b8" alt="">AutoCAD</a>
+                        <a href="https://www.solidworks.com" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/dassaultsystemes.svg?color=%2394a3b8" alt="">SolidWorks</a>
+                        <a href="https://www.ansys.com" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/ansys.svg?color=%2394a3b8" alt="">ANSYS</a>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Design &amp; Media</h3>
+                    <div class="skill-tags">
+                        <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/adobephotoshop.svg?color=%2394a3b8" alt="">Photoshop</a>
+                        <a href="https://www.adobe.com/products/indesign.html" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/adobeindesign.svg?color=%2394a3b8" alt="">InDesign</a>
+                        <a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/davinciresolve.svg?color=%2394a3b8" alt="">DaVinci Resolve</a>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming</h3>
+                    <div class="skill-tags">
+                        <a href="https://devdocs.io/c/" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/c.svg?color=%2394a3b8" alt="">C</a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/html5.svg?color=%2394a3b8" alt="">HTML / CSS</a>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/javascript.svg?color=%2394a3b8" alt="">JavaScript</a>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-icon"><i class="fas fa-laptop-file"></i></div>
+                    <h3>Office &amp; Analytics</h3>
+                    <div class="skill-tags">
+                        <a href="https://www.microsoft.com/en-us/microsoft-365/word" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/microsoftword.svg?color=%2394a3b8" alt="">Word</a>
+                        <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/microsoftexcel.svg?color=%2394a3b8" alt="">Excel</a>
+                        <a href="https://www.microsoft.com/en-us/microsoft-365/powerpoint" target="_blank" rel="noopener"><img src="https://api.iconify.design/simple-icons/microsoftpowerpoint.svg?color=%2394a3b8" alt="">PowerPoint</a>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-icon"><i class="fas fa-users-gear"></i></div>
+                    <h3>Leadership</h3>
+                    <div class="skill-tags">
+                        <span>Event Management</span><span>Public Speaking</span><span>Team Building</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-cat-icon"><i class="fas fa-pen-nib"></i></div>
+                    <h3>Communication</h3>
+                    <div class="skill-tags">
+                        <span>Technical Writing</span><span>Editorial</span><span>Content Creation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="work-section">
+            <div class="work-header">
+                <span class="section-label">What I Do</span>
+                <h2>Featured Work</h2>
+                <p class="work-subtitle">A selection of my projects, leadership, and research.</p>
+            </div>
+            <div class="work-grid">
+                <a href="https://soiesnepal.org.np" target="_blank" rel="noopener" class="work-card">
+                    <div class="work-icon"><i class="fas fa-users"></i></div>
+                    <h3>SOIES Nepal</h3>
+                    <p>Leading Nepal's industrial engineering student society as President — organizing 20+ events, tech fests, workshops, and forging industry partnerships.</p>
+                    <div class="work-tags"><span class="work-tag">Leadership</span><span class="work-tag">Organization</span><span class="work-tag">Events</span></div>
+                </a>
+
+                <div class="work-card">
+                    <div class="work-icon"><i class="fas fa-wind"></i></div>
+                    <h3>Wind Turbine Research</h3>
+                    <p>NEC-funded research on omnidirectional wind turbines — studying the impact of surface area and vent size. Supervised by Asst. Prof. Suman Acharya.</p>
+                    <div class="work-tags"><span class="work-tag">Research</span><span class="work-tag">Renewable Energy</span></div>
+                </div>
+
+                <a href="library.html" class="work-card">
+                    <div class="work-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>E-Library</h3>
+                    <p>Open-access digital library covering 40+ subjects across all 8 semesters of IOE engineering education.</p>
+                    <div class="work-tags"><span class="work-tag">Web Dev</span><span class="work-tag">Education</span><span class="work-tag">Open Source</span></div>
+                </a>
+            </div>
+            <div class="work-cta-row">
+                <a href="work.html" class="view-all-btn">View All Projects <i class="fas fa-arrow-right"></i></a>
             </div>
         </section>
 
@@ -122,54 +214,51 @@
         </section>
 
         <section id="blog" class="blog-section">
-    <div class="section-header">
-        <span class="gold-text">Insights</span>
-        <h2>Latest Blogs</h2>
-    </div>
-
-    <div class="blog-grid">
-        <div class="blog-placeholder-card">
-            <div class="placeholder-icon">
-                <i class="fa-solid fa-pen-nib"></i>
+            <div class="section-header">
+                <span class="gold-text">Insights</span>
+                <h2>Latest Blogs</h2>
             </div>
-            <h3>Thoughts in Progress</h3>
-            <p>I'm currently documenting my journey in Industrial Engineering and Web Development. Stay tuned for upcoming articles!</p>
-            <div class="loading-bar-container">
-                <div class="loading-bar-fill"></div>
+            <div class="blog-grid">
+                <div class="blog-placeholder-card">
+                    <div class="placeholder-icon">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3>Thoughts in Progress</h3>
+                    <p>I'm currently documenting my journey in Industrial Engineering and Web Development. Stay tuned for upcoming articles!</p>
+                    <div class="loading-bar-container">
+                        <div class="loading-bar-fill"></div>
+                    </div>
+                    <span class="status-tag">Drafting...</span>
+                </div>
             </div>
-            <span class="status-tag">Drafting...</span>
-        </div>
-    </div>
-</section>
-        <section id="contact">
-            <h2>Get In Touch</h2>
-
-
-         <form id="contact-form" class="contact-form">
-    <div class="input-group">
-        <input type="text" name="user_name" placeholder="Your Name" required>
-        <input type="email" name="user_email" placeholder="Your Email" required>
-    </div>
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send Message</button>
-</form>
         </section>
 
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p class="contact-subtitle">Have a project in mind? I'd love to hear from you.</p>
+            <form id="contact-form" class="contact-form">
+                <div class="input-group">
+                    <input type="text" name="user_name" placeholder="Your Name" required>
+                    <input type="email" name="user_email" placeholder="Your Email" required>
+                </div>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
     </main>
 
- <footer class="premium-footer">
-    <div class="footer-content">
-        <div class="footer-logo">A.Panthi</div>
-        
-        <div class="footer-social-grid" id="footer-socials">
-            </div>
+    <footer class="premium-footer">
+        <div class="footer-content">
+            <div class="footer-logo">A.Panthi</div>
+            
+            <div class="footer-social-grid" id="footer-socials"></div>
 
-        <p class="copyright">&copy; 2026 Anish Panthi. All rights reserved.</p>
-        <p class="footer-meta">TCIOE | Industrial Engineering & Web Development</p>
-    </div>
-</footer>
+            <p class="copyright">&copy; 2026 Anish Panthi. All rights reserved.</p>
+            <p class="footer-meta">TCIOE | Industrial Engineering & Web Development</p>
+        </div>
+    </footer>
 
-
+    <script src="js/hero-bg.js"></script>
     <script src="index.js"></script>
     <script src="js/main.js"></script>
 </body>

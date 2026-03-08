@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work & Projects | Anish Panthi</title>
+    <meta name="description" content="Projects, leadership, and research by Anish Panthi — Industrial Engineering at Thapathali Campus.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/page-common.css">
+    <style>
+        .detail-card.hidden-card { display: none; }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="nav-logo">
+                <span class="logo-text">A.Panthi</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html" class="active">Work</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="certifications.html">Certifications</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="mobile-menu-icon" id="mobile-menu-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-wrapper">
+        <div class="page-header">
+            <h1>My Projects</h1>
+            <p class="page-desc">A selection of my work in industrial engineering, leadership, and development.</p>
+            <span class="accent-bar"></span>
+        </div>
+
+        <div class="search-bar-row">
+            <div class="search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="work-search" class="search-input" placeholder="Search projects...">
+            </div>
+            <button class="filter-btn" onclick="document.getElementById('work-search').value='';document.getElementById('work-search').dispatchEvent(new Event('input'))">
+                <i class="fas fa-rotate-left"></i> Reset
+            </button>
+        </div>
+
+        <div class="cards-grid">
+            <!-- 1. SOIES Nepal -->
+            <a href="https://soiesnepal.org.np" target="_blank" rel="noopener" class="detail-card">
+                <span class="card-top-label">Leadership — President</span>
+                <h3>SOIES Nepal</h3>
+                <p class="card-desc">Leading Nepal's premier industrial engineering student society. Organized 20+ events including tech fests, national olympiads, workshops, and industry partnerships as President.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Leadership</span>
+                    <span class="card-tag green">Organization</span>
+                    <span class="card-tag">Events</span>
+                </div>
+                <span class="card-link">Visit Website →</span>
+            </a>
+
+            <!-- 2. Yathartha 3.0 -->
+            <div class="detail-card">
+                <span class="card-top-label">Event — Chief Organizer</span>
+                <h3>Yathartha 3.0 — National Tech Fest</h3>
+                <p class="card-desc">Chief organizer of Thapathali Campus's flagship technical festival. Featured project demonstrations, ergonomics design competitions, MechTRIX, quiz competitions, debate, and more.</p>
+                <div class="card-tags">
+                    <span class="card-tag pink">Tech Fest</span>
+                    <span class="card-tag green">Management</span>
+                    <span class="card-tag">Campus</span>
+                </div>
+            </div>
+
+            <!-- 3. Wind Turbine Research -->
+            <div class="detail-card">
+                <span class="card-top-label">Research — NEC Grant</span>
+                <h3>Omnidirectional Wind Turbine</h3>
+                <p class="card-desc">NEC-funded research studying the impact of changing surface area and vent size on omnidirectional wind turbines. Supervised by Asst. Prof. Suman Acharya. Proposal accepted, presentation in progress.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Research</span>
+                    <span class="card-tag green">Renewable Energy</span>
+                    <span class="card-tag amber">Aerodynamics</span>
+                </div>
+            </div>
+
+            <!-- 4. E-Library -->
+            <a href="library.html" class="detail-card">
+                <span class="card-top-label">Project — Web Development</span>
+                <h3>E-Library</h3>
+                <p class="card-desc">Open-access digital library covering 40+ subjects across all 8 semesters of IOE engineering education. Features semester-wise notes, textbooks, and resources.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Web Dev</span>
+                    <span class="card-tag green">Education</span>
+                    <span class="card-tag">Open Source</span>
+                </div>
+                <span class="card-link">Open Library →</span>
+            </a>
+
+            <!-- 5. GAP Thapathali -->
+            <a href="https://www.facebook.com/profile.php?id=100066694633479" target="_blank" rel="noopener" class="detail-card">
+                <span class="card-top-label">Leadership — Former President</span>
+                <h3>GAP Thapathali</h3>
+                <p class="card-desc">Led a regional student club for students from Gulmi, Arghakhanchi & Palpa — a "home far from home" initiative. Started as graphic designer, rose to President before moving to lead SOIES Nepal.</p>
+                <div class="card-tags">
+                    <span class="card-tag pink">Community</span>
+                    <span class="card-tag">Leadership</span>
+                    <span class="card-tag green">Social</span>
+                </div>
+                <span class="card-link">Facebook Page →</span>
+            </a>
+
+            <!-- 6. Portfolio Website -->
+            <a href="https://github.com/panthia408-crypto" target="_blank" rel="noopener" class="detail-card">
+                <span class="card-top-label">Project — Learning & Building</span>
+                <h3>This Portfolio</h3>
+                <p class="card-desc">Hand-coded portfolio website built from scratch with HTML, CSS, and JavaScript. Integrates Sanity CMS for dynamic content management. A personal learning project in web development.</p>
+                <div class="card-tags">
+                    <span class="card-tag">HTML</span>
+                    <span class="card-tag green">CSS</span>
+                    <span class="card-tag amber">JavaScript</span>
+                    <span class="card-tag pink">Sanity CMS</span>
+                </div>
+                <span class="card-link">View on GitHub →</span>
+            </a>
+
+            <!-- 7. Industrial Vision -->
+            <a href="https://cdn.sanity.io/files/bhcqd45q/production/73e4a7bcdb0f47a8c0a82658cebd998f09684b6d.pdf" target="_blank" rel="noopener" class="detail-card">
+                <span class="card-top-label">Publication — Editorial</span>
+                <h3>Industrial Vision Vol 11</h3>
+                <p class="card-desc">Flagship engineering magazine of SOIES Nepal, published annually. Led editorial oversight for Volume 11 during presidential tenure. Covers industry trends, student research, and IE perspectives.</p>
+                <div class="card-tags">
+                    <span class="card-tag amber">Publication</span>
+                    <span class="card-tag">Editorial</span>
+                    <span class="card-tag">IE</span>
+                </div>
+                <span class="card-link">Read Vol 10 (PDF) →</span>
+            </a>
+
+            <!-- 8. National Olympiad -->
+            <div class="detail-card">
+                <span class="card-top-label">Event — National Level</span>
+                <h3>Math & Physics Olympiad 2082</h3>
+                <p class="card-desc">Organized a national-level Math & Physics Olympiad at Thapathali Campus as part of SOIES Nepal's academic outreach. Attracted participants from engineering colleges across Nepal.</p>
+                <div class="card-tags">
+                    <span class="card-tag pink">Academic</span>
+                    <span class="card-tag">National</span>
+                    <span class="card-tag green">Olympiad</span>
+                </div>
+            </div>
+
+            <!-- 9. Job Fair & Nebico MOU -->
+            <div class="detail-card">
+                <span class="card-top-label">Industry — Partnership</span>
+                <h3>Job Fair & MOU with Nebico</h3>
+                <p class="card-desc">Organized a campus job fair and secured a Memorandum of Understanding with Nebico Limited — connecting industrial engineering students directly with industry career opportunities.</p>
+                <div class="card-tags">
+                    <span class="card-tag amber">Industry</span>
+                    <span class="card-tag">Career</span>
+                    <span class="card-tag">Partnership</span>
+                </div>
+            </div>
+
+            <!-- 10. Share Market Workshop -->
+            <div class="detail-card">
+                <span class="card-top-label">Workshop — Co-organized</span>
+                <h3>Share Market Literacy Workshop</h3>
+                <p class="card-desc">Organized in collaboration with Broker 90 and Sajilo Broker. Featured the CEO and senior officers from brokerage firms. Part of the Engineering Entrepreneurship & Financial Markets initiative.</p>
+                <div class="card-tags">
+                    <span class="card-tag green">Finance</span>
+                    <span class="card-tag">Workshop</span>
+                    <span class="card-tag amber">Collaboration</span>
+                </div>
+            </div>
+
+            <!-- 11. IE Promotional Campaign -->
+            <div class="detail-card">
+                <span class="card-top-label">Campaign — Awareness</span>
+                <h3>IE Promotional Campaign</h3>
+                <p class="card-desc">Led a national awareness campaign for Industrial Engineering — "Beyond Machines: IE is more than Mechanical." Aimed at prospective students and the broader engineering community.</p>
+                <div class="card-tags">
+                    <span class="card-tag pink">Awareness</span>
+                    <span class="card-tag">Promotion</span>
+                    <span class="card-tag">IE</span>
+                </div>
+            </div>
+
+            <!-- 12. Research Paper Writing Workshop -->
+            <div class="detail-card">
+                <span class="card-top-label">Workshop — Academic</span>
+                <h3>Research Paper Writing Workshop</h3>
+                <p class="card-desc">Organized a comprehensive workshop on writing and publishing academic research papers, targeted at engineering students preparing their first publications and theses.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Research</span>
+                    <span class="card-tag amber">Academic</span>
+                    <span class="card-tag green">Writing</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="view-more-row">
+            <button class="view-more-btn" id="view-more-btn">
+                View More <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </main>
+
+    <footer class="premium-footer">
+        <div class="footer-content">
+            <div class="footer-logo">A.Panthi</div>
+            <div class="footer-social-grid">
+                <a href="https://www.linkedin.com/in/anish-panthi-057326281/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/panthia408-crypto" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/AnishPanthi6" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/anish.panthi.549" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/anish.panthi/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Anish Panthi. All rights reserved.</p>
+            <p class="footer-meta">TCIOE | Industrial Engineering</p>
+        </div>
+    </footer>
+
+    <script src="js/page-bg.js"></script>
+    <script src="index.js"></script>
+    <script src="js/work-logic.js"></script>
+</body>
+</html>

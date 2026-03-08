@@ -61,6 +61,15 @@
 
 .nav-links a:hover { color: var(--accent); }
 
+/* Active page link */
+.nav-links a.active {
+  color: #4facfe;
+}
+.nav-links a.active::after {
+  width: 100%;
+  background: #4facfe;
+}
+
 /* Animated underline for desktop */
 .nav-links a::after {
     content: '';

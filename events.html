@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Anish Panthi</title>
+    <meta name="description" content="SOIES Nepal events organized during Anish Panthi's tenure as President and Joint Secretary.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/page-common.css">
+    <link rel="stylesheet" href="css/events-page.css">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="nav-logo">
+                <span class="logo-text">A.Panthi</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="events.html" class="active">Events</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="certifications.html">Certifications</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="mobile-menu-icon" id="mobile-menu-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-wrapper">
+        <div class="page-header">
+            <h1>SOIES Events</h1>
+            <p class="page-desc">Events organized during my tenure as Joint Secretary and President of SOIES Nepal. Latest events first.</p>
+            <span class="accent-bar"></span>
+        </div>
+
+        <div class="search-bar-row">
+            <div class="search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="events-search" class="search-input" placeholder="Search events...">
+            </div>
+        </div>
+
+        <div id="events-grid" class="events-grid">
+            <div class="events-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading events from Sanity...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Photo Lightbox -->
+    <div id="lightbox" class="lightbox" style="display:none;">
+        <button class="lb-close" onclick="closeLightbox()">&times;</button>
+        <button class="lb-prev" onclick="lbNav(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="lb-next" onclick="lbNav(1)"><i class="fas fa-chevron-right"></i></button>
+        <img id="lb-img" src="" alt="Event photo">
+        <span id="lb-counter" class="lb-counter"></span>
+    </div>
+
+    <footer class="premium-footer">
+        <div class="footer-content">
+            <div class="footer-logo">A.Panthi</div>
+            <div class="footer-social-grid">
+                <a href="https://www.linkedin.com/in/anish-panthi-057326281/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/panthia408-crypto" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/AnishPanthi6" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/anish.panthi.549" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/anish.panthi/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Anish Panthi. All rights reserved.</p>
+            <p class="footer-meta">TCIOE | Industrial Engineering</p>
+        </div>
+    </footer>
+
+    <script src="js/page-bg.js"></script>
+    <script src="index.js"></script>
+    <script src="js/events-logic.js"></script>
+</body>
+</html>

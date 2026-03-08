@@ -3,112 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Archive | Anish Panthi</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>E-Library | Anish Panthi</title>
+    <meta name="description" content="Open-access digital library covering 40+ subjects across all 8 semesters of IOE Industrial Engineering.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/page-common.css">
     <link rel="stylesheet" href="css/library-page.css">
 </head>
+<body>
+    <canvas id="bg-canvas"></canvas>
 
-<body class="library-page">
-
-    <nav id="main-nav">
+    <nav class="main-nav">
         <div class="nav-left">
-            <a href="index.html" class="back-btn">
-                <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="nav-logo">
+                <span class="logo-text">A.Panthi</span>
             </a>
         </div>
-        <div class="nav-title">Academic Archive</div>
-        <div class="nav-right-meta">TCIOE | Industrial Engineering</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="certifications.html">Certifications</a></li>
+            <li><a href="library.html" class="active">Library</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="mobile-menu-icon" id="mobile-menu-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
     </nav>
 
-    <main class="library-container">
-        
-        <section id="selection-view" class="gateway-grid">
-            <div class="gateway-header">
-                <span class="gold-text">E-Library</span>
-                <h1>Select a Resource Category</h1>
+    <main class="page-wrapper">
+        <!-- CATEGORY SELECTION VIEW -->
+        <section id="selection-view">
+            <div class="page-header">
+                <h1>The Engineer's Library</h1>
+                <p class="page-desc">Open-access notes, textbooks, and resources for all 8 semesters of IOE Industrial Engineering.</p>
+                <span class="accent-bar"></span>
+            </div>
+
+            <div class="search-bar-row">
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="lib-search" class="search-input" placeholder="Search semesters or subjects...">
+                </div>
+            </div>
+
+            <!-- Global subject search results (appears when typing a subject name) -->
+            <div id="global-results" class="global-results" style="display:none;">
+                <div class="global-results-header">
+                    <h3><i class="fas fa-search"></i> Matching Subjects</h3>
+                    <button class="clear-search-btn" onclick="clearGlobalSearch()">Clear <i class="fas fa-xmark"></i></button>
+                </div>
+                <div class="book-grid" id="global-book-display"></div>
             </div>
 
             <div class="tiles-container">
-                <div class="premium-tile" onclick="openCategory('1')">
-                    <div class="tile-banner s1-bg"><i class="fa-solid fa-book-open"></i></div>
-                    <div class="tile-bg-num">01</div>
-                    <h3>Semester I</h3>
-                    <span>Foundational Engineering</span>
+                <div class="lib-tile" onclick="openCategory('1')" data-label="Semester I">
+                    <div class="tile-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">01</span>
+                        <h3>Semester I</h3>
+                        <p>Foundational Engineering</p>
+                    </div>
                 </div>
 
-                <div class="premium-tile" onclick="openCategory('2')">
-                    <div class="tile-banner s2-bg"><i class="fa-solid fa-flask"></i></div>
-                    <div class="tile-bg-num">02</div>
-                    <h3>Semester II</h3>
-                    <span>Notes & Resources</span>
+                <div class="lib-tile" onclick="openCategory('2')" data-label="Semester II">
+                    <div class="tile-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">02</span>
+                        <h3>Semester II</h3>
+                        <p>Core Sciences</p>
+                    </div>
                 </div>
 
-                <div class="premium-tile" onclick="openCategory('3')">
-                    <div class="tile-banner s3-bg"><i class="fa-solid fa-gears"></i></div>
-                    <div class="tile-bg-num">03</div>
-                    <h3>Semester III</h3>
-                    <span>Notes & Resources</span>
+                <div class="lib-tile" onclick="openCategory('3')" data-label="Semester III">
+                    <div class="tile-icon"><i class="fa-solid fa-gears"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">03</span>
+                        <h3>Semester III</h3>
+                        <p>Engineering Mechanics</p>
+                    </div>
                 </div>
 
-                <div class="premium-tile" onclick="openCategory('4')">
-                    <div class="tile-banner s4-bg"><i class="fa-solid fa-microchip"></i></div>
-                    <div class="tile-bg-num">04</div>
-                    <h3>Semester IV</h3>
-                    <span>Notes & Resources</span>
+                <div class="lib-tile" onclick="openCategory('4')" data-label="Semester IV">
+                    <div class="tile-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">04</span>
+                        <h3>Semester IV</h3>
+                        <p>Applied Engineering</p>
+                    </div>
                 </div>
 
-                <div class="premium-tile" onclick="openCategory('5')">
-                    <div class="tile-banner s5-bg"><i class="fa-solid fa-chart-line"></i></div>
-                    <div class="tile-bg-num">05</div>
-                    <h3>Semester V</h3>
-                    <span>Notes & Resources</span>
+                <div class="lib-tile" onclick="openCategory('5')" data-label="Semester V">
+                    <div class="tile-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">05</span>
+                        <h3>Semester V</h3>
+                        <p>Industrial Methods</p>
+                    </div>
                 </div>
 
-             <div class="premium-tile sem-highlight" onclick="openCategory('6')">
-    <div class="tile-banner s6-bg">
-        <i class="fa-solid fa-industry"></i>
-    </div>
-    <div class="tile-bg-num">06</div>
-    <h3>Semester VI</h3>
-    <span>Notes & Resources</span>
-</div>
-
-                <div class="premium-tile" onclick="openCategory('7')">
-                    <div class="tile-banner s7-bg"><i class="fa-solid fa-compass-drafting"></i></div>
-                    <div class="tile-bg-num">07</div>
-                    <h3>Semester VII</h3>
-                    <span>Notes & Resources</span>
+                <div class="lib-tile current" onclick="openCategory('6')" data-label="Semester VI">
+                    <div class="tile-icon"><i class="fa-solid fa-industry"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">06</span>
+                        <h3>Semester VI</h3>
+                        <p>Current Semester</p>
+                    </div>
                 </div>
 
-                <div class="premium-tile" onclick="openCategory('8')">
-                    <div class="tile-banner s8-bg"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <div class="tile-bg-num">08</div>
-                    <h3>Semester VIII</h3>
-                    <span>Notes & Resources</span>
+                <div class="lib-tile" onclick="openCategory('7')" data-label="Semester VII">
+                    <div class="tile-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">07</span>
+                        <h3>Semester VII</h3>
+                        <p>Advanced Topics</p>
+                    </div>
                 </div>
 
-                <div class="premium-tile specialized" onclick="openCategory('research-docs')">
-                    <div class="tile-banner res-bg"><i class="fa-solid fa-microscope"></i></div>
-                    <div class="tile-bg-num"><i class="fa-solid fa-star"></i></div>
-                    <h3>Research & Papers</h3>
-                    <span>Official Documents & Studies</span>
+                <div class="lib-tile" onclick="openCategory('8')" data-label="Semester VIII">
+                    <div class="tile-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num">08</span>
+                        <h3>Semester VIII</h3>
+                        <p>Final Year</p>
+                    </div>
+                </div>
+
+                <div class="lib-tile special" onclick="openCategory('research-docs')" data-label="Research">
+                    <div class="tile-icon"><i class="fa-solid fa-microscope"></i></div>
+                    <div class="tile-info">
+                        <span class="tile-num"><i class="fa-solid fa-star"></i></span>
+                        <h3>Research & Papers</h3>
+                        <p>Official Documents & Studies</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="display-view" class="files-view" style="display: none;">
-            <div class="view-controls">
-                <button class="close-view" onclick="closeCategory()">
-                    <i class="fa-solid fa-chevron-left"></i> Back to Categories
+        <!-- FILE/RESOURCE VIEW -->
+        <section id="display-view" style="display: none;">
+            <div class="display-header">
+                <button class="back-to-cats" onclick="closeCategory()">
+                    <i class="fa-solid fa-chevron-left"></i> Back
                 </button>
-                <h2 id="current-category-title">Semester Resources</h2>
-            </div>
-            <div class="book-grid" id="book-display">
+                <div>
+                    <h2 id="current-category-title">Semester Resources</h2>
                 </div>
-        </section>
+            </div>
 
+            <div class="search-bar-row">
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="resource-search" class="search-input" placeholder="Search resources...">
+                </div>
+            </div>
+
+            <div class="book-grid" id="book-display"></div>
+        </section>
     </main>
 
+    <footer class="premium-footer">
+        <div class="footer-content">
+            <div class="footer-logo">A.Panthi</div>
+            <div class="footer-social-grid">
+                <a href="https://www.linkedin.com/in/anish-panthi-057326281/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/panthia408-crypto" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/AnishPanthi6" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/anish.panthi.549" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/anish.panthi/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Anish Panthi. All rights reserved.</p>
+            <p class="footer-meta">TCIOE | Industrial Engineering</p>
+        </div>
+    </footer>
+
+    <script src="js/page-bg.js"></script>
+    <script src="index.js"></script>
     <script src="js/library-logic.js"></script>
 </body>
 </html>

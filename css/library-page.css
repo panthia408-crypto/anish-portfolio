@@ -1,268 +1,354 @@
-/* --- PREMIUM LIBRARY THEME --- */
-:root {
-    --lib-bg: #050505;
-    --lib-card: #0f0f0f;
-    --lib-accent: #4facfe;
-    --lib-gold: #ffca28;
-    --lib-border: rgba(255, 255, 255, 0.05);
-    --lib-text-dim: #a0a0a0;
+/* LIBRARY PAGE — Unified dark glass design */
+
+/* ── Global Search Results ── */
+.global-results {
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  padding: 0 5%;
 }
 
-body.library-page {
-    background: var(--lib-bg);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
+.global-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-/* --- NAVIGATION --- */
-#main-nav {
-    height: 70px;
-    padding: 0 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--lib-border);
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(15px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+.global-results-header h3 {
+  font-size: .95rem;
+  font-weight: 600;
+  color: #4facfe;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.back-btn {
-    color: var(--lib-accent);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: 0.3s ease;
+.global-results-header h3 i {
+  font-size: .85rem;
 }
 
-.nav-title { font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
-.nav-right-meta { font-size: 0.75rem; color: rgba(255, 255, 255, 0.4); }
-
-/* --- MAIN LAYOUT --- */
-.library-container {
-    padding: 60px 5%;
-    max-width: 1400px;
-    margin: 0 auto;
+.clear-search-btn {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--text-dim);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .25s ease;
+  font-family: inherit;
+}
+.clear-search-btn:hover {
+  background: rgba(79,172,254,.1);
+  border-color: #4facfe;
+  color: #4facfe;
 }
 
-.gateway-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-/* --- TILES GRID --- */
+/* ── Tile Grid ── */
 .tiles-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 25px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 5%;
 }
 
-.premium-tile {
-    background: var(--lib-card);
-    border: 1px solid var(--lib-border);
-    padding: 0 0 40px 0; /* No top padding to allow banner to flush */
-    border-radius: 30px;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
+/* ── Tile Card ── */
+.lib-tile {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 20px;
+  padding: 32px 26px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: all .35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.premium-tile:hover {
-    transform: translateY(-12px);
-    border-color: var(--lib-accent);
-    background: #141414;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+.lib-tile::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, #4facfe, #7c3aed);
+  opacity: 0;
+  transition: opacity .3s;
 }
 
-/* --- BANNER SYSTEM --- */
-.tile-banner {
-    width: 100%;
-    height: 120px;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0 0 25px 25px;
-    transition: 0.4s ease;
+.lib-tile:hover {
+  border-color: rgba(79,172,254,.2);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+.lib-tile:hover::before { opacity: 1; }
+
+/* Tile icon */
+.tile-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: rgba(79,172,254,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #4facfe;
+  flex-shrink: 0;
+  transition: all .3s;
+}
+.lib-tile:hover .tile-icon {
+  background: linear-gradient(135deg, #4facfe, #7c3aed);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(79,172,254,.25);
 }
 
-.tile-banner i {
-    font-size: 2.5rem !important;
-    color: #fff !important;
+/* Tile info */
+.tile-info { flex: 1; }
+
+.tile-num {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  opacity: .4;
+  margin-bottom: 4px;
 }
 
-.premium-tile:hover .tile-banner {
-    height: 140px;
+.tile-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--text-main);
 }
 
-/* --- TILE TEXT & DECOR --- */
-.premium-tile h3 {
-    font-size: 1.5rem;
-    margin: 10px 0 5px 0;
-    font-weight: 700;
+.tile-info p {
+  font-size: .82rem;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.4;
 }
 
-.premium-tile span {
-    font-size: 0.85rem;
-    color: var(--lib-text-dim);
+/* Current semester highlight */
+.lib-tile.current {
+  border-color: rgba(79,172,254,.15);
+  background: rgba(79,172,254,.04);
+}
+.lib-tile.current .tile-icon {
+  background: linear-gradient(135deg, #4facfe, #7c3aed);
+  color: #fff;
 }
 
-.tile-bg-num {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    font-size: 5rem;
-    font-weight: 900;
-    opacity: 0.03;
-    pointer-events: none;
-    transition: 0.3s;
+/* Special/research tile */
+.lib-tile.special {
+  border-color: rgba(244,114,182,.12);
+}
+.lib-tile.special .tile-icon {
+  background: rgba(244,114,182,.08);
+  color: #f472b6;
+}
+.lib-tile.special:hover .tile-icon {
+  background: linear-gradient(135deg, #f472b6, #7c3aed);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(244,114,182,.25);
+}
+.lib-tile.special:hover {
+  border-color: rgba(244,114,182,.2);
 }
 
-.premium-tile:hover .tile-bg-num {
-    opacity: 0.08;
-    color: var(--lib-accent);
+/* ── Display View (resources) ── */
+.display-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto 10px;
+  padding: 0 5%;
 }
 
-/* --- SEMESTER COLOR THEMES --- */
-.s1-bg { background: linear-gradient(45deg, #2c3e50, #4ca1af); }
-.s2-bg { background: linear-gradient(45deg, #1e3c72, #2a5298); }
-.s3-bg { background: linear-gradient(45deg, #6a11cb, #2575fc); }
-.s4-bg { background: linear-gradient(45deg, #00b09b, #96c93d); }
-.s5-bg { background: linear-gradient(45deg, #434343, #000000); }
-.s6-bg { background: linear-gradient(45deg, #f2994a, #f2c94c); } 
-.s7-bg { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
-.s8-bg { background: linear-gradient(45deg, #000428, #004e92); }
-.res-bg { background: linear-gradient(45deg, #ff512f, #dd2476); }
-
-/* --- GOLD HIGHLIGHT (SEM 6 & SPECIALIZED) --- */
-.premium-tile.sem-highlight:hover,
-.premium-tile.specialized:hover {
-    border-color: var(--lib-gold);
-    box-shadow: 0 0 35px rgba(255, 202, 40, 0.15);
+.display-header h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
 }
 
-.premium-tile.sem-highlight:hover .tile-bg-num,
-.premium-tile.specialized:hover .tile-bg-num {
-    color: var(--lib-gold);
+.back-to-cats {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  color: var(--text-main);
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .3s;
+  font-family: inherit;
+}
+.back-to-cats:hover {
+  background: rgba(79,172,254,.1);
+  border-color: #4facfe;
+  color: #4facfe;
 }
 
-/* --- FILE LIST VIEW --- */
-.view-controls {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
+/* ── Book / Resource Grid ── */
 .book-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
 }
 
+/* Resource Card */
 .book-card {
-    background: var(--lib-card);
-    border: 1px solid var(--lib-border);
-    border-radius: 25px;
-    padding: 20px;
-    transition: 0.4s;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
+  padding: 24px;
+  transition: all .35s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.cover {
-    height: 250px;
-    border-radius: 18px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.book-card:hover .cover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.book-card:hover .cover i {
-    color: rgba(255,255,255,0.8) !important;
-    transform: scale(1.1);
-    transition: 0.4s;
-}
-.tile-banner, 
-.tile-bg-num, 
-.tile-banner i, 
-.premium-tile h3, 
-.premium-tile span {
-    pointer-events: none; /* This ensures the click always goes to the parent .premium-tile */
-}
-/* --- ENHANCED CARD UI --- */
-.book-card {
-    background: rgba(15, 15, 15, 0.7);
-    backdrop-filter: blur(10px); /* Glassmorphism effect */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 16px;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    position: relative;
-    overflow: hidden;
+.book-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, #4facfe, #7c3aed);
+  opacity: 0;
+  transition: opacity .3s;
 }
 
 .book-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--lib-accent);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border-color: rgba(79,172,254,.2);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.2);
 }
+.book-card:hover::before { opacity: 1; }
 
-/* --- DYNAMIC COVERS --- */
+/* Cover area */
 .cover {
-    height: 220px;
-    border-radius: 18px;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+  height: 140px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(79,172,254,.05);
+  border: 1px solid rgba(255,255,255,.04);
+  transition: all .3s;
 }
 
-/* Glossy Overlay for Covers */
-.cover::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(225deg, rgba(255,255,255,0.1) 0%, transparent 50%);
-    pointer-events: none;
+.cover i {
+  font-size: 2.5rem;
+  color: rgba(79,172,254,.35);
+  transition: all .3s;
 }
 
-/* --- TYPOGRAPHY & TAGS --- */
+.book-card:hover .cover {
+  background: linear-gradient(135deg, rgba(79,172,254,.08), rgba(124,58,237,.08));
+}
+.book-card:hover .cover i {
+  color: #4facfe;
+  transform: scale(1.1);
+}
+
+/* Info */
+.book-card .info { display: flex; flex-direction: column; gap: 6px; }
+
 .sem-tag {
-    background: rgba(79, 172, 254, 0.1);
-    color: var(--lib-accent);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    display: inline-block;
+  background: rgba(79,172,254,.08);
+  color: #4facfe;
+  padding: 3px 12px;
+  border-radius: 50px;
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  width: fit-content;
+  border: 1px solid rgba(79,172,254,.12);
 }
 
 .book-card h4 {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    margin: 10px 0 15px 0;
-    font-weight: 600;
-    color: #efefef;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.download-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .8rem;
+  font-weight: 600;
+  color: #4facfe;
+  text-decoration: none;
+  margin-top: 4px;
+  transition: gap .2s;
+}
+.download-tag:hover { gap: 10px; }
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-dim);
+  font-size: 1rem;
+  grid-column: 1 / -1;
+}
+
+/* ── Light theme ── */
+body.light-theme .lib-tile {
+  background: rgba(0,0,0,.02);
+  border-color: rgba(0,0,0,.06);
+}
+body.light-theme .lib-tile:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,.08);
+}
+body.light-theme .lib-tile.current {
+  background: rgba(79,172,254,.04);
+  border-color: rgba(79,172,254,.12);
+}
+body.light-theme .book-card {
+  background: rgba(0,0,0,.02);
+  border-color: rgba(0,0,0,.06);
+}
+body.light-theme .book-card:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,.06);
+}
+body.light-theme .back-to-cats {
+  background: rgba(0,0,0,.03);
+  border-color: rgba(0,0,0,.08);
+}
+body.light-theme .cover {
+  background: rgba(79,172,254,.04);
+  border-color: rgba(0,0,0,.04);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .tiles-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 580px) {
+  .tiles-container { grid-template-columns: 1fr; }
+  .lib-tile { padding: 24px 20px; }
+  .display-header { flex-direction: column; align-items: flex-start; gap: 10px; }
 }

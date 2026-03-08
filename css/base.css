@@ -10,6 +10,8 @@
     --accent: #ffffff;
     --accent-glow: rgba(255, 255, 255, 0.05);
     --nav-bg: rgba(10, 10, 12, 0.75);
+    --lib-accent: #4facfe;
+    --lib-text-dim: #a1a1aa;
 }
 
 body.light-theme {

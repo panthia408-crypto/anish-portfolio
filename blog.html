@@ -4,104 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Anish Panthi</title>
+    <meta name="description" content="Blog posts and reflections by Anish Panthi on engineering, leadership, and technology.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/page-common.css">
 </head>
-<body class="blog-page">
+<body>
     <canvas id="bg-canvas"></canvas>
 
-    <header>
-        <nav class="main-nav">
-            <div class="nav-left">
-                <a href="index.html" class="logo-link">
-                    <img src="logo.png" alt="Logo" class="nav-logo">
-                    <span class="logo-text">A.Panthi</span>
-                </a>
+    <nav class="main-nav">
+        <div class="nav-left">
+            <a href="index.html" class="logo-link">
+                <img src="logo.png" alt="Logo" class="nav-logo">
+                <span class="logo-text">A.Panthi</span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="certifications.html">Certifications</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="mobile-menu-icon" id="mobile-menu-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="work.html">Work</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="timeline.html">Timeline</a></li>
-                <li><a href="certifications.html">Certifications</a></li>
-                <li><a href="library.html">Library</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-            <div class="nav-right">
-                <div class="mobile-menu-icon" id="mobile-menu-btn">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main class="content-wrapper">
-        <section class="page-section" style="text-align: center; padding-top: 120px;">
-            <h2>Reflections & Insights</h2>
-            <p>Sharing my journey through Engineering and Leadership.</p>
-            
-            <div id="blog-grid">Loading posts from Sanity...</div>
-        </section>
+    <main class="page-wrapper">
+        <div class="page-header">
+            <h1>Reflections & Insights</h1>
+            <p class="page-desc">Sharing my journey through Engineering and Leadership.</p>
+            <span class="accent-bar"></span>
+        </div>
+
+        <div id="blog-grid" class="cards-grid" style="margin-top: 40px;">
+            <div class="events-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading posts from Sanity...</p>
+            </div>
+        </div>
     </main>
 
     <script>
-        const PROJECT_ID = 'e7hia29y';
+        const BLOG_PID = 'e7hia29y';
 
-        async function fetchBlogs() {
-            // FIX: Changed "post" to "blog" to match your Sanity schema
-            const query = `*[_type == "blog"] | order(publishedAt desc)`;
-            
-            // Adding a timestamp (nocache) forces the browser to get fresh data
-            const url = `https://${PROJECT_ID}.api.sanity.io/v2023-01-01/data/query/production?query=${encodeURIComponent(query)}&nocache=${Date.now()}`;
-            
-            try {
-                const r = await fetch(url);
-                const d = await r.json();
-                
-                // Debugging: This will show you exactly what Sanity is sending back
-                console.log("Sanity Data:", d.result);
-                
-                renderBlogs(d.result);
-            } catch (e) {
-                console.error("Blog Fetch Error:", e);
-                document.getElementById('blog-grid').innerText = "Failed to load blogs.";
-            }
-        }
-        function renderBlogs(posts) {
-            const blogGrid = document.getElementById('blog-grid');
-            if (!posts || posts.length === 0) {
-                blogGrid.innerHTML = "<p>No posts published yet!</p>";
-                return;
+        (function () {
+            async function fetchBlogs() {
+                const query = `*[_type == "blog"] | order(publishedAt desc)`;
+                const url = `https://${BLOG_PID}.api.sanity.io/v2023-01-01/data/query/production?query=${encodeURIComponent(query)}`;
+
+                try {
+                    const r = await fetch(url);
+                    const d = await r.json();
+                    renderBlogs(d.result);
+                } catch (e) {
+                    console.error("Blog Fetch Error:", e);
+                    document.getElementById('blog-grid').innerHTML =
+                        '<div class="no-events"><i class="fas fa-exclamation-circle"></i><p>Failed to load blog posts.</p></div>';
+                }
             }
 
-            blogGrid.innerHTML = posts.map(post => {
-                const date = new Date(post.publishedAt).toLocaleDateString();
-                let imgUrl = 'https://via.placeholder.com/600x400';
-                
-                if (post.mainImage?.asset?._ref) {
-                    const ref = post.mainImage.asset._ref;
-                    imgUrl = `https://cdn.sanity.io/images/${PROJECT_ID}/production/${ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}`;
+            function renderBlogs(posts) {
+                const blogGrid = document.getElementById('blog-grid');
+                if (!posts || posts.length === 0) {
+                    blogGrid.innerHTML = '<div class="no-events"><i class="fas fa-pen-nib"></i><p>No posts published yet. Stay tuned!</p></div>';
+                    return;
                 }
 
-                return `
-                    <article class="blog-card">
-                        <img src="${imgUrl}" alt="${post.title}" class="blog-thumbnail">
-                        <div class="blog-card-content">
-                            <span class="blog-date">${date}</span>
-                            <h3>${post.title}</h3>
-                            <p>${post.excerpt || "Click to read the full story..."}</p>
-                            <a href="post.html?slug=${post.slug.current}" class="read-btn">Read Article</a>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-        }
+                blogGrid.innerHTML = posts.map(post => {
+                    const date = new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    let imgUrl = '';
 
-        // Standard Canvas Background Logic
-        window.onload = fetchBlogs;
+                    if (post.mainImage?.asset?._ref) {
+                        const ref = post.mainImage.asset._ref;
+                        imgUrl = `https://cdn.sanity.io/images/${BLOG_PID}/production/${ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}`;
+                    }
+
+                    const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+                    return `
+                        <article class="blog-card">
+                            ${imgUrl ? `<img src="${imgUrl}" alt="${esc(post.title)}" class="blog-thumbnail" loading="lazy">` : ''}
+                            <div class="blog-card-content">
+                                <span class="blog-date">${date}</span>
+                                <h3>${esc(post.title)}</h3>
+                                <p>${esc(post.excerpt) || "Click to read the full story..."}</p>
+                            </div>
+                        </article>`;
+                }).join('');
+            }
+
+            fetchBlogs();
+        })();
     </script>
 
     <footer class="premium-footer">

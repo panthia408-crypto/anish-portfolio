@@ -31,11 +31,12 @@
   /* ── Node factory ── */
   function mk() {
     const col = pick(PAL);
+    const sz = rnd(1.5, 4);
     return {
       x: rnd(0, W), y: rnd(0, H),
       ox: 0, oy: 0,
       vx: rnd(-0.25, 0.25), vy: rnd(-0.25, 0.25),
-      r: rnd(1.5, 4), baseR: 0,
+      r: sz, baseR: sz,
       col,
       colStr: col.join(','),      // pre-cached string
       phase: rnd(0, Math.PI * 2),
@@ -181,7 +182,7 @@
 
   /* ── Init ── */
   resize();
-  for (let i = 0; i < N; i++) { const n = mk(); n.baseR = n.r; nodes.push(n); }
+  for (let i = 0; i < N; i++) nodes.push(mk());
   frame();
   window.addEventListener('resize', resize);
 })();

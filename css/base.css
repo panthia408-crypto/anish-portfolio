@@ -66,17 +66,10 @@ body {
     pointer-events: none;
 }
 
-/* Hide canvas entirely on mobile to prevent flicker */
+/* Mobile canvas: visible but no touch interaction (handled in JS) */
 @media (max-width: 768px) {
-    #bg-canvas,
-    #hero-canvas {
-        display: none !important;
-    }
-    /* Subtle gradient replacement for canvas on mobile */
-    .bg-animation {
-        background: radial-gradient(ellipse at 30% 20%, rgba(79,172,254,.06) 0%, transparent 50%),
-                    radial-gradient(ellipse at 70% 80%, rgba(124,58,237,.05) 0%, transparent 50%);
-    }
+    #bg-canvas { opacity: 0.4; }
+    #hero-canvas { opacity: 0.5; }
 }
 
 h1, h2, h3, h4 {

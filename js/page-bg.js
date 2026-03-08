@@ -6,15 +6,11 @@
 (function () {
   const c = document.getElementById('bg-canvas');
   if (!c) return;
-
-  // Completely disable canvas animation on mobile — prevents flicker & scroll issues
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
-  if (isMobile) { c.style.display = 'none'; return; }
-
   const ctx = c.getContext('2d');
 
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
   let W, H, nodes = [], t = 0;
-  const N = 35;
+  const N = isMobile ? 15 : 35;
   const LINK_DIST = 140;
   const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
   const MOUSE_R = 180;
@@ -92,7 +88,8 @@
       n.x += Math.sin(t * 1.5 + n.phase) * 0.12;
       n.y += Math.cos(t * 1.2 + n.phase) * 0.1;
 
-      if (mouse.active) {
+      // Mouse repulsion — desktop only
+      if (!isMobile && mouse.active) {
         const dx = n.x - mouse.x, dy = n.y - mouse.y;
         const dSq = dx * dx + dy * dy;
         if (dSq < MOUSE_R * MOUSE_R && dSq > 0) {
@@ -125,8 +122,8 @@
       }
     }
 
-    /* ── Cursor energy field (simplified) ── */
-    if (mouse.active) {
+    /* ── Cursor energy field — desktop only ── */
+    if (!isMobile && mouse.active) {
       // Single radial glow
       const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, MOUSE_R);
       grad.addColorStop(0, 'rgba(79,172,254,.04)');

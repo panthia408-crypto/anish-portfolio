@@ -6,15 +6,11 @@
 (function () {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
-
-  // Completely disable canvas animation on mobile — prevents flicker & scroll issues
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
-  if (isMobile) { canvas.style.display = 'none'; return; }
-
   const ctx = canvas.getContext('2d');
 
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
   let W, H, nodes = [], t = 0;
-  const N = 45;
+  const N = isMobile ? 18 : 45;
   const LINK_DIST = 150;
   const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
   const MOUSE_RADIUS = 200;
@@ -95,7 +91,8 @@
       n.x = Math.max(0, Math.min(W, n.x));
       n.y = Math.max(0, Math.min(H, n.y));
 
-      if (mouse.active) {
+      // Mouse repulsion — desktop only
+      if (!isMobile && mouse.active) {
         const dx = n.x - mouse.x, dy = n.y - mouse.y;
         const dSq = dx * dx + dy * dy;
         if (dSq < MOUSE_RADIUS * MOUSE_RADIUS && dSq > 0) {
@@ -129,8 +126,8 @@
       }
     }
 
-    /* ── Mouse energy ring ── */
-    if (mouse.active) {
+    /* ── Mouse energy ring — desktop only ── */
+    if (!isMobile && mouse.active) {
       const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, MOUSE_RADIUS);
       grad.addColorStop(0, 'rgba(79,172,254,.05)');
       grad.addColorStop(1, 'rgba(0,0,0,0)');

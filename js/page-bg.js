@@ -9,7 +9,8 @@
   const ctx = c.getContext('2d');
 
   let W, H, nodes = [], t = 0;
-  const N = 35;               // reduced from 55
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+  const N = isMobile ? 15 : 35;
   const LINK_DIST = 140;
   const LINK_DIST_SQ = LINK_DIST * LINK_DIST;  // avoid sqrt
   const MOUSE_R = 180;
@@ -81,18 +82,20 @@
     scrollVel += (curScroll - lastScroll - scrollVel) * 0.1;
     lastScroll = curScroll;
 
-    /* ── Flowing wave field (lighter: fewer rows + bigger step) ── */
-    ctx.strokeStyle = 'rgba(79,172,254,.02)';
-    ctx.lineWidth = 0.6;
-    for (let row = 0; row < H; row += 120) {
-      ctx.beginPath();
-      for (let col = 0; col <= W; col += 24) {
-        const wave = Math.sin(col * 0.008 + t * 2 + row * 0.003) * 8
-                   + Math.sin(col * 0.015 - t * 1.3) * 3;
-        const y = row + wave;
-        col === 0 ? ctx.moveTo(col, y) : ctx.lineTo(col, y);
+    /* ── Flowing wave field (skip entirely on mobile) ── */
+    if (!isMobile) {
+      ctx.strokeStyle = 'rgba(79,172,254,.02)';
+      ctx.lineWidth = 0.6;
+      for (let row = 0; row < H; row += 120) {
+        ctx.beginPath();
+        for (let col = 0; col <= W; col += 24) {
+          const wave = Math.sin(col * 0.008 + t * 2 + row * 0.003) * 8
+                     + Math.sin(col * 0.015 - t * 1.3) * 3;
+          const y = row + wave;
+          col === 0 ? ctx.moveTo(col, y) : ctx.lineTo(col, y);
+        }
+        ctx.stroke();
       }
-      ctx.stroke();
     }
 
     /* ── Update nodes ── */

@@ -9,7 +9,8 @@
   const ctx = canvas.getContext('2d');
 
   let W, H, nodes = [], t = 0;
-  const N = 45;                // reduced from 70
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+  const N = isMobile ? 18 : 45;
   const LINK_DIST = 150;
   const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
   const MOUSE_RADIUS = 200;
@@ -165,13 +166,15 @@
     requestAnimationFrame(frame);
   }
 
-  /* ── Events ── */
-  canvas.addEventListener('mousemove', e => {
+  /* ── Events (use window, keep canvas pointer-events:none for mobile scroll) ── */
+  window.addEventListener('mousemove', e => {
     const r = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true;
+    const mx = e.clientX - r.left, my = e.clientY - r.top;
+    if (mx >= 0 && mx <= W && my >= 0 && my <= H) {
+      mouse.x = mx; mouse.y = my; mouse.active = true;
+    } else { mouse.active = false; }
   });
-  canvas.addEventListener('mouseleave', () => { mouse.active = false; });
-  canvas.style.pointerEvents = 'auto';
+  window.addEventListener('mouseleave', () => { mouse.active = false; });
 
   /* ── Init ── */
   resize();

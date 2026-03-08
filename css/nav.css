@@ -150,6 +150,9 @@ body.light-theme .sun-icon {
    4. MOBILE RESPONSIVE (Max 900px)
    ========================================== */
 @media (max-width: 900px) {
+    .main-nav { height: 64px; padding: 0 4%; }
+    .nav-logo { height: 32px; }
+    .logo-text { font-size: 1.15rem; }
     .mobile-menu-icon { 
         display: flex !important;
         z-index: 10001;

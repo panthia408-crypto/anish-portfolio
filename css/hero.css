@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   padding: 120px 5% 60px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 #hero-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
@@ -129,9 +129,12 @@ body.light-theme .hero-cta { color: #fff !important; }
 
 /* Mobile */
 @media (max-width: 600px) {
-  .hero { padding: 110px 5% 50px; }
-  .hero-ring { width: 150px; height: 150px; }
-  .hero-name { font-size: 2rem; }
+  .hero { padding: 100px 5% 40px; min-height: auto; }
+  .hero-ring { width: 140px; height: 140px; }
+  .hero-name { font-size: 1.8rem; letter-spacing: -1px; }
+  .hero-tagline { font-size: 0.85rem; letter-spacing: 2px; }
+  .hero-desc { font-size: 0.9rem; margin-bottom: 20px; }
   .social-icon { width: 34px; height: 34px; font-size: .9rem; }
-  .hero-cta { padding: 12px 32px; }
+  .hero-cta { padding: 12px 32px; font-size: 0.85rem; }
+  .hero-container { gap: 2px; }
 }

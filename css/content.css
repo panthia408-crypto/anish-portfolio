@@ -72,8 +72,12 @@
 
 /* Mobile Fixes */
 @media (max-width: 850px) {
-    .entrance-container { flex-direction: column; text-align: center; padding: 60px 30px; }
+    .entrance-container { flex-direction: column; text-align: center; padding: 50px 24px; gap: 30px; border-radius: 24px; }
     .entrance-content { text-align: center; }
+    .entrance-content h2 { font-size: 2rem; }
+    .entrance-content p { font-size: 0.95rem; }
+    .entrance-visual { font-size: 3.5rem; }
+    #library-entrance { padding: 60px 5%; }
 }
 /* Contact Section */
 #contact {
@@ -159,6 +163,9 @@ body.light-theme .contact-form textarea {
 
 @media (max-width: 600px) {
   .contact-form .input-group { flex-direction: column; }
+  #contact { margin: 50px auto; padding: 0 5%; }
+  #contact h2 { font-size: 1.6rem; }
+  .contact-form button { padding: 14px 32px; font-size: .85rem; }
 }
 
 /* --- PREMIUM FOOTER STYLE --- */

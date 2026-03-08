@@ -244,6 +244,7 @@ body.light-theme .detail-card:hover {
 
 /* Responsive */
 @media (max-width: 900px) {
+  .page-wrapper { padding-top: 80px; }
   .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 580px) {
@@ -251,4 +252,6 @@ body.light-theme .detail-card:hover {
   .search-bar-row { flex-direction: column; }
   .search-wrap { width: 100%; }
   .filter-btn { width: 100%; justify-content: center; }
+  .page-header h1 { font-size: 1.6rem; }
+  .page-header .page-desc { font-size: 0.9rem; }
 }

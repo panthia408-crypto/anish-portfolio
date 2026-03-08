@@ -228,14 +228,17 @@ body.light-theme .img-wrapper { background: rgba(0,0,0,.04); }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .about-glass-card { padding: 32px 24px; }
+  .about-section { padding: 60px 5%; }
+  .about-glass-card { padding: 28px 20px; border-radius: 20px; }
   .about-top-row { flex-direction: column; gap: 20px; }
-  .about-image-side { flex: 0 0 auto; }
+  .about-image-side { flex: 0 0 auto; max-width: 200px; margin: 0 auto; }
   .about-glass-card.expanded .about-image-side { flex: 0 0 auto; width: 100%; }
   .magazine-columns { column-count: 1; }
   .magazine-title { font-size: 1.6rem; }
+  .about-content-side h2 { font-size: 1.6rem; }
 }
 @media (max-width: 480px) {
-  .about-glass-card { padding: 24px 16px; border-radius: 20px; }
+  .about-glass-card { padding: 20px 14px; border-radius: 16px; }
+  .about-image-side { max-width: 160px; }
   .close-magazine { top: 12px; right: 12px; }
 }

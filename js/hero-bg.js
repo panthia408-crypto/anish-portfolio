@@ -6,11 +6,15 @@
 (function () {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
+
+  // Completely disable canvas animation on mobile — prevents flicker & scroll issues
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+  if (isMobile) { canvas.style.display = 'none'; return; }
+
   const ctx = canvas.getContext('2d');
 
   let W, H, nodes = [], t = 0;
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
-  const N = isMobile ? 18 : 45;
+  const N = 45;
   const LINK_DIST = 150;
   const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
   const MOUSE_RADIUS = 200;

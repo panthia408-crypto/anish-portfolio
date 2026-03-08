@@ -6,11 +6,15 @@
 (function () {
   const c = document.getElementById('bg-canvas');
   if (!c) return;
+
+  // Completely disable canvas animation on mobile — prevents flicker & scroll issues
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+  if (isMobile) { c.style.display = 'none'; return; }
+
   const ctx = c.getContext('2d');
 
   let W, H, nodes = [], t = 0;
-  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
-  const N = isMobile ? 15 : 35;
+  const N = 35;
   const LINK_DIST = 140;
   const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
   const MOUSE_R = 180;

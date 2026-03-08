@@ -1,7 +1,7 @@
 /* =====================================================
-   PAGE BG — Interactive Constellation + Scroll Waves
-   Performance-optimised: batched draws, no per-frame
-   gradient creation, reduced wave field resolution
+   PAGE BG — Interactive Constellation Network
+   Performance-optimised: no scroll reactions,
+   batched draws, no per-frame gradient creation
    ===================================================== */
 (function () {
   const c = document.getElementById('bg-canvas');
@@ -12,7 +12,7 @@
   const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
   const N = isMobile ? 15 : 35;
   const LINK_DIST = 140;
-  const LINK_DIST_SQ = LINK_DIST * LINK_DIST;  // avoid sqrt
+  const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
   const MOUSE_R = 180;
 
   const PAL = [
@@ -23,7 +23,6 @@
   ];
 
   let mouse = { x: -9999, y: -9999, active: false };
-  let scrollVel = 0, lastScroll = 0;
 
   function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
   function rnd(a, b) { return Math.random() * (b - a) + a; }
@@ -40,7 +39,6 @@
       col,
       colStr: col.join(','),      // pre-cached string
       phase: rnd(0, Math.PI * 2),
-      depth: rnd(0.3, 1),
       shape: pick(['circle', 'hex', 'diamond', 'ring', 'star']),
     };
   }
@@ -77,32 +75,10 @@
     t += 0.006;
     ctx.clearRect(0, 0, W, H);
 
-    // Smooth scroll velocity
-    const curScroll = window.scrollY || window.pageYOffset;
-    scrollVel += (curScroll - lastScroll - scrollVel) * 0.1;
-    lastScroll = curScroll;
-
-    /* ── Flowing wave field (skip entirely on mobile) ── */
-    if (!isMobile) {
-      ctx.strokeStyle = 'rgba(79,172,254,.02)';
-      ctx.lineWidth = 0.6;
-      for (let row = 0; row < H; row += 120) {
-        ctx.beginPath();
-        for (let col = 0; col <= W; col += 24) {
-          const wave = Math.sin(col * 0.008 + t * 2 + row * 0.003) * 8
-                     + Math.sin(col * 0.015 - t * 1.3) * 3;
-          const y = row + wave;
-          col === 0 ? ctx.moveTo(col, y) : ctx.lineTo(col, y);
-        }
-        ctx.stroke();
-      }
-    }
-
     /* ── Update nodes ── */
     for (const n of nodes) {
-      const scrollPush = scrollVel * n.depth * 0.5;
       n.x += n.vx;
-      n.y += n.vy + scrollPush * 0.05;
+      n.y += n.vy;
 
       if (n.x < -20) n.x = W + 20;
       if (n.x > W + 20) n.x = -20;

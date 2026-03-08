@@ -8,7 +8,7 @@
 
 #blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 25px;
     margin-top: 50px;
 }
@@ -129,4 +129,16 @@
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
+}
+
+/* ==========================================
+   BLOG MOBILE
+   ========================================== */
+@media (max-width: 600px) {
+    #blog { padding: 50px 5%; }
+    .blog-placeholder-card { padding: 40px 20px; border-radius: 20px; }
+    .blog-placeholder-card h3 { font-size: 1.3rem; }
+    .placeholder-icon { font-size: 2.2rem; }
+    .blog-card-content { padding: 16px; }
+    .blog-thumbnail { height: 160px; }
 }

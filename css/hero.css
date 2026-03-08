@@ -121,12 +121,6 @@
   box-shadow: 0 12px 36px rgba(124,58,237,.3);
 }
 
-/* Light theme */
-body.light-theme .social-icon { background: rgba(0,0,0,.04); border-color: rgba(0,0,0,.08); }
-body.light-theme .social-icon:hover { color: #fff; }
-body.light-theme .hero-ring img { border-color: var(--bg-main); }
-body.light-theme .hero-cta { color: #fff !important; }
-
 /* Mobile */
 @media (max-width: 600px) {
   .hero { padding: 100px 5% 40px; min-height: auto; }

@@ -227,21 +227,6 @@
   box-shadow: 0 12px 36px rgba(79,172,254,.3);
 }
 
-/* Page footer (reuse from content.css) */
-
-/* Light theme */
-body.light-theme .search-input {
-  background: rgba(0,0,0,.03);
-  border-color: rgba(0,0,0,.1);
-}
-body.light-theme .detail-card {
-  background: rgba(0,0,0,.02);
-  border-color: rgba(0,0,0,.06);
-}
-body.light-theme .detail-card:hover {
-  box-shadow: 0 20px 50px rgba(0,0,0,.08);
-}
-
 /* Responsive */
 @media (max-width: 900px) {
   .page-wrapper { padding-top: 80px; }
@@ -254,4 +239,5 @@ body.light-theme .detail-card:hover {
   .filter-btn { width: 100%; justify-content: center; }
   .page-header h1 { font-size: 1.6rem; }
   .page-header .page-desc { font-size: 0.9rem; }
+  .detail-card { padding: 22px 18px; }
 }

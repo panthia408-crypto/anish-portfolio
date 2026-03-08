@@ -79,6 +79,7 @@
 
   /* ── Main loop ── */
   function frame() {
+    if (paused) return;
     t += 0.008;
     ctx.clearRect(0, 0, W, H);
 
@@ -166,6 +167,13 @@
 
     requestAnimationFrame(frame);
   }
+
+  /* ── Pause when tab hidden (battery saver) ── */
+  let paused = false;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { paused = true; }
+    else { paused = false; frame(); }
+  });
 
   /* ── Events (use window, keep canvas pointer-events:none for mobile scroll) ── */
   window.addEventListener('mousemove', e => {

@@ -84,7 +84,7 @@
 .nav-links a:hover::after { width: 100%; }
 
 /* ==========================================
-   3. RIGHT SECTION (Theme Toggle & Mobile Icon)
+   3. RIGHT SECTION (Mobile Menu Icon)
    ========================================== */
 .nav-right {
     display: flex;

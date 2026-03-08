@@ -144,29 +144,11 @@
   box-shadow: 0 12px 36px rgba(79,172,254,.25);
 }
 
-body.light-theme .view-all-btn {
-  background: rgba(0,0,0,.03);
-  border-color: rgba(0,0,0,.08);
-}
-body.light-theme .view-all-btn:hover {
-  color: #fff;
-}
-
 /* Subtitle */
 .work-subtitle {
   color: var(--text-dim);
   font-size: 1.02rem;
   margin-top: 10px;
-}
-
-/* Light theme */
-body.light-theme .work-card {
-  background: rgba(0,0,0,.02);
-  border-color: rgba(0,0,0,.06);
-}
-body.light-theme .work-card:hover {
-  border-color: rgba(79,172,254,.2);
-  box-shadow: 0 16px 40px rgba(0,0,0,.06);
 }
 
 /* Mobile */

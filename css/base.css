@@ -14,16 +14,6 @@
     --lib-text-dim: #a1a1aa;
 }
 
-body.light-theme {
-    /* Soft Slate Light Theme */
-    --bg-main: #f8f9fa;        
-    --bg-card: #ffffff;        
-    --text-main: #121212;
-    --text-dim: #475569;       
-    --accent: #121212;         
-    --accent-glow: rgba(0, 0, 0, 0.05);
-    --nav-bg: rgba(248, 249, 250, 0.75);
-}
 
 /* ==========================================
    2. RESET & GLOBAL STYLES
@@ -45,7 +35,6 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
-    transition: background-color 0.5s ease, color 0.5s ease;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -94,24 +83,59 @@ a {
 ul { list-style: none; }
 
 /* ==========================================
-   4. GLOBAL LIGHT THEME FIXES
+   4. ACCESSIBILITY UTILITIES
    ========================================== */
-body.light-theme h1, 
-body.light-theme h2, 
-body.light-theme h3, 
-body.light-theme p,
-body.light-theme a,
-body.light-theme span:not(.about-tags span) {
-    color: var(--text-main) !important;
+.skip-link {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--bg-main);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    font-weight: 700;
+    z-index: 10000;
+    transition: top 0.3s;
+}
+.skip-link:focus {
+    top: 0;
 }
 
-body.light-theme .about-text p,
-body.light-theme .contact-text p,
-body.light-theme .footer-content p {
-    color: var(--text-dim) !important;
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
-/* Menu Bar Fix */
-body.light-theme .mobile-menu-icon .bar {
-    background-color: var(--text-main) !important;
+/* ==========================================
+   5. SCROLL-REVEAL ANIMATIONS
+   ========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger children inside revealed sections */
+.reveal .stagger { 
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.5s ease, transform 0.5s ease; 
+}
+.reveal.visible .stagger { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+

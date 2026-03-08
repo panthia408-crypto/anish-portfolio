@@ -211,21 +211,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Light theme ── */
-body.light-theme .about-glass-card {
-  background: rgba(0,0,0,.03);
-  border-color: rgba(0,0,0,.08);
-  box-shadow: 0 20px 60px rgba(0,0,0,.06);
-}
-body.light-theme .role-btn {
-  background: rgba(0,0,0,.04);
-  border-color: rgba(0,0,0,.1);
-  color: var(--text-dim);
-}
-body.light-theme .role-btn:hover { color: #4facfe; border-color: #4facfe; }
-body.light-theme .skills-container { border-color: rgba(0,0,0,.08); }
-body.light-theme .img-wrapper { background: rgba(0,0,0,.04); }
-
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .about-section { padding: 60px 5%; }

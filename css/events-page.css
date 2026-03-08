@@ -238,6 +238,7 @@
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .events-grid { grid-template-columns: 1fr; }
+  .event-body { padding: 18px; }
   .lb-prev { left: 10px; }
   .lb-next { right: 10px; }
 }

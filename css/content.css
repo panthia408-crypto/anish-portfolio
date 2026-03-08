@@ -38,7 +38,7 @@
 }
 
 .entrance-content h2 {
-    font-size: 3.5rem;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
     margin: 15px 0;
     letter-spacing: -1.5px;
     color: var(--text-main);
@@ -78,6 +78,7 @@
     .entrance-content p { font-size: 0.95rem; }
     .entrance-visual { font-size: 3.5rem; }
     #library-entrance { padding: 60px 5%; }
+    .premium-btn { padding: 16px 32px; font-size: 0.95rem; }
 }
 /* Contact Section */
 #contact {
@@ -153,12 +154,6 @@
 .contact-form button:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 36px rgba(79,172,254,.25);
-}
-
-body.light-theme .contact-form input,
-body.light-theme .contact-form textarea {
-  background: rgba(0,0,0,.03);
-  border-color: rgba(0,0,0,.1);
 }
 
 @media (max-width: 600px) {

@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Library | Anish Panthi</title>
     <meta name="description" content="Open-access digital library covering 40+ subjects across all 8 semesters of IOE Industrial Engineering.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://anishpanthi.com.np/library.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="E-Library | Anish Panthi">
+    <meta property="og:description" content="Open-access digital library covering 40+ subjects across all 8 semesters of IOE Industrial Engineering.">
+    <meta property="og:image" content="https://anishpanthi.com.np/assets/placeholder.jpg">
+    <meta property="og:url" content="https://anishpanthi.com.np/library.html">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/page-common.css">
     <link rel="stylesheet" href="css/library-page.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <canvas id="bg-canvas"></canvas>
 
-    <nav class="main-nav">
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
         <div class="nav-left">
             <a href="index.html" class="logo-link">
                 <img src="logo.png" alt="Logo" class="nav-logo">
@@ -31,7 +39,7 @@
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <div class="nav-right">
-            <div class="mobile-menu-icon" id="mobile-menu-btn">
+            <div class="mobile-menu-icon" id="mobile-menu-btn" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -39,7 +47,7 @@
         </div>
     </nav>
 
-    <main class="page-wrapper">
+    <main id="main-content" class="page-wrapper">
         <!-- CATEGORY SELECTION VIEW -->
         <section id="selection-view">
             <div class="page-header">

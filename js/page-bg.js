@@ -73,6 +73,7 @@
 
   /* ── Main loop ── */
   function frame() {
+    if (paused) return;
     t += 0.006;
     ctx.clearRect(0, 0, W, H);
 
@@ -175,6 +176,13 @@
 
     requestAnimationFrame(frame);
   }
+
+  /* ── Pause when tab hidden (battery saver) ── */
+  let paused = false;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { paused = true; }
+    else { paused = false; frame(); }
+  });
 
   /* ── Events ── */
   window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; });

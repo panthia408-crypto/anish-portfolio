@@ -238,7 +238,6 @@ export default function Home() {
         }}
       />
       <Script src="/js/hero-bg.js" strategy="afterInteractive" />
-      <Script src="/index.js" strategy="afterInteractive" />
       <Script src="/js/main.js" strategy="afterInteractive" />
     </>
   );

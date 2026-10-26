@@ -81,7 +81,6 @@ export default function JourneyPage() {
       </footer>
 
       <Script src="/js/page-bg.js" strategy="afterInteractive" />
-      <Script src="/index.js" strategy="afterInteractive" />
     </>
   );
 }

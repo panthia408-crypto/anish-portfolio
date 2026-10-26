@@ -59,7 +59,6 @@ export default function ProjectsPage() {
       </footer>
 
       <Script src="/js/page-bg.js" strategy="afterInteractive" />
-      <Script src="/index.js" strategy="afterInteractive" />
     </>
   );
 }

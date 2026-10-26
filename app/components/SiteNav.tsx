@@ -1,8 +1,16 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+
 type SiteNavProps = {
   active?: string;
 };
 
 export default function SiteNav({ active = "" }: SiteNavProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
   const links = [
     { href: "/", label: "Home" },
     { href: "/projects", label: "My Projects" },
@@ -11,21 +19,56 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
     { href: "/blog", label: "Blog" },
   ];
 
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    const handleDocumentKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+    document.addEventListener("keydown", handleDocumentKeyDown);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+      document.removeEventListener("keydown", handleDocumentKeyDown);
+    };
+  }, [menuOpen]);
+
   return (
-    <nav className="main-nav" role="navigation" aria-label="Main navigation">
+    <nav
+      ref={navRef}
+      className="main-nav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div className="nav-left">
-        <a href="/" className="logo-link">
+        <Link href="/" className="logo-link">
           <img src="/logo.png" alt="Logo" className="nav-logo" />
           <span className="logo-text">A.Panthi</span>
-        </a>
+        </Link>
       </div>
 
-      <ul className="nav-links">
+      <ul
+        id="main-navigation-links"
+        className={`nav-links${menuOpen ? " active" : ""}`}
+      >
         {links.map((link) => (
           <li key={link.href}>
             <a
               href={link.href}
               className={link.href === active ? "active" : undefined}
+              onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </a>
@@ -34,11 +77,19 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
       </ul>
 
       <div className="nav-right">
-        <div className="mobile-menu-icon" id="mobile-menu-btn" role="button" aria-label="Toggle menu" aria-expanded="false" tabIndex={0}>
+        <button
+          type="button"
+          className={`mobile-menu-icon${menuOpen ? " active" : ""}`}
+          id="mobile-menu-btn"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation-links"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
           <div className="bar"></div>
           <div className="bar"></div>
           <div className="bar"></div>
-        </div>
+        </button>
       </div>
     </nav>
   );

@@ -113,7 +113,6 @@ export default function LibraryPage() {
       </footer>
 
       <Script src="/js/page-bg.js" strategy="afterInteractive" />
-      <Script src="/index.js" strategy="afterInteractive" />
       <Script src="/js/library-logic.js" strategy="afterInteractive" />
     </>
   );

@@ -81,7 +81,6 @@ export default function SoiesPage() {
         <a href="/">Back to home</a>
       </footer>
 
-      <Script src="/index.js" strategy="afterInteractive" />
       <Script src="/js/page-bg.js" strategy="afterInteractive" />
     </div>
   );

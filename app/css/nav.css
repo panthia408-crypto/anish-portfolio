@@ -97,6 +97,9 @@
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
+    padding: 0;
+    border: 0;
+    background: transparent;
 }
 
 .bar { 

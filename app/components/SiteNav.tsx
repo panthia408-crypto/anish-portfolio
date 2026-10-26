@@ -9,7 +9,8 @@ type SiteNavProps = {
 
 export default function SiteNav({ active = "" }: SiteNavProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuLinksRef = useRef<HTMLUListElement>(null);
 
   const links = [
     { href: "/", label: "Home" },
@@ -25,7 +26,11 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
     }
 
     const handleDocumentClick = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (
+        !menuButtonRef.current?.contains(target) &&
+        !menuLinksRef.current?.contains(target)
+      ) {
         setMenuOpen(false);
       }
     };
@@ -46,12 +51,7 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
   }, [menuOpen]);
 
   return (
-    <nav
-      ref={navRef}
-      className="main-nav"
-      role="navigation"
-      aria-label="Main navigation"
-    >
+    <nav className="main-nav" role="navigation" aria-label="Main navigation">
       <div className="nav-left">
         <Link href="/" className="logo-link">
           <img src="/logo.png" alt="Logo" className="nav-logo" />
@@ -60,6 +60,7 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
       </div>
 
       <ul
+        ref={menuLinksRef}
         id="main-navigation-links"
         className={`nav-links${menuOpen ? " active" : ""}`}
       >
@@ -78,6 +79,7 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
 
       <div className="nav-right">
         <button
+          ref={menuButtonRef}
           type="button"
           className={`mobile-menu-icon${menuOpen ? " active" : ""}`}
           id="mobile-menu-btn"

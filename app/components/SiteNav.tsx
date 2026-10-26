@@ -38,6 +38,7 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
     const handleDocumentKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
+        menuButtonRef.current?.focus();
       }
     };
 

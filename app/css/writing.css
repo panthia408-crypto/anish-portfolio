@@ -1,0 +1,301 @@
+.writing-page {
+  padding-top: 80px;
+}
+
+.writing-header {
+  max-width: 760px;
+  padding: clamp(3rem, 8vw, 7rem) 0 1rem;
+}
+
+.writing-eyebrow,
+.writing-kind,
+.latest-writing-label {
+  color: var(--lib-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.writing-header h1 {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  margin: 0.35rem 0 1rem;
+}
+
+.writing-header p {
+  max-width: 62ch;
+  font-size: 1.05rem;
+}
+
+.writing-item {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding: var(--section-space) 0;
+  border-top: 1px solid rgba(128, 128, 128, 0.18);
+}
+
+.writing-cover-frame {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.writing-cover-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.writing-item-content h2 {
+  margin: 0.5rem 0 0.35rem;
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+.writing-subtitle {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+.writing-summary {
+  max-width: 62ch;
+  margin-top: 1rem;
+}
+
+.writing-credit {
+  margin-top: 1rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.writing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.writing-btn {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.writing-btn-primary {
+  padding: 0.8rem 1.15rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4facfe, #00c9a7);
+  color: #000;
+  font-weight: 700;
+}
+
+.writing-secondary-link,
+.latest-writing-all {
+  color: var(--lib-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.writing-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 5% 3rem;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+.writing-footer a {
+  color: var(--text-main);
+}
+
+.latest-writing {
+  width: 100%;
+}
+
+.latest-writing-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  margin-top: 2.5rem;
+}
+
+.latest-writing-card {
+  display: block;
+  min-width: 0;
+  color: inherit;
+  text-align: left;
+}
+
+.latest-writing-image-frame {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.latest-writing-card-featured .latest-writing-image-frame {
+  aspect-ratio: 16 / 10;
+}
+
+.latest-writing-image-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.3s ease;
+}
+
+.latest-writing-card:hover .latest-writing-image-frame img {
+  transform: scale(1.03);
+}
+
+.latest-writing-label {
+  display: block;
+  margin-top: 1.1rem;
+}
+
+.latest-writing-card h3 {
+  margin-top: 0.35rem;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.latest-writing-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 0.6rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.latest-writing-read {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--lib-accent);
+  font-weight: 700;
+}
+
+.latest-writing-read span {
+  display: inline-block;
+  margin-left: 0.3rem;
+  transition: transform 0.2s ease;
+}
+
+.latest-writing-card:hover .latest-writing-read span {
+  transform: translateX(0.25rem);
+}
+
+.latest-writing-all {
+  display: block;
+  width: fit-content;
+  margin: 2.5rem auto 0;
+}
+
+.page-reader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  overflow-y: auto;
+  background: rgba(5, 5, 8, 0.96);
+  color: var(--text-main);
+}
+
+.page-reader-overlay:focus {
+  outline: none;
+}
+
+.page-reader-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 1rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  background: rgba(5, 5, 8, 0.98);
+}
+
+.page-reader-topbar strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-reader-close {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.page-reader-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.page-reader-column img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.page-reader-credit {
+  padding: 0.5rem 0 1rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+:where(.writing-page, .latest-writing) a:focus-visible,
+:where(.writing-page, .latest-writing) button:focus-visible {
+  outline: 3px solid var(--lib-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 899px) {
+  .writing-item {
+    grid-template-columns: 1fr;
+  }
+
+  .writing-cover-frame {
+    order: -1;
+  }
+
+  .latest-writing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .latest-writing-image-frame img,
+  .latest-writing-read span {
+    transition: none;
+  }
+
+  .latest-writing-card:hover .latest-writing-image-frame img,
+  .latest-writing-card:hover .latest-writing-read span {
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .writing-footer {
+    flex-direction: column;
+  }
+}

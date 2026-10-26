@@ -20,8 +20,7 @@ export type SoiesEvent = {
   photos: string[]; // file names on the SOIES Sanity CDN
 };
 
-// Build a resized, optimised image URL. width is in pixels.
-export function sanityImg(file: string, width = 900): string {
+export function sanityImg(file: string): string {
   return `/soies/${file}`;
 }
 

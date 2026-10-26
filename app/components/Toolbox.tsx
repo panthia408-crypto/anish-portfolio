@@ -125,6 +125,7 @@ export default function Toolbox() {
   };
 
   useEffect(() => {
+    const activeMagnetFrames = magnetFrames.current;
     const handlePointerDown = (event: PointerEvent) => {
       const currentTool = openToolRef.current;
       if (!currentTool) {
@@ -166,10 +167,10 @@ export default function Toolbox() {
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("scroll", handleScroll);
-      magnetFrames.current.forEach((frame) => {
+      activeMagnetFrames.forEach((frame) => {
         window.cancelAnimationFrame(frame);
       });
-      magnetFrames.current.clear();
+      activeMagnetFrames.clear();
     };
   }, []);
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Script from "next/script";
 import EventsTimeline from "../components/EventsTimeline";
 import NavScroll from "../components/NavScroll";
@@ -78,7 +79,7 @@ export default function SoiesPage() {
 
       <footer className="soies-footer">
         <span>© 2026 Anish Panthi</span>
-        <a href="/">Back to home</a>
+        <Link href="/">Back to home</Link>
       </footer>
 
       <Script src="/js/page-bg.js" strategy="afterInteractive" />

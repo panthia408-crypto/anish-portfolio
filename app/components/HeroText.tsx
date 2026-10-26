@@ -24,10 +24,12 @@ export default function HeroText() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reducedMotion) {
-      setGreeting(greetings[0]);
-      setTypedName("I am Anish Panthi");
-      setShowCaret(false);
-      return;
+      const frame = window.requestAnimationFrame(() => {
+        setGreeting(greetings[0]);
+        setTypedName("I am Anish Panthi");
+        setShowCaret(false);
+      });
+      return () => window.cancelAnimationFrame(frame);
     }
 
     let greetingIndex = 0;

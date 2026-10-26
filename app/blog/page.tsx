@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Script from "next/script";
 import PageReader from "../components/PageReader";
 import SiteNav from "../components/SiteNav";
@@ -65,7 +66,7 @@ export default function BlogPage() {
 
       <footer className="writing-footer">
         <span>© 2026 Anish Panthi</span>
-        <a href="/">Back to home</a>
+        <Link href="/">Back to home</Link>
       </footer>
 
       <Script src="/js/page-bg.js" strategy="afterInteractive" />

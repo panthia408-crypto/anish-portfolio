@@ -144,6 +144,19 @@ function initContact() {
 }
 
 /* ── Init ── */
-syncSite();
-syncFooterSocials();
-initContact();
+function initSiteEnhancements() {
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+  if (!isMobile) {
+    syncSite();
+  }
+
+  syncFooterSocials();
+  initContact();
+}
+
+if ('requestIdleCallback' in window) {
+  window.requestIdleCallback(initSiteEnhancements, { timeout: 500 });
+} else {
+  setTimeout(initSiteEnhancements, 150);
+}

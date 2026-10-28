@@ -124,7 +124,23 @@ export default function Toolbox() {
     setOpenTool(toolName);
   };
 
+  const supportsMagnetEffect = () => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return (
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      !window.matchMedia("(max-width: 767px)").matches
+    );
+  };
+
   useEffect(() => {
+    if (!supportsMagnetEffect()) {
+      return;
+    }
+
     const activeMagnetFrames = magnetFrames.current;
     const handlePointerDown = (event: PointerEvent) => {
       const currentTool = openToolRef.current;
@@ -178,8 +194,8 @@ export default function Toolbox() {
     event: ReactPointerEvent<HTMLButtonElement>,
   ) => {
     if (
-      !window.matchMedia("(hover: hover) and (pointer: fine)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      event.pointerType === "touch" ||
+      !supportsMagnetEffect()
     ) {
       return;
     }

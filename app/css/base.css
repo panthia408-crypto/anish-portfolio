@@ -36,6 +36,40 @@ body {
     line-height: 1.5;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+@media (max-width: 767px) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal,
+    .reveal .stagger {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .hero,
+    .skill-category,
+    .work-card,
+    .social-icon,
+    .hero-cta,
+    .hero-secondary-cta-v2,
+    .toolbox-item,
+    .toolbox-logo {
+        transition-duration: 0.12s !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /* ==========================================

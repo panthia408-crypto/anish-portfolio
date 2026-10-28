@@ -9,6 +9,12 @@
   const ctx = canvas.getContext('2d');
 
   const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isMobile || reduceMotion) {
+    canvas.style.display = 'none';
+    return;
+  }
+
   let W, H, nodes = [], t = 0;
   const N = isMobile ? 18 : 45;
   const LINK_DIST = 150;

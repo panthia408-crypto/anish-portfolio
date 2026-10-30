@@ -195,10 +195,6 @@
   }
 }
 
-/* TEMP until Task 3: the legacy nav is position: fixed and 80px tall. */
-.hero-sheet {
-  margin-top: 80px;
-}
 
 /* About */
 

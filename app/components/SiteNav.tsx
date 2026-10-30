@@ -1,24 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { site } from "../data/site";
 
-type SiteNavProps = {
-  active?: string;
-};
+const links = [
+  { href: "/#research", label: "Research" },
+  { href: "/projects", label: "Work" },
+  { href: "/blog", label: "Writing" },
+  { href: "/library", label: "Library" },
+  { href: "/#about", label: "About" },
+];
 
-export default function SiteNav({ active = "" }: SiteNavProps) {
+export default function SiteNav() {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const menuLinksRef = useRef<HTMLUListElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  const links = [
-    { href: "/", label: "Home" },
-    { href: "/projects", label: "My Projects" },
-    { href: "/journey", label: "Journey" },
-    { href: "/library", label: "Library" },
-    { href: "/blog", label: "Blog" },
-  ];
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 8);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -27,10 +34,7 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
 
     const handleDocumentClick = (event: MouseEvent) => {
       const target = event.target as Node;
-      if (
-        !menuButtonRef.current?.contains(target) &&
-        !menuLinksRef.current?.contains(target)
-      ) {
+      if (!menuButtonRef.current?.contains(target) && !menuRef.current?.contains(target)) {
         setMenuOpen(false);
       }
     };
@@ -42,58 +46,80 @@ export default function SiteNav({ active = "" }: SiteNavProps) {
       }
     };
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     document.addEventListener("click", handleDocumentClick);
     document.addEventListener("keydown", handleDocumentKeyDown);
 
     return () => {
+      document.body.style.overflow = previousOverflow;
       document.removeEventListener("click", handleDocumentClick);
       document.removeEventListener("keydown", handleDocumentKeyDown);
     };
   }, [menuOpen]);
 
+  // Close the sheet if the viewport grows past the mobile breakpoint.
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 48rem)");
+    const close = () => query.matches && setMenuOpen(false);
+    query.addEventListener("change", close);
+    return () => query.removeEventListener("change", close);
+  }, []);
+
+  const linkList = (className: string) => (
+    <ul className={className}>
+      {links.map((link) => (
+        <li key={link.href}>
+          <Link
+            href={link.href}
+            aria-current={link.href === pathname ? "page" : undefined}
+            onClick={() => setMenuOpen(false)}
+          >
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
-    <nav className="main-nav" role="navigation" aria-label="Main navigation">
-      <div className="nav-left">
-        <Link href="/" className="logo-link">
-          <img src="/logo.png" alt="Logo" className="nav-logo" />
-          <span className="logo-text">A.Panthi</span>
+    <header className={`site-nav${scrolled ? " is-scrolled" : ""}${menuOpen ? " is-open" : ""}`}>
+      <nav className="site-nav__bar container" aria-label="Main">
+        <Link href="/" className="site-nav__mark">
+          {site.name}
         </Link>
-      </div>
 
-      <ul
-        ref={menuLinksRef}
-        id="main-navigation-links"
-        className={`nav-links${menuOpen ? " active" : ""}`}
-      >
-        {links.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              className={link.href === active ? "active" : undefined}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+        {linkList("site-nav__links")}
 
-      <div className="nav-right">
+        <a className="site-nav__cv mono" href={site.cv.href} download title={`PDF, ${site.cv.size}`}>
+          CV <span aria-hidden="true">↓</span>
+        </a>
+
         <button
           ref={menuButtonRef}
           type="button"
-          className={`mobile-menu-icon${menuOpen ? " active" : ""}`}
-          id="mobile-menu-btn"
-          aria-label="Toggle menu"
+          className="site-nav__toggle mono"
           aria-expanded={menuOpen}
-          aria-controls="main-navigation-links"
+          aria-controls="site-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
+          {menuOpen ? "Close" : "Menu"}
         </button>
+      </nav>
+
+      <div id="site-menu" ref={menuRef} className="site-nav__sheet" hidden={!menuOpen}>
+        <div className="container">
+          {linkList("site-nav__sheet-links")}
+          <a className="arrow-link site-nav__sheet-cv" href={site.cv.href} download>
+            <span className="arrow-link__text">
+              Download CV (PDF, {site.cv.size})
+            </span>
+            <span className="arrow-link__glyph" aria-hidden="true">
+              ↓
+            </span>
+          </a>
+        </div>
       </div>
-    </nav>
+    </header>
   );
 }

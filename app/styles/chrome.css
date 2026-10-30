@@ -1,0 +1,181 @@
+/* Navigation and footer. See DESIGN_PLAN.md sections 5.0 and 5.7. */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-ui) var(--ease);
+}
+
+.site-nav.is-scrolled,
+.site-nav.is-open {
+  border-bottom-color: var(--rule);
+}
+
+.site-nav__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  height: var(--nav-h);
+}
+
+.site-nav__mark {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  margin-right: auto;
+  white-space: nowrap;
+}
+
+.site-nav__links {
+  display: none;
+  gap: var(--space-5);
+}
+
+.site-nav__links a,
+.site-nav__cv {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: var(--step--1);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+  transition:
+    color var(--dur-fast) var(--ease),
+    text-decoration-color var(--dur-fast) var(--ease);
+}
+
+.site-nav__links a:hover,
+.site-nav__cv:hover {
+  color: var(--accent);
+}
+
+.site-nav__links a[aria-current="page"] {
+  text-decoration-color: var(--accent);
+}
+
+.site-nav__cv {
+  display: none;
+  gap: 0.3em;
+}
+
+.site-nav__toggle {
+  min-height: 2.75rem;
+  padding: 0 var(--space-1);
+  background: none;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--pencil);
+  text-underline-offset: 0.3em;
+}
+
+.site-nav__sheet {
+  position: fixed;
+  inset: var(--nav-h) 0 0;
+  overflow-y: auto;
+  background: var(--paper);
+  padding-block: var(--space-6) var(--space-8);
+}
+
+.site-nav__sheet:not([hidden]) {
+  animation: sheet-in var(--dur-ui) var(--ease);
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.site-nav__sheet-links a {
+  display: block;
+  padding-block: var(--space-3);
+  border-bottom: var(--hairline);
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 1.2;
+}
+
+.site-nav__sheet-links a[aria-current="page"] {
+  color: var(--accent);
+}
+
+.site-nav__sheet-cv {
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .site-nav__links {
+    display: flex;
+  }
+
+  .site-nav__cv {
+    display: inline-flex;
+    font-family: var(--font-mono);
+  }
+
+  .site-nav__toggle,
+  .site-nav__sheet {
+    display: none;
+  }
+}
+
+/* Footer */
+
+.site-footer {
+  margin-top: var(--section-y);
+  padding-block: var(--space-7) var(--space-8);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.6;
+  color: var(--graphite);
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: var(--hairline);
+}
+
+.site-footer__name {
+  color: var(--ink);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  align-content: start;
+}
+
+.site-footer__links a {
+  display: inline-block;
+  padding-block: var(--space-2);
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--pencil);
+  text-underline-offset: 0.25em;
+}
+
+.site-footer__links a:hover {
+  color: var(--accent);
+}
+
+@media (min-width: 64rem) {
+  .site-footer__inner {
+    grid-template-columns: 3fr 6fr 3fr;
+    gap: var(--space-5);
+  }
+
+  .site-footer__links a {
+    padding-block: 0;
+  }
+}

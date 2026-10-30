@@ -4,10 +4,6 @@
   padding-bottom: var(--section-y);
 }
 
-/* TEMP until Task 3: the legacy nav is position: fixed and 80px tall. */
-.page {
-  padding-top: 80px;
-}
 
 .page-head {
   padding-top: var(--space-8);
@@ -316,4 +312,228 @@
 
 .reader__credit {
   color: var(--graphite);
+}
+
+/* /journey */
+
+.timeline {
+  border-bottom: var(--hairline);
+}
+
+.timeline__row {
+  row-gap: var(--space-2);
+  padding-block: var(--space-5);
+  border-top: var(--hairline);
+}
+
+.timeline__year {
+  grid-column: 1 / -1;
+  color: var(--graphite);
+}
+
+.timeline__main {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.timeline__title {
+  font-size: var(--step-2);
+}
+
+.timeline__place {
+  color: var(--graphite);
+}
+
+.timeline__text {
+  max-width: var(--measure);
+}
+
+.credentials-grid {
+  row-gap: var(--space-8);
+  margin-top: var(--space-9);
+}
+
+.credentials,
+.credentials-col {
+  grid-column: 1 / -1;
+}
+
+.credentials__title {
+  margin-bottom: var(--space-4);
+}
+
+.credentials ul {
+  border-top: var(--hairline);
+}
+
+.credentials__item {
+  padding-block: var(--space-4);
+  border-bottom: var(--hairline);
+}
+
+.credentials__item h3 {
+  font-size: var(--step-1);
+}
+
+.credentials__item .mono {
+  margin-top: var(--space-1);
+  color: var(--graphite);
+}
+
+.credentials__also {
+  margin-top: var(--space-5);
+  max-width: var(--measure);
+  color: var(--graphite);
+  font-size: var(--step--1);
+}
+
+@media (min-width: 64rem) {
+  .timeline__year {
+    grid-column: 1 / span 3;
+    padding-top: 0.45em;
+  }
+
+  .timeline__main {
+    grid-column: 4 / span 7;
+  }
+
+  .credentials-grid > .credentials {
+    grid-column: 1 / span 5;
+  }
+
+  .credentials-col {
+    grid-column: 7 / -1;
+  }
+}
+
+/* /library */
+
+.library__search {
+  max-width: 24rem;
+}
+
+.library__matches {
+  margin-top: var(--space-6);
+}
+
+.library__matches .shelf__resources {
+  margin-top: var(--space-3);
+  border-top: var(--hairline);
+}
+
+.library__error {
+  padding-block: var(--space-6);
+  border-top: var(--hairline);
+}
+
+.shelves {
+  border-bottom: var(--hairline);
+}
+
+.shelf {
+  border-top: var(--hairline);
+}
+
+.shelf__summary {
+  align-items: baseline;
+  row-gap: var(--space-1);
+  padding-block: var(--space-4);
+  cursor: pointer;
+  list-style: none;
+}
+
+.shelf__summary::-webkit-details-marker {
+  display: none;
+}
+
+.shelf__summary:hover .shelf__title {
+  color: var(--accent);
+}
+
+.shelf__num {
+  grid-column: 1 / span 1;
+  color: var(--graphite);
+}
+
+.shelf__label {
+  grid-column: 2 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.shelf__title {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.2;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.shelf__subtitle,
+.shelf__count {
+  color: var(--graphite);
+}
+
+.shelf__count {
+  grid-column: 2 / -1;
+}
+
+.shelf__count::after {
+  content: " +";
+}
+
+.shelf[open] .shelf__count::after {
+  content: " −";
+}
+
+.shelf__body {
+  padding-bottom: var(--space-5);
+}
+
+.shelf__resources li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: var(--hairline);
+}
+
+.shelf__resources li:last-child {
+  border-bottom: 0;
+}
+
+.shelf__resource-shelf {
+  color: var(--graphite);
+}
+
+.shelf__empty {
+  color: var(--graphite);
+}
+
+@media (min-width: 40rem) {
+  .shelf__label {
+    grid-column: 2 / span 5;
+  }
+
+  .shelf__count {
+    grid-column: 7 / -1;
+    text-align: right;
+  }
+}
+
+@media (min-width: 64rem) {
+  .shelf__num {
+    grid-column: 1 / span 3;
+  }
+
+  .shelf__label {
+    grid-column: 4 / span 6;
+  }
+
+  .shelf__count {
+    grid-column: 10 / -1;
+  }
 }

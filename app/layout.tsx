@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
+import SiteFooter from "./components/SiteFooter";
+import SiteNav from "./components/SiteNav";
 import "./css/style.css";
 import "./css/wide.css";
 import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/components.css";
+import "./styles/chrome.css";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -68,14 +71,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
-      </head>
-      <body>{children}</body>
+      <body>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        <SiteNav />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }

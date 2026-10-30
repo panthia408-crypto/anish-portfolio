@@ -494,9 +494,9 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 - [x] Task 8: Writing section and /blog chrome
 - [x] Task 5: Research section
 - [x] Task 9: Contact
-- [ ] Task 3: Navigation and footer
-- [ ] Task 10: Subpages shell (journey, library, soies)
-- [ ] Task 11: Sanity data layer (read only)
+- [x] Task 3: Navigation and footer
+- [x] Task 10: Subpages shell (journey, library, soies)
+- [x] Task 11: Sanity data layer (read only)
 - [ ] Task 12: SEO and metadata
 - [ ] Task 13: Performance and accessibility pass
 - [ ] Task 14: Cleanup

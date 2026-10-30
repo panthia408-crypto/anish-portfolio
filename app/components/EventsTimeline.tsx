@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { sanityImg, type SoiesEvent } from "../data/soies-events";
+import { imageSize, sanityImg, type SoiesEvent } from "../data/soies-events";
 
 type EventsTimelineProps = {
   events: SoiesEvent[];
@@ -115,13 +116,13 @@ export default function EventsTimeline({ events }: EventsTimelineProps) {
       <div className="soies-timeline">
         {Object.entries(groupedEvents).map(([month, monthEvents]) => (
           <section className="soies-month" key={month}>
-            <h2>{month}</h2>
+            <h3 className="soies-month__title">{month}</h3>
             {monthEvents.map((event) => (
               <article className="soies-event" key={event.id}>
                 <div className="soies-event-copy">
-                  <time dateTime={event.date}>{dateLabel(event.date)}</time>
-                  <span className="soies-event-type">{event.type}</span>
-                  <h3>{event.title}</h3>
+                  <time className="mono" dateTime={event.date}>{dateLabel(event.date)}</time>
+                  <span className="soies-event-type mono">{event.type}</span>
+                  <h4>{event.title}</h4>
                   {event.description && <p>{event.description}</p>}
                   {event.note && <p className="soies-event-note">{event.note}</p>}
                 </div>
@@ -144,11 +145,11 @@ export default function EventsTimeline({ events }: EventsTimelineProps) {
                           onClick={() => openLightbox(event, index)}
                           aria-label={`Open ${event.title}, photo ${index + 1}`}
                         >
-                          <img
+                          <Image
                             src={sanityImg(photo)}
                             alt={`${event.title}, photo ${index + 1}`}
-                            loading="lazy"
-                            decoding="async"
+                            {...imageSize(photo)}
+                            sizes={index === 0 ? "(min-width: 64rem) 30rem, 100vw" : "(min-width: 64rem) 10rem, 33vw"}
                           />
                         </button>
                       );
@@ -176,7 +177,7 @@ export default function EventsTimeline({ events }: EventsTimelineProps) {
           }}
         >
           <button
-            className="soies-lightbox-close"
+            className="btn btn--outline soies-lightbox-close"
             type="button"
             aria-label="Close photo viewer"
             onClick={() => setLightbox(null)}
@@ -184,11 +185,13 @@ export default function EventsTimeline({ events }: EventsTimelineProps) {
             Close
           </button>
           <div className="soies-lightbox-content">
-            <img
+            <Image
+              key={lightbox.photos[lightbox.index]}
               src={sanityImg(lightbox.photos[lightbox.index])}
               alt={`${lightbox.eventTitle}, photo ${lightbox.index + 1}`}
-              loading="lazy"
-              decoding="async"
+              {...imageSize(lightbox.photos[lightbox.index])}
+              sizes="100vw"
+              loading="eager"
             />
             <div className="soies-lightbox-controls">
               <button
@@ -209,7 +212,7 @@ export default function EventsTimeline({ events }: EventsTimelineProps) {
               >
                 Previous
               </button>
-              <span>
+              <span className="mono">
                 {lightbox.index + 1} / {lightbox.photos.length}
               </span>
               <button

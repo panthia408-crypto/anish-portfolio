@@ -1,6 +1,7 @@
 import Script from "next/script";
 import About from "./components/home/About";
 import Hero from "./components/home/Hero";
+import Research from "./components/home/Research";
 import Work from "./components/home/Work";
 import Writing from "./components/home/Writing";
 import NavScroll from "./components/NavScroll";
@@ -17,6 +18,8 @@ export default function Home() {
 
       <main id="main-content">
         <Hero />
+
+        <Research />
 
         <Work />
 

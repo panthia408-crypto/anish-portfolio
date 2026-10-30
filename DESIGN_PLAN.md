@@ -492,7 +492,7 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 - [x] Task 7: About and tools
 - [x] Task 6: Work on the home page and the /projects page
 - [x] Task 8: Writing section and /blog chrome
-- [ ] Task 5: Research section
+- [x] Task 5: Research section
 - [ ] Task 9: Contact
 - [ ] Task 3: Navigation and footer
 - [ ] Task 10: Subpages shell (journey, library, soies)

@@ -1,0 +1,313 @@
+/* Shared primitives. See DESIGN_PLAN.md section 4.6. */
+
+/* Section: a numbered sheet */
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section__head {
+  border-top: var(--hairline);
+  padding-top: var(--space-5);
+  margin-bottom: var(--space-7);
+  row-gap: var(--space-3);
+}
+
+.section__label {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--space-3);
+  padding-top: 0.35em;
+}
+
+.section__num {
+  color: var(--ink);
+}
+
+.section__title {
+  grid-column: 1 / -1;
+  font-size: var(--step-3);
+  max-width: 22ch;
+}
+
+@media (min-width: 64rem) {
+  .section__label {
+    grid-column: 1 / span 3;
+  }
+
+  .section__title {
+    grid-column: 4 / -1;
+  }
+}
+
+/* Column helpers for content inside a section grid */
+
+.col-rail,
+.col-main,
+.col-full {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 64rem) {
+  .col-rail {
+    grid-column: 1 / span 3;
+  }
+
+  .col-main {
+    grid-column: 4 / -1;
+  }
+}
+
+/* Placeholder annotation */
+
+.ph {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.5;
+  color: var(--graphite);
+  background: repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 6px);
+  border: 1px dashed var(--pencil);
+  border-radius: var(--radius);
+  padding: 0.05em 0.35em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Figure: an image on a plate with crop marks */
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.figure__plate {
+  position: relative;
+  background: var(--paper-raised);
+}
+
+.figure__plate--photo {
+  background: var(--plate-photo);
+}
+
+.figure__plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.figure__plate--photo img {
+  mix-blend-mode: multiply;
+}
+
+.figure__marks {
+  position: absolute;
+  inset: -7px;
+  pointer-events: none;
+  --m: var(--pencil);
+  background:
+    linear-gradient(var(--m), var(--m)) top left / 14px 1px no-repeat,
+    linear-gradient(var(--m), var(--m)) top left / 1px 14px no-repeat,
+    linear-gradient(var(--m), var(--m)) top right / 14px 1px no-repeat,
+    linear-gradient(var(--m), var(--m)) top right / 1px 14px no-repeat,
+    linear-gradient(var(--m), var(--m)) bottom left / 14px 1px no-repeat,
+    linear-gradient(var(--m), var(--m)) bottom left / 1px 14px no-repeat,
+    linear-gradient(var(--m), var(--m)) bottom right / 14px 1px no-repeat,
+    linear-gradient(var(--m), var(--m)) bottom right / 1px 14px no-repeat;
+}
+
+.figure__plate--empty {
+  display: grid;
+  place-items: center;
+  min-height: 10rem;
+  border: 1px dashed var(--pencil);
+  background:
+    repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 9px),
+    var(--paper-raised);
+}
+
+.figure__cross {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.figure__cross line {
+  stroke: var(--rule);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.figure__ph {
+  position: relative;
+  max-width: min(32ch, 85%);
+  text-align: center;
+  font-size: var(--step--1);
+  background: var(--paper-raised);
+  padding: var(--space-2);
+}
+
+.figure__ph .ph {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 1em;
+}
+
+.figure__caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-4);
+  color: var(--graphite);
+}
+
+.figure__num {
+  color: var(--ink);
+}
+
+/* Spec list */
+
+.spec-list {
+  border-bottom: var(--hairline);
+}
+
+.spec-list__row {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 0.8fr) 2fr;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-top: var(--hairline);
+}
+
+.spec-list dt {
+  padding-top: 0.2em;
+}
+
+.spec-list dd {
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+
+/* Buttons and links */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 2.75rem;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius);
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  font-weight: 500;
+  line-height: 1.2;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.btn--solid {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.btn--solid:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--on-ink);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn--outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn__glyph {
+  transition: transform var(--dur-ui) var(--ease);
+}
+
+.btn:hover .btn__glyph {
+  transform: translateY(2px);
+}
+
+.arrow-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+  min-height: 1.5rem;
+}
+
+.arrow-link__text {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--pencil);
+  transition:
+    text-underline-offset var(--dur-fast) var(--ease),
+    text-decoration-color var(--dur-fast) var(--ease);
+}
+
+.arrow-link__glyph {
+  display: inline-block;
+  transition: transform var(--dur-ui) var(--ease);
+}
+
+.arrow-link:hover {
+  color: var(--accent);
+}
+
+.arrow-link:hover .arrow-link__text {
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.3em;
+}
+
+.arrow-link:hover .arrow-link__glyph {
+  transform: translateX(3px);
+}
+
+.text-link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--pencil);
+}
+
+.text-link:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+/* Scroll reveal: only hides once Reveal has hydrated and motion is allowed */
+
+@media (prefers-reduced-motion: no-preference) {
+  html.reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity var(--dur-reveal) var(--ease),
+      transform var(--dur-reveal) var(--ease);
+  }
+
+  html.reveal-ready [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+}

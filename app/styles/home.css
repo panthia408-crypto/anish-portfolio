@@ -199,3 +199,86 @@
 .hero-sheet {
   margin-top: 80px;
 }
+
+/* About */
+
+.about {
+  row-gap: var(--space-8);
+}
+
+.about__body {
+  order: -1;
+}
+
+.about__rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-self: start;
+}
+
+.about__bio p:not(.lede) {
+  color: var(--ink);
+}
+
+.about__bio .lede {
+  margin-bottom: var(--space-6);
+}
+
+.about__bio > .about__quote {
+  margin-block: var(--space-6);
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--accent);
+}
+
+.about__quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--step-3);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.about__tools {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: var(--hairline);
+}
+
+.about__tools-title {
+  margin-bottom: var(--space-5);
+}
+
+.about__tool-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-6) var(--space-5);
+}
+
+.about__tool-group h4 {
+  font-size: var(--step-1);
+  margin-bottom: var(--space-3);
+}
+
+.about__tool-group li {
+  font-size: var(--step--1);
+  padding-block: 0.2rem;
+}
+
+.about__tool-note {
+  font-size: var(--step--2);
+  color: var(--graphite);
+}
+
+@media (min-width: 64rem) {
+  .about__body {
+    order: 0;
+  }
+
+  .about__rail {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-5));
+  }
+}

@@ -1,9 +1,9 @@
 import Script from "next/script";
+import About from "./components/home/About";
 import Hero from "./components/home/Hero";
 import LatestWriting from "./components/LatestWriting";
 import NavScroll from "./components/NavScroll";
 import SiteNav from "./components/SiteNav";
-import Toolbox from "./components/Toolbox";
 import { projects } from "./data/projects";
 import "./styles/home.css";
 
@@ -29,84 +29,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
 
-        <section id="about" className="about-section site-container reveal">
-          <div className="about-glass-card">
-            <div className="about-top-row">
-              <div className="about-image-side">
-                <div className="img-wrapper">
-                  <img id="about-img" src="/files/about-speech.jpg" alt="Anish Panthi giving a speech" width={900} height={600} loading="lazy" />
-                </div>
-                <div className="about-extras">
-                  <div className="about-actions-v3">
-                    <a
-                      href="/files/Anish-Panthi-CV.pdf"
-                      download
-                      aria-label="Download Anish Panthi's CV as PDF"
-                      className="hero-cta"
-                    >
-                      Download CV
-                    </a>
-                    <a
-                      href="/files/industrial-vision-vol11.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hero-secondary-cta-v2"
-                    >
-                      Read the Magazine
-                    </a>
-                  </div>
-                  <div className="about-publication-v3">
-                    <img
-                      src="/files/industrial-vision-vol11-cover.jpg"
-                      alt="Cover of Industrial Vision Volume 11"
-                      width={180}
-                      height={240}
-                      loading="lazy"
-                    />
-                    <div className="about-publication-content-v3">
-                      <span className="about-publication-label-v3">PUBLICATION</span>
-                      <h3>Industrial Vision, Volume 11</h3>
-                      <p>The annual Industrial Engineering magazine of SOIES Nepal. Written, interviewed, illustrated and designed entirely by students.</p>
-                      <a
-                        href="/files/industrial-vision-vol11.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Open the PDF
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="about-content-side">
-                <span className="about-label">Engineer Profile</span>
-                <h2>About Me</h2>
-                <div id="about-description">
-                  <p>I&apos;m Anish, an Industrial Engineering student in my 8th semester at Thapathali Campus.</p>
-                  <p>IE taught me to see everything as a system. When something breaks, you don&apos;t patch the surface. You find the root cause and fix that. I&apos;ve carried that way of thinking into every room I&apos;ve been in, including the National Planning Commission at Singha Durbar, where I presented on the role of IE in reviving Nepal&apos;s industries.</p>
-                  <p>Since my sixth semester, I&apos;ve been part of a wind turbine research project with my teacher, handling the design side. The original omnidirectional design is patented, so we&apos;re studying something new: what happens when the shape and ratio of its center area change. As far as we know, nobody has tested that before.</p>
-                  <p>During my term as president of SOIES Nepal, I coordinated our annual magazine, Industrial Vision Vol. 11. The deadline was close, the team wasn&apos;t sure we could do it, and hiring an editor was the easy way out. I said no. A student magazine should be made by students, from the articles and sponsors to the design. So I learned InDesign and designed the whole thing myself, print ready, while my friends spent weeks of late nights on Discord finalizing articles, interviews and infographics. We made it.</p>
-                  <p>Next, I want to go deep into MEP. I&apos;m learning AutoCAD MEP during my holidays and looking for an HVAC internship where I can learn how buildings actually work.</p>
-                </div>
-                <div className="about-tags-cloud">
-                  <span className="about-tag">Industrial Engineering</span>
-                  <span className="about-tag">Wind Turbine Research</span>
-                  <span className="about-tag">Editorial Design</span>
-                  <span className="about-tag">AutoCAD MEP</span>
-                  <span className="about-tag">HVAC</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" className="skills-section site-container reveal">
-          <div className="section-header-center">
-            <span className="section-label">Expertise</span>
-            <h2>Skills &amp; Tools</h2>
-          </div>
-          <Toolbox />
-        </section>
+        <About />
 
         <section id="work" className="work-section site-container reveal">
           <div className="work-header">

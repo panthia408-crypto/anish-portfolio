@@ -19,6 +19,7 @@
 
   /* Type families (set by next/font in app/layout.tsx) */
   --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-display-italic: var(--font-newsreader-italic), Georgia, "Times New Roman", serif;
   --font-text: var(--font-plex-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Consolas, monospace;
 
@@ -59,16 +60,6 @@
   --dur-ui: 200ms;
   --dur-reveal: 500ms;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-
-  /* Legacy aliases so pages not yet migrated pick up the new palette.
-     Removed in Task 14 once nothing reads them. */
-  --bg-main: var(--paper);
-  --bg-card: var(--paper-raised);
-  --text-main: var(--ink);
-  --text-dim: var(--graphite);
-  --nav-bg: var(--paper);
-  --lib-accent: var(--accent);
-  --lib-text-dim: var(--graphite);
 }
 
 @media (prefers-color-scheme: dark) {

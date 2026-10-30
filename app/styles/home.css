@@ -71,7 +71,7 @@
 
 .hero-sheet__portrait {
   order: 4;
-  width: 62%;
+  width: 52%;
   margin-block: var(--space-3);
 }
 
@@ -228,7 +228,7 @@
 }
 
 .about__quote p {
-  font-family: var(--font-display);
+  font-family: var(--font-display-italic);
   font-style: italic;
   font-size: var(--step-3);
   line-height: 1.18;

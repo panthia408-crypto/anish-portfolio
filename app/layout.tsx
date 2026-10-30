@@ -3,8 +3,6 @@ import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
 import SiteFooter from "./components/SiteFooter";
 import SiteNav from "./components/SiteNav";
 import { site } from "./data/site";
-import "./css/style.css";
-import "./css/wide.css";
 import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/components.css";
@@ -12,10 +10,17 @@ import "./styles/chrome.css";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  axes: ["opsz"],
   variable: "--font-newsreader",
   display: "swap",
+});
+
+// Italic is only used for the pull quote and subtitles, so it isn't preloaded.
+const newsreaderItalic = Newsreader({
+  subsets: ["latin"],
+  style: "italic",
+  variable: "--font-newsreader-italic",
+  display: "swap",
+  preload: false,
 });
 
 const plexSans = IBM_Plex_Sans({
@@ -73,7 +78,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable}`}
+      className={`${newsreader.variable} ${newsreaderItalic.variable} ${plexSans.variable} ${plexMono.variable}`}
       suppressHydrationWarning
     >
       <body>

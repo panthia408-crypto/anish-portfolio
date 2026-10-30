@@ -56,7 +56,7 @@ export default function Hero() {
             alt="Portrait of Anish Panthi wearing a dhaka topi and a navy blazer"
             width={1080}
             height={1080}
-            sizes="(min-width: 64rem) 22rem, (min-width: 40rem) 40vw, 60vw"
+            sizes="(min-width: 64rem) 22rem, (min-width: 40rem) 40vw, 52vw"
             objectPosition="50% 30%"
             eager
             number="01"

@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../lib/metadata";
 import PageHeader from "../components/PageHeader";
 import ProjectsList from "../components/ProjectsList";
 import WorkRow from "../components/WorkRow";
 import { soiesTerm } from "../data/work";
 import "../styles/pages.css";
 
-export const metadata: Metadata = {
-  title: "Work | Anish Panthi",
+export const metadata: Metadata = pageMetadata({
+  title: "Work",
   description:
     "Projects, leadership and research by Anish Panthi, an Industrial Engineering student at Thapathali Campus.",
-};
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

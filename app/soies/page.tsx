@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../lib/metadata";
 import EventsTimeline from "../components/EventsTimeline";
 import PageHeader from "../components/PageHeader";
 import Figure from "../components/ui/Figure";
@@ -8,11 +9,12 @@ import { committee, events, imageSize, sanityImg } from "../data/soies-events";
 import "../styles/pages.css";
 import "../styles/soies.css";
 
-export const metadata: Metadata = {
-  title: "SOIES Nepal, 18th Executive Committee | Anish Panthi",
+export const metadata: Metadata = pageMetadata({
+  title: "SOIES Nepal, 18th Executive Committee",
   description:
     "A record of the 18th Executive Committee of SOIES Nepal: 20 events, workshops, competitions and partnerships, 2025 to 2026.",
-};
+  path: "/soies",
+});
 
 export default function SoiesPage() {
   return (

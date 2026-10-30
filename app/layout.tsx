@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
 import SiteFooter from "./components/SiteFooter";
 import SiteNav from "./components/SiteNav";
+import { site } from "./data/site";
 import "./css/style.css";
 import "./css/wide.css";
 import "./styles/tokens.css";
@@ -30,27 +31,31 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const description =
+  "Anish Panthi is a final-year Industrial Engineering student at Thapathali Campus, IOE, researching an omnidirectional wind turbine. He led SOIES Nepal and designed Industrial Vision Vol. 11.";
+
 export const metadata: Metadata = {
-  title: "Anish Panthi | Industrial Engineer",
-  description:
-    "Portfolio of Anish Panthi - Industrial Engineering at IOE Thapathali Campus & Web Development.",
-  alternates: {
-    canonical: "https://anishpanthi.com.np/",
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Anish Panthi, Industrial Engineering student",
+    template: "%s · Anish Panthi",
   },
+  description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
   openGraph: {
     type: "website",
-    title: "Anish Panthi | Industrial Engineer",
-    description:
-      "Portfolio of Anish Panthi - Industrial Engineering at IOE Thapathali Campus & Web Development.",
-    images: ["https://anishpanthi.com.np/assets/placeholder.jpg"],
-    url: "https://anishpanthi.com.np",
+    siteName: site.name,
+    locale: "en_US",
+    title: "Anish Panthi, Industrial Engineering student",
+    description,
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anish Panthi | Industrial Engineer",
-    description:
-      "Portfolio of Anish Panthi - Industrial Engineering at IOE Thapathali Campus & Web Development.",
-    images: ["https://anishpanthi.com.np/assets/placeholder.jpg"],
+    title: "Anish Panthi, Industrial Engineering student",
+    description,
   },
   icons: {
     icon: "/favicon.svg",

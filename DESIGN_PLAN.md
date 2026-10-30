@@ -497,7 +497,7 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 - [x] Task 3: Navigation and footer
 - [x] Task 10: Subpages shell (journey, library, soies)
 - [x] Task 11: Sanity data layer (read only)
-- [ ] Task 12: SEO and metadata
+- [x] Task 12: SEO and metadata
 - [ ] Task 13: Performance and accessibility pass
 - [ ] Task 14: Cleanup
 - [ ] Phase 3: Self-review against this plan

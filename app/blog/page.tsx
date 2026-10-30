@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../lib/metadata";
 import PageHeader from "../components/PageHeader";
 import PageReader from "../components/PageReader";
 import Figure from "../components/ui/Figure";
@@ -7,11 +8,12 @@ import { magazine, pieces } from "../data/iv11";
 import { site } from "../data/site";
 import "../styles/pages.css";
 
-export const metadata: Metadata = {
-  title: "Writing | Anish Panthi",
+export const metadata: Metadata = pageMetadata({
+  title: "Writing",
   description:
     "Articles and messages by Anish Panthi, first published in Industrial Vision, the annual magazine of SOIES Nepal.",
-};
+  path: "/blog",
+});
 
 export default function BlogPage() {
   return (

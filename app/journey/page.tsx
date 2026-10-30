@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../lib/metadata";
 import PageHeader from "../components/PageHeader";
 import { alsoOrganised, certificates, milestones, roles, type Credential } from "../data/journey";
 import "../styles/pages.css";
 
-export const metadata: Metadata = {
-  title: "Timeline | Anish Panthi",
-  description: "Education, leadership roles and certificates of Anish Panthi, from school in 2020 to the 8th semester of Industrial Engineering.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Timeline",
+  description:
+    "Education, leadership roles and certificates of Anish Panthi, from school in 2020 to the 8th semester of Industrial Engineering.",
+  path: "/journey",
+});
 
 function CredentialList({ title, items }: { title: string; items: Credential[] }) {
   return (

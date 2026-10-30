@@ -62,8 +62,7 @@
 /* sections wide */
 .skills-section.site-container,
 .work-section.site-container,
-#blog.site-container,
-#contact.site-container {
+#blog.site-container {
   width: min(100% - 2 * var(--site-gutter), var(--site-max));
   max-width: none;
   padding-top: var(--section-space);
@@ -97,27 +96,6 @@
 
 .blog-placeholder-card.blog-placeholder-card {
   max-width: 640px;
-}
-
-#contact.site-container {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-form {
-  width: 100%;
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-form .input-group {
-  width: 100%;
-}
-
-.contact-form input,
-.contact-form textarea {
-  min-width: 0;
 }
 
 .footer-content.site-container {

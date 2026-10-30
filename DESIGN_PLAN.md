@@ -493,7 +493,7 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 - [x] Task 6: Work on the home page and the /projects page
 - [x] Task 8: Writing section and /blog chrome
 - [x] Task 5: Research section
-- [ ] Task 9: Contact
+- [x] Task 9: Contact
 - [ ] Task 3: Navigation and footer
 - [ ] Task 10: Subpages shell (journey, library, soies)
 - [ ] Task 11: Sanity data layer (read only)

@@ -1,5 +1,5 @@
 // Full-page screenshots of every route at 375, 768 and 1440 px.
-// Usage: node scripts/screenshots.mjs <outDir> [baseUrl] [--dark] [--only=/,/projects]
+// Usage: node scripts/screenshots.mjs <outDir> [baseUrl] [--dark] [--viewport] [--only=/,/projects]
 import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { chromium } from "playwright";
@@ -8,6 +8,7 @@ const args = process.argv.slice(2);
 const outDir = args[0] ?? "screenshots";
 const baseUrl = args.find((arg) => arg.startsWith("http")) ?? "http://localhost:3000";
 const dark = args.includes("--dark");
+const viewportOnly = args.includes("--viewport");
 const only = args.find((arg) => arg.startsWith("--only="))?.slice(7).split(",");
 
 const routes = only ?? ["/", "/projects", "/journey", "/library", "/blog", "/soies"];
@@ -34,10 +35,10 @@ for (const width of widths) {
     // Scroll through so scroll reveals and lazy images fire.
     await page.evaluate(async () => {
       for (let y = 0; y < document.body.scrollHeight; y += 300) {
-        window.scrollTo(0, y);
+        window.scrollTo({ top: y, behavior: "instant" });
         await new Promise((resolve) => setTimeout(resolve, 120));
       }
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: "instant" });
     });
     await page.waitForTimeout(600);
 
@@ -45,7 +46,7 @@ for (const width of widths) {
     if (overflow > 0) problems.push(`${width}px ${route}: horizontal overflow ${overflow}px`);
 
     const name = `${route === "/" ? "home" : route.slice(1).replace(/\//g, "-")}-${width}${dark ? "-dark" : ""}.png`;
-    await page.screenshot({ path: join(outDir, name), fullPage: true });
+    await page.screenshot({ path: join(outDir, name), fullPage: !viewportOnly });
   }
   await context.close();
 }

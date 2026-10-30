@@ -488,7 +488,7 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 
 - [x] Task 1: Design tokens, fonts and base styles
 - [x] Task 2: Shared primitives
-- [ ] Task 4: Hero
+- [x] Task 4: Hero
 - [ ] Task 7: About and tools
 - [ ] Task 6: Work on the home page and the /projects page
 - [ ] Task 8: Writing section and /blog chrome

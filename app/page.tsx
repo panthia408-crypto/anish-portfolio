@@ -1,10 +1,11 @@
 import Script from "next/script";
-import HeroText from "./components/HeroText";
+import Hero from "./components/home/Hero";
 import LatestWriting from "./components/LatestWriting";
 import NavScroll from "./components/NavScroll";
 import SiteNav from "./components/SiteNav";
 import Toolbox from "./components/Toolbox";
 import { projects } from "./data/projects";
+import "./styles/home.css";
 
 function getFeaturedProject(id: string) {
   const project = projects.find((item) => item.id === id);
@@ -20,45 +21,13 @@ const windTurbine = getFeaturedProject("wind-turbine-fyp");
 export default function Home() {
   return (
     <>
-      <a href="#home" className="skip-link">Skip to content</a>
-
-      <div className="bg-animation"></div>
+      <a href="#main-content" className="skip-link">Skip to content</a>
 
       <SiteNav active="/" />
       <NavScroll />
 
       <main id="main-content">
-        <section id="home" className="hero">
-          <canvas id="hero-canvas"></canvas>
-
-          <div className="hero-container site-container">
-            <div className="hero-columns-v3">
-              <div className="hero-text-column-v3">
-                <HeroText />
-              </div>
-
-              <div className="hero-profile-column-v3">
-                <div className="hero-image">
-                  <div className="hero-ring">
-                    <img id="hero-img" src="/assets/placeholder.jpg" alt="Anish Panthi" />
-                  </div>
-                </div>
-
-                <div className="hero-socials">
-                  <a href="https://www.linkedin.com/in/anish-panthi-057326281/" target="_blank" rel="noopener" className="social-icon" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
-                  <a href="https://github.com/panthia408-crypto" target="_blank" rel="noopener" className="social-icon" aria-label="GitHub"><i className="fab fa-github"></i></a>
-                  <a href="https://x.com/AnishPanthi6" target="_blank" rel="noopener" className="social-icon" aria-label="X"><i className="fab fa-x-twitter"></i></a>
-                  <a href="https://www.facebook.com/anish.panthi.549" target="_blank" rel="noopener" className="social-icon" aria-label="Facebook"><i className="fab fa-facebook"></i></a>
-                  <a href="https://www.instagram.com/anish.panthi/?hl=en" target="_blank" rel="noopener" className="social-icon" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <a href="#about" className="hero-scroll-down-v2" aria-label="Scroll down">
-              <i className="fa-solid fa-chevron-down"></i>
-            </a>
-          </div>
-        </section>
+        <Hero />
 
         <section id="about" className="about-section site-container reveal">
           <div className="about-glass-card">
@@ -237,7 +206,6 @@ export default function Home() {
     })();`,
         }}
       />
-      <Script src="/js/hero-bg.js" strategy="afterInteractive" />
       <Script src="/js/main.js" strategy="afterInteractive" />
     </>
   );

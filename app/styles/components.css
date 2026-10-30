@@ -311,3 +311,140 @@
     transform: none;
   }
 }
+
+/* Work rows: shared by the home page and /projects */
+
+.work-list {
+  border-bottom: var(--hairline);
+}
+
+.work-row {
+  border-top: var(--hairline);
+}
+
+.work-row__link {
+  position: relative;
+  align-items: start;
+  row-gap: var(--space-3);
+  margin-inline: calc(-1 * var(--space-3));
+  padding: var(--space-5) var(--space-3);
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.work-row__link:hover {
+  background: var(--paper-raised);
+}
+
+.work-row__rail {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+  color: var(--graphite);
+}
+
+.work-row__num {
+  color: var(--ink);
+}
+
+.work-row__main {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-right: var(--space-6);
+}
+
+.work-row__title {
+  font-size: var(--step-2);
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.work-row--feature .work-row__title {
+  font-size: var(--step-3);
+}
+
+.work-row__summary {
+  max-width: 46ch;
+}
+
+.work-row__role {
+  color: var(--graphite);
+}
+
+.work-row__media {
+  grid-column: 1 / -1;
+  order: -1;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-raised);
+}
+
+.work-row__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+  transition: transform var(--dur-reveal) var(--ease);
+}
+
+.work-row__glyph {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-3);
+  font-size: var(--step-1);
+  line-height: 1;
+  transition: transform var(--dur-ui) var(--ease);
+}
+
+.work-row--feature .work-row__glyph {
+  top: auto;
+  bottom: var(--space-5);
+}
+
+.work-row__link:hover .work-row__title,
+.work-row__link:hover .work-row__glyph {
+  color: var(--accent);
+}
+
+.work-row__link:hover .work-row__glyph {
+  transform: translateX(3px);
+}
+
+.work-row__link:hover .work-row__media img {
+  transform: scale(1.02);
+}
+
+@media (min-width: 64rem) {
+  .work-row__rail {
+    grid-column: 1 / span 3;
+    flex-direction: column;
+    padding-top: 0.45em;
+  }
+
+  .work-row__main {
+    grid-column: 4 / -2;
+  }
+
+  .work-row--feature .work-row__main {
+    grid-column: 4 / span 5;
+    padding-right: 0;
+  }
+
+  .work-row__media {
+    grid-column: 9 / -1;
+    grid-row: 1;
+    order: 0;
+  }
+
+  .work-row--feature .work-row__main {
+    grid-row: 1;
+  }
+
+  .work-row--feature .work-row__glyph {
+    position: static;
+    grid-column: 4 / span 5;
+    grid-row: 1;
+    align-self: end;
+  }
+}

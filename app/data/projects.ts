@@ -26,7 +26,7 @@ export const projects: Project[] = [
     tags: ["Editorial design", "InDesign", "Team coordination"],
     links: [
       { label: "Read my pieces", href: "/blog" },
-      { label: "Magazine PDF", href: "/files/industrial-vision-vol11.pdf", external: true },
+      { label: "Magazine PDF (23 MB)", href: "/files/industrial-vision-vol11.pdf", external: true },
     ],
   },
   {

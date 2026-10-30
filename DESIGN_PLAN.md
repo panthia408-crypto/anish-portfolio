@@ -413,7 +413,7 @@ The section that does the most work for "engineer with taste".
 
 Every subpage (`/projects`, `/journey`, `/library`, `/blog`, `/soies`) gets:
 - the same `SiteNav` and `SiteFooter`, with no `<canvas id="bg-canvas">` and no `page-bg.js`
-- a page header: a mono breadcrumb ("Work / All projects"), an h1 at `--step-4`, a lede at `--step-1`, and a full-width hairline in place of `accent-bar`
+- a page header: a mono breadcrumb ("Work / All projects"), an h1 at `--step-4`, a lede at `--step-1`, and no separate hairline (every list below already opens with one, so a second rule doubled up)
 - **`/journey`:** the timeline as a two-column table, with the year in mono on the left and the entry on the right, separated by hairlines. No dots or vertical line. Certificates become a plain list.
 - **`/library`:** a restyle only. Keep the Sanity `note` data and how it behaves.
 - **`/blog`:** keep the printed-page reader. Restyle the chrome only.
@@ -490,8 +490,8 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 - [x] Task 2: Shared primitives
 - [x] Task 4: Hero
 - [x] Task 7: About and tools
-- [ ] Task 6: Work on the home page and the /projects page
-- [ ] Task 8: Writing section and /blog chrome
+- [x] Task 6: Work on the home page and the /projects page
+- [x] Task 8: Writing section and /blog chrome
 - [ ] Task 5: Research section
 - [ ] Task 9: Contact
 - [ ] Task 3: Navigation and footer

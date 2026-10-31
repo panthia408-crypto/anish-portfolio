@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { site } from "../../data/site";
-import { isPlaceholder, withPlaceholders } from "../ui/Placeholder";
+import { isPlaceholder } from "../ui/Placeholder";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -58,7 +58,7 @@ export default function ContactForm() {
           {status === "sending" ? "Sending…" : "Send"}
         </button>
         <p className="contact-form__status mono" role="status" aria-live="polite">
-          {status === "sent" && withPlaceholders(`Sent. I'll reply within ${site.replyTime}.`)}
+          {status === "sent" && "Sent. Thanks, I'll reply by email."}
           {status === "error" && errorText}
         </p>
       </div>

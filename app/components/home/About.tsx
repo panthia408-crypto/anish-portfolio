@@ -12,14 +12,13 @@ export default function About() {
       <div className="about grid">
         <aside className="about__rail col-rail">
           <Figure
-            src="/files/about-speech.jpg"
-            alt="Anish Panthi speaking at a podium on stage, with an engineering exhibition banner behind him"
-            width={900}
-            height={600}
+            src="/images/anish-mechtrix-speech.jpg"
+            alt="Anish Panthi speaking at a podium on stage in front of the MechTRIX 2082 exhibition banner"
+            width={2400}
+            height={1600}
             ratio="3 / 2"
             sizes="(min-width: 64rem) 18rem, 100vw"
             number="03"
-            caption="[PLACEHOLDER: event, place and date of this photo]"
           />
           <SpecList
             items={[

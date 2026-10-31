@@ -60,7 +60,7 @@ export default function Hero() {
             objectPosition="50% 30%"
             eager
             number="01"
-            caption="Anish Panthi, [PLACEHOLDER: year photo was taken]"
+            caption="Anish Panthi"
           />
         </div>
 

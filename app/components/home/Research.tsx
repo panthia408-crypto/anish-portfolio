@@ -25,7 +25,12 @@ export default function Research() {
         </div>
 
         <Reveal className="research__figure col-main">
-          <Figure number="02" ratio="16 / 9" placeholder={research.figure.placeholder} caption={research.figure.caption} />
+          <Figure
+            number="02"
+            plate="photo"
+            {...research.figure}
+            sizes="(min-width: 64rem) 52rem, 100vw"
+          />
         </Reveal>
       </div>
     </Section>

@@ -19,6 +19,7 @@ const personJsonLd = {
   url: site.url,
   image: `${site.url}/images/anish-portrait.jpg`,
   jobTitle: "Industrial Engineering student",
+  email: `mailto:${site.email}`,
   affiliation: {
     "@type": "CollegeOrUniversity",
     name: "Thapathali Campus, Institute of Engineering, Tribhuvan University",

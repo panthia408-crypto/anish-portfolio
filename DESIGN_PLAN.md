@@ -500,7 +500,7 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 - [x] Task 12: SEO and metadata
 - [x] Task 13: Performance and accessibility pass
 - [x] Task 14: Cleanup
-- [ ] Phase 3: Self-review against this plan
+- [x] Phase 3: Self-review against this plan
 
 ### Task 1: Design tokens, fonts and base styles
 - **Read:** sections 4.1 to 4.3 and 4.5.
@@ -610,3 +610,42 @@ Build order (grouped): design system, hero, about, projects and writing, researc
 - **Never touch `studio/`.**
 - Grep for `—`, `–`, "Learn More", "passionate", `backdrop-filter`, `linear-gradient(135deg` and `fa-`, and fix anything that's left.
 - **Done when:** the build passes, every page looks unchanged from Task 13, and `grep -rn "PLACEHOLDER:" app` matches the open items in TODO_CONTENT.md.
+
+---
+
+## 9. Build notes (31 October 2026)
+
+What changed from the plan while building, and why.
+
+| Plan said | Built | Why |
+|---|---|---|
+| Reveals gated by `html.js`, set by an inline script | Gated by `html.reveal-ready`, set by the `Reveal` component | Content stays visible until hydration has actually happened, not just until JS starts. No inline script needed. |
+| Mobile portrait at about 60% width | 52% | On a 412 px phone the portrait was the LCP element and rendered late; at 52% the lede becomes LCP and paints at first paint. |
+| Hairline under each subpage header | No separate rule | Every list below a header already opens with a hairline; two rules stacked looked like a mistake. |
+| Nav "Work" is an anchor on the home page | Always `/projects` | One predictable target. The home Work section links to it too. |
+| Newsreader with optical sizes, italic preloaded | Upright only, italic as a separate face, no preload | Cut preloaded fonts from 333 KB to about 110 KB. Italic is used in two places. |
+| JSON-LD `alumniOf` | `affiliation` | Anish is a current student, not an alumnus. |
+| Optional turbine schematic SVG | Not drawn | The design is patented and the study unpublished. Waits for decision D7. |
+| "Journey" page title | "Timeline" (URL stays `/journey`) | Copy rules ban "journey" as a metaphor. |
+| Library rendered by a client script | Server component, same GROQ query, cached for an hour | Works without JavaScript and avoids the browser-side Sanity request. |
+| Footer component per page | `SiteNav` and `SiteFooter` in the root layout | One copy, active link from the URL. |
+| Font Awesome removed in Task 13, legacy CSS in Task 14 | Both done as soon as nothing used them | The legacy CSS was the biggest render-blocking cost. |
+
+Tried and reverted: `experimental.inlineCss` (no LCP change), Plex Mono without preload (added layout shift).
+
+### Results
+
+Lighthouse 12, mobile profile, production build on a local machine (runs vary by about 5 points with machine load):
+
+| Route | Performance | Accessibility | Best practices | SEO |
+|---|---|---|---|---|
+| `/` | 83 to 91 | 100 | 100 | 100 |
+| `/projects` | 90 | 100 | 100 | 100 |
+| `/library` | 93 | 100 | 100 | 100 |
+| `/journey` | 88 | 100 | 100 | 100 |
+| `/soies` | 80 to 89 | 100 | 100 | 100 |
+| `/blog` | 81 to 83 | 100 | 100 | 100 |
+
+CLS is 0 to 0.007 everywhere. What holds Performance under 90 on some runs is LCP of about 3.5 s under Lighthouse's simulated slow 4G, driven by the shared React and Next runtime plus the web fonts.
+
+Also verified: AA contrast for every text token pair in both themes, no horizontal scroll at 320 px, one h1 per page, no skipped heading levels, alt text on every image, a visible focus ring on every interactive element in a logical tab order, Escape and focus return on the mobile menu and page reader, reduced motion leaves nothing hidden, the contact form posts the same fields to the same endpoint (tested against a mocked endpoint, so no real message was sent), and no console errors on any page.

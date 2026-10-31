@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { projectGroups, projects, type ProjectGroup } from "../data/projects";
 import { ArrowLink } from "./ui/Links";
+import { stagger } from "./ui/Reveal";
 
 export default function ProjectsList() {
   const [search, setSearch] = useState("");
@@ -72,8 +73,8 @@ export default function ProjectsList() {
         <p className="entries__empty">Nothing matches that. Try a shorter word.</p>
       ) : (
         <ol className="entries__list">
-          {visibleProjects.map((project) => (
-            <li className="entry grid" key={project.id} id={project.id}>
+          {visibleProjects.map((project, index) => (
+            <li className="entry grid" key={project.id} id={project.id} data-animate="" style={stagger(index)}>
               <p className="entry__rail mono">
                 <span className="entry__group">{project.group}</span>
                 {project.period && <span>{project.period}</span>}

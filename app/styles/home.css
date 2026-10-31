@@ -483,3 +483,27 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
   }
 }
+
+/* Hero portrait settles from a slight zoom on load. Transform only, so it runs off the main thread. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-sheet__portrait .figure__plate img {
+    animation: image-settle 1600ms var(--ease-out) both;
+  }
+
+  .hero-sheet__facts li {
+    animation: settle-fade var(--dur-settle) var(--ease-out) both;
+  }
+
+  .hero-sheet__facts li:nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .hero-sheet__facts li:nth-child(3) {
+    animation-delay: 160ms;
+  }
+
+  .hero-sheet__facts li:nth-child(4) {
+    animation-delay: 240ms;
+  }
+}

@@ -18,6 +18,8 @@ type FigureProps = {
   objectPosition?: string;
   /** Description of the missing image. Renders a hatched drawing frame instead of an image. */
   placeholder?: string;
+  /** Scroll-in motion for the plate: "photo" wipes down, "plot" wipes left to right. */
+  animate?: "photo" | "plot";
 };
 
 export default function Figure({
@@ -34,6 +36,7 @@ export default function Figure({
   eager = false,
   objectPosition,
   placeholder,
+  animate,
 }: FigureProps) {
   const showPlaceholder = placeholder !== undefined || !src;
 
@@ -42,6 +45,7 @@ export default function Figure({
       <div
         className={`figure__plate figure__plate--${plate}${showPlaceholder ? " figure__plate--empty" : ""}`}
         style={ratio ? { aspectRatio: ratio } : undefined}
+        data-animate={animate}
       >
         <span className="figure__marks" aria-hidden="true" />
         {showPlaceholder ? (

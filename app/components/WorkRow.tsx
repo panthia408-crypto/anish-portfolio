@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SmartLink } from "./ui/Links";
+import { stagger } from "./ui/Reveal";
 
 export type WorkRowImage = { src: string; alt: string; width: number; height: number };
 
@@ -16,6 +17,8 @@ type WorkRowProps = {
   image?: WorkRowImage;
   id?: string;
   headingLevel?: "h2" | "h3";
+  /** Position in the list, for the scroll-in stagger. */
+  index?: number;
 };
 
 /** One line of the work index. The whole row is the link. */
@@ -32,9 +35,10 @@ export default function WorkRow({
   image,
   id,
   headingLevel: Heading = "h3",
+  index = 0,
 }: WorkRowProps) {
   return (
-    <li className={`work-row work-row--${variant}`} id={id}>
+    <li className={`work-row work-row--${variant}`} id={id} data-animate="" style={stagger(index)}>
       <SmartLink href={href} external={external} className="work-row__link grid">
         <span className="work-row__rail mono">
           <span className="work-row__num">{number}</span>
@@ -47,7 +51,7 @@ export default function WorkRow({
           {role && <span className="work-row__role mono">{role}</span>}
         </span>
         {image && (
-          <span className="work-row__media">
+          <span className="work-row__media" data-animate="photo">
             <Image src={image.src} alt={image.alt} width={image.width} height={image.height} sizes="(min-width: 64rem) 22rem, 100vw" />
           </span>
         )}

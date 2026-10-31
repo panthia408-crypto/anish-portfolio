@@ -26,7 +26,7 @@ export default function BlogPage() {
 
       <div className="container">
         {pieces.map((piece, index) => (
-          <article id={piece.id} className="article-row grid" key={piece.id}>
+          <article id={piece.id} className="article-row grid" key={piece.id} data-animate="">
             <p className="article-row__rail mono">
               <span className="article-row__num">{String(index + 1).padStart(2, "0")}</span>
               <span>{piece.kind}</span>
@@ -42,6 +42,7 @@ export default function BlogPage() {
               height={piece.pages[0].height}
               sizes="(min-width: 64rem) 20rem, 80vw"
               eager={index === 0}
+              animate="photo"
             />
             <div className="article-row__body">
               <h2 className="article-row__title">{piece.title}</h2>

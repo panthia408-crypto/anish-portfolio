@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { resourcesForShelf, shelves, type LibraryNote, type Resource } from "../data/library";
+import { stagger } from "./ui/Reveal";
 
 function ResourceList({ resources }: { resources: Resource[] }) {
   return (
@@ -78,10 +79,10 @@ export default function LibraryBrowser({ notes }: { notes: LibraryNote[] | null 
       </p>
 
       <ul className="shelves">
-        {visibleShelves.map((shelf) => {
+        {visibleShelves.map((shelf, index) => {
           const resources = shelfResources.get(shelf.key) ?? [];
           return (
-            <li key={shelf.key}>
+            <li key={shelf.key} data-animate="" style={stagger(index)}>
               <details className="shelf">
                 <summary className="shelf__summary grid">
                   <span className="shelf__num mono">{shelf.number}</span>

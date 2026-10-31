@@ -59,7 +59,10 @@
   --dur-fast: 120ms;
   --dur-ui: 200ms;
   --dur-reveal: 500ms;
+  --dur-photo: 900ms;
+  --dur-settle: 1100ms;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (prefers-color-scheme: dark) {

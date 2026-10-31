@@ -4,6 +4,7 @@ import EventsTimeline from "../components/EventsTimeline";
 import PageHeader from "../components/PageHeader";
 import Figure from "../components/ui/Figure";
 import { ArrowLink } from "../components/ui/Links";
+import StatStrip from "../components/ui/StatStrip";
 import { site } from "../data/site";
 import { committee, events, imageSize, sanityImg } from "../data/soies-events";
 import "../styles/pages.css";
@@ -15,6 +16,8 @@ export const metadata: Metadata = pageMetadata({
     "A record of the 18th Executive Committee of SOIES Nepal: 20 events, workshops, competitions and partnerships, 2025 to 2026.",
   path: "/soies",
 });
+
+const photoCount = events.reduce((total, event) => total + event.photos.length, 0);
 
 export default function SoiesPage() {
   return (
@@ -38,8 +41,19 @@ export default function SoiesPage() {
       </PageHeader>
 
       <div className="container">
+        <StatStrip
+          className="soies-stats"
+          stats={[
+            { figure: String(events.length), label: "events, recorded below" },
+            { figure: String(photoCount), label: "photos from those events" },
+            { figure: String(committee.team.length), label: "people on the committee" },
+            { figure: "1 year", label: committee.years },
+          ]}
+        />
+
         <Figure
-          className="soies-photo"
+          className="soies-group"
+          animate="photo"
           src={sanityImg(committee.groupPhoto)}
           alt={committee.groupPhotoAlt}
           {...imageSize(committee.groupPhoto)}

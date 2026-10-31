@@ -41,7 +41,6 @@ export default function SiteFooter() {
           </ul>
   
           <div className="site-footer__col">
-            <p>Built with Next.js and Sanity. Set in Newsreader and IBM Plex.</p>
             <p>© 2026 {site.name}</p>
           </div>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Newsreader } from "next/font/google";
 import SiteFooter from "./components/SiteFooter";
 import SiteNav from "./components/SiteNav";
+import ScrollAnimator from "./components/ui/ScrollAnimator";
 import { site } from "./data/site";
 import "./styles/tokens.css";
 import "./styles/base.css";
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteNav />
         {children}
         <SiteFooter />
+        <ScrollAnimator />
       </body>
     </html>
   );

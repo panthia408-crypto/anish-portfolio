@@ -17,6 +17,7 @@ export default function Section({ id, number, label, title, children, className 
     <section id={id} className={`section ${className}`.trim()} aria-labelledby={headingId}>
       <div className="container">
         <header className="section__head grid">
+          <span className="section__rule" data-animate="line" aria-hidden="true" />
           <p className="section__label label">
             <span className="section__num">{number}</span>
             {label}

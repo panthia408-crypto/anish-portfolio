@@ -11,7 +11,7 @@ export default function Writing() {
     <Section id="writing" number="04" label="Writing" title="Printed in Industrial Vision">
       <div className="pieces grid">
         {pieces.map((piece, index) => (
-          <Reveal key={piece.id} className={`piece piece--${index === 0 ? "lead" : "second"}`}>
+          <Reveal key={piece.id} className={`piece piece--${index === 0 ? "lead" : "second"}`} index={index}>
             <article>
               <Link href={`/blog#${piece.id}`} className="piece__link">
                 <Figure
@@ -20,6 +20,7 @@ export default function Writing() {
                   width={piece.pages[0].width}
                   height={piece.pages[0].height}
                   sizes="(min-width: 64rem) 24rem, 70vw"
+                  animate="photo"
                 />
                 <p className="label piece__kind">{piece.kind}</p>
                 <h3 className="piece__title">{piece.title}</h3>

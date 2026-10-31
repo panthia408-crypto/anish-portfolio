@@ -17,7 +17,11 @@
   margin-top: var(--space-5);
 }
 
-.soies-photo .figure__plate {
+.soies-stats {
+  margin-bottom: var(--space-8);
+}
+
+.soies-group .figure__plate {
   aspect-ratio: 3 / 2;
 }
 
@@ -29,25 +33,40 @@
   margin-bottom: var(--space-5);
 }
 
+/* Months: a rail that stays in view while you scroll that month's events */
+
+.soies-month {
+  row-gap: var(--space-4);
+  padding-top: var(--space-5);
+  border-top: var(--hairline);
+}
+
 .soies-month + .soies-month {
-  margin-top: var(--space-7);
+  margin-top: var(--space-8);
+}
+
+.soies-month__rail,
+.soies-month__events {
+  grid-column: 1 / -1;
 }
 
 .soies-month__title {
   font-size: var(--step-2);
-  padding-top: var(--space-4);
-  border-top: var(--hairline);
+}
+
+.soies-month__count {
+  margin-top: var(--space-1);
+  color: var(--graphite);
 }
 
 .soies-event {
   display: grid;
   gap: var(--space-4) var(--space-5);
-  padding-block: var(--space-6);
-  border-bottom: var(--hairline);
+  padding-block: var(--space-5) var(--space-6);
 }
 
-.soies-event:last-child {
-  border-bottom: 0;
+.soies-event + .soies-event {
+  border-top: var(--hairline);
 }
 
 .soies-event-copy {
@@ -56,17 +75,23 @@
   gap: var(--space-2);
 }
 
-.soies-event-copy time,
-.soies-event-type {
+.soies-event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
   color: var(--graphite);
 }
 
-.soies-event-copy h4 {
-  font-size: var(--step-1);
-  margin-top: var(--space-1);
+.soies-event-type::before {
+  content: "· ";
 }
 
-.soies-event-copy p {
+.soies-event-copy h4 {
+  font-size: var(--step-2);
+  line-height: 1.2;
+}
+
+.soies-event-copy p:not(.soies-event-meta) {
   max-width: var(--measure);
 }
 
@@ -76,10 +101,21 @@
   color: var(--graphite);
 }
 
+/* Photos: one large, then thumbnails. Layout adapts to 1, 2 or 3 photos. */
+
 .soies-event-photos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-2);
+}
+
+.soies-event-photos--1 {
+  grid-template-columns: 1fr;
+}
+
+.soies-event-photos--2 .soies-photo-thumb {
+  grid-column: 1 / -1;
+  aspect-ratio: 3 / 1;
 }
 
 .soies-photo {
@@ -90,7 +126,7 @@
   border: 0;
   background: var(--paper-raised);
   cursor: zoom-in;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
 }
 
 .soies-photo-large {
@@ -102,12 +138,42 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--dur-reveal) var(--ease);
+  transition: transform 1200ms var(--ease-out);
 }
 
-.soies-photo:hover img {
-  transform: scale(1.02);
+.soies-photo:hover img,
+.soies-photo:focus-visible img {
+  transform: scale(1.04);
 }
+
+.soies-photo__hint {
+  position: absolute;
+  left: var(--space-2);
+  bottom: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-ui) var(--ease),
+    transform var(--dur-ui) var(--ease);
+}
+
+.soies-photo:hover .soies-photo__hint,
+.soies-photo:focus-visible .soies-photo__hint {
+  opacity: 1;
+  transform: none;
+}
+
+.soies-photo:focus-visible {
+  outline-offset: 2px;
+}
+
+/* Team */
 
 .soies-team {
   margin-top: var(--space-9);
@@ -138,15 +204,36 @@
 }
 
 @media (min-width: 40rem) {
-  .soies-event-photos {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .soies-event-photos--3 {
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .soies-event-photos--3 .soies-photo-large {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    aspect-ratio: 4 / 3;
+  }
+
+  .soies-event-photos--3 .soies-photo-thumb {
+    aspect-ratio: auto;
   }
 }
 
 @media (min-width: 64rem) {
-  .soies-event {
-    grid-template-columns: 5fr 7fr;
-    align-items: start;
+  .soies-month__rail {
+    grid-column: 1 / span 3;
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-5));
+    align-self: start;
+  }
+
+  .soies-month__events {
+    grid-column: 4 / -1;
+  }
+
+  .soies-month__events .soies-event:first-child {
+    padding-top: 0;
   }
 }
 
@@ -156,45 +243,51 @@
   position: fixed;
   inset: 0;
   z-index: 10000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   gap: var(--space-4);
-  padding: var(--space-8) var(--gutter) var(--space-5);
+  padding: var(--space-3) var(--gutter) var(--space-5);
   background: var(--paper);
+  touch-action: pan-y;
 }
 
 .soies-lightbox:focus {
   outline: none;
 }
 
-.soies-lightbox-close {
-  position: absolute;
-  top: var(--space-3);
-  right: var(--gutter);
+.soies-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  border-bottom: var(--hairline);
+  padding-bottom: var(--space-3);
+}
+
+.soies-lightbox-title {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
 }
 
 .soies-lightbox-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-4);
-  width: 100%;
-  max-width: 70rem;
+  display: grid;
+  place-items: center;
+  min-height: 0;
 }
 
-.soies-lightbox-content > img {
+.soies-lightbox-image {
   width: auto;
   max-width: 100%;
-  max-height: calc(100vh - 12rem);
+  max-height: 100%;
   object-fit: contain;
   border: var(--hairline);
+  user-select: none;
 }
 
 .soies-lightbox-controls {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-5);
 }
 
@@ -213,4 +306,28 @@
 
 .soies-lightbox-controls button:hover {
   color: var(--accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .soies-lightbox {
+    animation: lightbox-in var(--dur-ui) var(--ease) both;
+  }
+
+  /* Each photo is keyed, so changing photo remounts it and replays this crossfade. */
+  .soies-lightbox-image {
+    animation: lightbox-photo-in 450ms var(--ease-out) both;
+  }
+}
+
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lightbox-photo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
 }

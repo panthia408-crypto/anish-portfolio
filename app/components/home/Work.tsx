@@ -23,6 +23,7 @@ export default function Work() {
       <ul className="work-list">
         <WorkRow
           variant="feature"
+          index={0}
           number="01"
           category={magazine.group}
           period={magazine.period}
@@ -37,11 +38,12 @@ export default function Work() {
             height: 2545,
           }}
         />
-        <WorkRow variant="feature" number="02" {...soiesTerm} />
+        <WorkRow variant="feature" index={1} number="02" {...soiesTerm} />
         {indexRows.map(({ item, href, external }, index) => (
           <WorkRow
             key={item.id}
             variant="index"
+            index={index + 2}
             number={String(index + 3).padStart(2, "0")}
             category={item.group}
             title={item.title}

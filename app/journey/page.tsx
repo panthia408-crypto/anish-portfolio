@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "../lib/metadata";
 import PageHeader from "../components/PageHeader";
 import { alsoOrganised, certificates, milestones, roles, type Credential } from "../data/journey";
+import { stagger } from "../components/ui/Reveal";
 import "../styles/pages.css";
 
 export const metadata: Metadata = pageMetadata({
@@ -16,8 +17,8 @@ function CredentialList({ title, items }: { title: string; items: Credential[] }
     <section className="credentials">
       <h2 className="label credentials__title">{title}</h2>
       <ul>
-        {items.map((item) => (
-          <li key={item.title} className="credentials__item">
+        {items.map((item, index) => (
+          <li key={item.title} className="credentials__item" data-animate="" style={stagger(index)}>
             <h3>{item.title}</h3>
             <p className="mono">{item.detail}</p>
           </li>
@@ -38,8 +39,13 @@ export default function JourneyPage() {
             Timeline
           </h2>
           <ol className="timeline">
-            {milestones.map((milestone) => (
-              <li key={`${milestone.year}-${milestone.title}`} className="timeline__row grid">
+            {milestones.map((milestone, index) => (
+              <li
+                key={`${milestone.year}-${milestone.title}`}
+                className="timeline__row grid"
+                data-animate=""
+                style={stagger(index, 3)}
+              >
                 <p className="timeline__year mono">{milestone.year}</p>
                 <div className="timeline__main">
                   <h3 className="timeline__title">{milestone.title}</h3>

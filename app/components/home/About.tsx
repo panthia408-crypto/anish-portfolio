@@ -2,7 +2,7 @@ import { site } from "../../data/site";
 import { toolGroups } from "../../data/tools";
 import Figure from "../ui/Figure";
 import { ArrowLink } from "../ui/Links";
-import Reveal from "../ui/Reveal";
+import Reveal, { stagger } from "../ui/Reveal";
 import Section from "../ui/Section";
 import SpecList from "../ui/SpecList";
 
@@ -19,6 +19,7 @@ export default function About() {
             ratio="3 / 2"
             sizes="(min-width: 64rem) 18rem, 100vw"
             number="03"
+            animate="photo"
           />
           <SpecList
             items={[
@@ -70,8 +71,8 @@ export default function About() {
           <Reveal className="about__tools">
             <h3 className="about__tools-title label">Tools</h3>
             <div className="about__tool-groups">
-              {toolGroups.map((group) => (
-                <div key={group.title} className="about__tool-group">
+              {toolGroups.map((group, index) => (
+                <div key={group.title} className="about__tool-group" data-animate="" style={stagger(index)}>
                   <h4>{group.title}</h4>
                   <ul>
                     {group.tools.map((tool) => (

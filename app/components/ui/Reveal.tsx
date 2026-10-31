@@ -1,50 +1,24 @@
-"use client";
+import type { CSSProperties, ReactNode } from "react";
 
-import { useEffect, useRef, type ReactNode } from "react";
+export type AnimateVariant = "" | "photo" | "plot" | "line";
 
-// One observer shared by every Reveal on the page.
-let observer: IntersectionObserver | null = null;
-
-function getObserver() {
-  if (!observer) {
-    observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-in");
-            observer?.unobserve(entry.target);
-          }
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
-    );
-  }
-  return observer;
+/** Inline style that staggers an animated element by its position in a list (capped so long lists don't lag). */
+export function stagger(index: number, cap = 6): CSSProperties {
+  return { "--i": index % cap } as CSSProperties;
 }
 
-/**
- * Fades content up 12px once. Nothing is hidden until this runs: the hidden state needs
- * html.reveal-ready (set here), so content stays visible without JS or before hydration.
- */
-export default function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    // Already on screen: show it now so it never flickers out and back in.
-    if (node.getBoundingClientRect().top < window.innerHeight) {
-      node.classList.add("is-in");
-    }
-    document.documentElement.classList.add("reveal-ready");
-    if (node.classList.contains("is-in")) return;
-    const io = getObserver();
-    io.observe(node);
-    return () => io.unobserve(node);
-  }, []);
-
+/** Fades content up once as it scrolls into view. The observer lives in ScrollAnimator (root layout). */
+export default function Reveal({
+  children,
+  className = "",
+  index,
+}: {
+  children: ReactNode;
+  className?: string;
+  index?: number;
+}) {
   return (
-    <div ref={ref} className={className} data-reveal="">
+    <div className={className} data-animate="" style={index === undefined ? undefined : stagger(index)}>
       {children}
     </div>
   );

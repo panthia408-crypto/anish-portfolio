@@ -10,7 +10,7 @@ export const research = {
     { term: "Status", value: "Design and simulation, final year project" },
     { term: "Measuring", value: "Torque, and so power generation" },
     { term: "Method", value: "CAD design and simulation, then fabrication" },
-    { term: "Tools", value: "[PLACEHOLDER: software used on this project]" },
+    { term: "Tools", value: "SolidWorks, ANSYS CFD" },
     { term: "Due", value: "Fabricated and documented by 15 Mangsir" },
   ],
   blocks: [

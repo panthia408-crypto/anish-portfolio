@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { projectGroups, projects, type ProjectGroup } from "../data/projects";
-import "../css/projects-list.css";
+import { ArrowLink } from "./ui/Links";
+import { stagger } from "./ui/Reveal";
 
 export default function ProjectsList() {
   const [search, setSearch] = useState("");
@@ -37,22 +38,14 @@ export default function ProjectsList() {
   };
 
   return (
-    <section className="projects-list site-container" aria-label="Projects">
-      <div className="pl-controls">
-        <label className="sr-only" htmlFor="project-search">Search projects</label>
-        <input
-          id="project-search"
-          type="search"
-          aria-label="Search projects"
-          placeholder="Search projects"
-          value={search}
-          onChange={(event) => updateSearch(event.target.value)}
-        />
-        <div className="pl-filters" aria-label="Filter projects">
+    <section className="entries container" aria-labelledby="entries-title">
+      <h2 id="entries-title" className="sr-only">All projects</h2>
+      <div className="entries__controls">
+        <div className="entries__filters" role="group" aria-label="Filter projects by type">
           {projectGroups.map((group) => (
             <button
               type="button"
-              className={group === activeGroup ? "is-active" : undefined}
+              className="entries__filter"
               aria-pressed={group === activeGroup}
               key={group}
               onClick={() => updateGroup(group)}
@@ -61,52 +54,59 @@ export default function ProjectsList() {
             </button>
           ))}
         </div>
+        <label className="entries__search">
+          <span className="label">Search</span>
+          <input
+            type="search"
+            placeholder="Title, role or tag"
+            value={search}
+            onChange={(event) => updateSearch(event.target.value)}
+          />
+        </label>
       </div>
 
-      <p className="pl-results" aria-live="polite">
+      <p className="entries__count mono" aria-live="polite">
         {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}
       </p>
 
       {filteredProjects.length === 0 ? (
-        <p className="pl-empty">No projects match your search.</p>
+        <p className="entries__empty">Nothing matches that. Try a shorter word.</p>
       ) : (
-        <div className="pl-grid">
-          {visibleProjects.map((project) => (
-            <article className="pl-card" key={project.id}>
-              <span className="pl-group">{project.group}</span>
-              <h3>{project.title}</h3>
-              <p className="pl-role">{project.role}</p>
-              <p className="pl-status">
-                {project.status}{project.period ? ` | ${project.period}` : ""}
+        <ol className="entries__list">
+          {visibleProjects.map((project, index) => (
+            <li className="entry grid" key={project.id} id={project.id} data-animate="" style={stagger(index)}>
+              <p className="entry__rail mono">
+                <span className="entry__group">{project.group}</span>
+                {project.period && <span>{project.period}</span>}
+                <span>{project.status}</span>
               </p>
-              <p className="pl-summary">{project.summary}</p>
-              <p className="pl-tags">{project.tags.join(" · ")}</p>
-              {project.links && (
-                <div className="pl-links">
-                  {project.links.map((link) => (
-                    <a
-                      href={link.href}
-                      key={link.href}
-                      target={link.external ? "_blank" : undefined}
-                      rel={link.external ? "noopener noreferrer" : undefined}
-                    >
-                      {link.label} <span aria-hidden="true">→</span>
-                    </a>
-                  ))}
-                </div>
-              )}
-            </article>
+              <div className="entry__main">
+                <h3 className="entry__title">{project.title}</h3>
+                <p className="entry__role mono">{project.role}</p>
+                <p className="entry__summary">{project.summary}</p>
+                <p className="entry__tags mono">{project.tags.join(", ")}</p>
+                {project.links && (
+                  <p className="entry__links">
+                    {project.links.map((link) => (
+                      <ArrowLink href={link.href} key={link.href} external={link.external}>
+                        {link.label}
+                      </ArrowLink>
+                    ))}
+                  </p>
+                )}
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       )}
 
       {visibleCount < filteredProjects.length && (
         <button
           type="button"
-          className="pl-show-more"
+          className="btn btn--outline entries__more"
           onClick={() => setVisibleCount((count) => count + 6)}
         >
-          Show more
+          Show {Math.min(6, filteredProjects.length - visibleCount)} more
         </button>
       )}
     </section>

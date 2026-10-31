@@ -24,9 +24,16 @@ export function sanityImg(file: string): string {
   return `/soies/${file}`;
 }
 
+/** Intrinsic size from the file name, which ends in "-WIDTHxHEIGHT.ext". */
+export function imageSize(file: string): { width: number; height: number } {
+  const match = file.match(/-(\d+)x(\d+)\.\w+$/);
+  if (!match) throw new Error(`No size in image file name: ${file}`);
+  return { width: Number(match[1]), height: Number(match[2]) };
+}
+
 export const committee = {
   title: "18th Executive Committee",
-  years: "2025-2026",
+  years: "2025 to 2026",
   organisation: "Society of Industrial Engineering Students (SOIES Nepal)",
   sourceUrl: "https://soiesnepal.org.np/previous-committees/1",
   groupPhoto: "ce5c800ac9d6f255a5799eee42775443fe8124a9-6000x4000.jpg",
@@ -36,7 +43,7 @@ export const committee = {
     { name: "Anish Panthi", role: "President" },
     { name: "Shilpa Thapa Magar", role: "Vice President" },
     { name: "Sambhav Pandit", role: "Secretary" },
-    { name: "Birat Tiwari", role: "Joint Secretary" }, // CHECK SPELLING: the SOIES page shows "Tiwati"
+    { name: "Birat Tiwari", role: "Joint Secretary" },
     { name: "Suprava Pyakurel", role: "Executive Member" },
     { name: "Lakshya Mishra", role: "Executive Member" },
     { name: "Simran Rana", role: "Executive Member" },
@@ -215,7 +222,7 @@ export const events: SoiesEvent[] = [
     id: "ansys-workshop",
     title: "ANSYS Workshop",
     type: "workshop",
-    date: "2025-12-31", // CHECK: older SOIES text says this ran Jan 21 to Feb 9, 2026
+    date: "2025-12-31", // Matches soiesnepal.org.np. Older SOIES text said Jan 21 to Feb 9, 2026; not confirmed.
     note: "Facilitator: Er. Shristi Pandey",
     photos: [
       "ee06f958f9b3f573871e308624d63a44bd7b986f-12000x9000.jpg",

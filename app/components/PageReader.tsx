@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Piece } from "../data/iv11";
 
@@ -46,18 +47,18 @@ export default function PageReader({ piece }: PageReaderProps) {
       <button
         ref={buttonRef}
         type="button"
-        className="writing-btn writing-btn-primary"
+        className="btn btn--solid"
         onClick={() => {
           hasOpened.current = true;
           setIsOpen(true);
         }}
       >
-        Read the pages
+        Read the printed pages
       </button>
 
       {isOpen && (
         <div
-          className="page-reader-overlay"
+          className="reader"
           role="dialog"
           aria-modal="true"
           aria-label={piece.title}
@@ -69,28 +70,28 @@ export default function PageReader({ piece }: PageReaderProps) {
             }
           }}
         >
-          <div className="page-reader-topbar">
-            <strong>{piece.title}</strong>
+          <div className="reader__bar">
+            <strong className="reader__title">{piece.title}</strong>
             <button
               type="button"
-              className="page-reader-close"
+              className="btn btn--outline reader__close"
               onClick={() => setIsOpen(false)}
             >
               Close
             </button>
           </div>
-          <div className="page-reader-column">
+          <div className="reader__pages">
             {piece.pages.map((page) => (
-              <img
+              <Image
                 key={page.src}
                 src={page.src}
                 alt={page.alt}
                 width={page.width}
                 height={page.height}
-                loading="lazy"
+                sizes="(min-width: 50rem) 48rem, 100vw"
               />
             ))}
-            <p className="page-reader-credit">{piece.credit}</p>
+            <p className="reader__credit mono">{piece.credit}</p>
           </div>
         </div>
       )}

@@ -1,0 +1,52 @@
+.styleguide {
+  padding-top: var(--space-8);
+}
+
+.sg-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.sg-swatches li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sg-swatch {
+  height: 3rem;
+  border: var(--hairline);
+}
+
+.sg-steps p {
+  line-height: 1.2;
+  margin-bottom: var(--space-3);
+}
+
+.sg-steps .label {
+  display: inline-block;
+  width: 5.5rem;
+}
+
+.sg-row {
+  row-gap: var(--space-7);
+}
+
+.sg-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.sg-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+}
+
+.sg-portrait {
+  max-width: 20rem;
+}

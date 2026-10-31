@@ -1,0 +1,83 @@
+/* Design tokens. See DESIGN_PLAN.md section 4. Every color on the site comes from here. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Color: drafting paper (light) with a blueprint-blue accent */
+  --paper: #f4f5f2;
+  --paper-raised: #fbfbfa;
+  --ink: #121417;
+  --graphite: #575c63;
+  --pencil: #8a9097;
+  --rule: #d8dbdf;
+  --grid: rgb(35 80 168 / 0.06);
+  --accent: #2350a8;
+  --accent-strong: #1a3d82;
+  --hatch: rgb(18 20 23 / 0.06);
+  --on-ink: #f4f5f2;
+  --plate-photo: #eceeec;
+
+  /* Type families (set by next/font in app/layout.tsx) */
+  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-display-italic: var(--font-newsreader-italic), Georgia, "Times New Roman", serif;
+  --font-text: var(--font-plex-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  /* Type scale */
+  --step--2: 0.75rem;
+  --step--1: 0.875rem;
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.4vw, 1.375rem);
+  --step-2: clamp(1.4rem, 1.25rem + 0.7vw, 1.75rem);
+  --step-3: clamp(1.75rem, 1.45rem + 1.3vw, 2.5rem);
+  --step-4: clamp(2.25rem, 1.7rem + 2.6vw, 3.75rem);
+  --step-5: clamp(2.75rem, 1.9rem + 4.4vw, 5.5rem);
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --section-y: clamp(4rem, 2.5rem + 6vw, 8rem);
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --container: 75rem;
+  --measure: 62ch;
+  --measure-lede: 34ch;
+  --nav-h: 4rem;
+
+  --radius: 2px;
+  --hairline: 1px solid var(--rule);
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-ui: 200ms;
+  --dur-reveal: 500ms;
+  --dur-photo: 900ms;
+  --dur-settle: 1100ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1114;
+    --paper-raised: #171a1e;
+    --ink: #e7e9ec;
+    --graphite: #a3a9b1;
+    --pencil: #6f767e;
+    --rule: #262a30;
+    --grid: rgb(122 162 227 / 0.07);
+    --accent: #7aa2e3;
+    --accent-strong: #9bbaf0;
+    --hatch: rgb(231 233 236 / 0.07);
+    --on-ink: #0f1114;
+    --plate-photo: #eceeec;
+  }
+}

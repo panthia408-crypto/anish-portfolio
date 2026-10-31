@@ -26,7 +26,7 @@ export const projects: Project[] = [
     tags: ["Editorial design", "InDesign", "Team coordination"],
     links: [
       { label: "Read my pieces", href: "/blog" },
-      { label: "Magazine PDF", href: "/files/industrial-vision-vol11.pdf", external: true },
+      { label: "Magazine PDF (23 MB)", href: "/files/industrial-vision-vol11.pdf", external: true },
     ],
   },
   {
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     role: "Organising team, SOIES Nepal",
     status: "Completed",
     period: "February 2026",
-    summary: "A national-level engineering exhibition covering industrial, mechanical, aerospace and automobile engineering. SOIES Nepal supported and coordinated the event and showcased student projects.",
+    summary: "A national-level engineering exhibition covering industrial, mechanical, aerospace and automobile engineering. SOIES Nepal supported and coordinated the event and put student projects on display.",
     tags: ["Exhibition", "Student projects"],
     links: [{ label: "Full record", href: "/soies" }],
   },
@@ -145,16 +145,6 @@ export const projects: Project[] = [
     summary: "The official website of SOIES Nepal, with events, committees and resources. Built with AI-assisted coding on Next.js and Sanity.",
     tags: ["Next.js", "Sanity", "AI-assisted coding"],
     links: [{ label: "Visit the site", href: "https://soiesnepal.org.np", external: true }],
-  },
-  {
-    id: "engineers-library",
-    title: "The Engineer's Library",
-    group: "Web",
-    role: "Creator",
-    status: "Live",
-    summary: "An open-access digital library for IOE Industrial Engineering, with semester-wise notes, textbooks and industrial resources.",
-    tags: ["Education", "Open access"],
-    links: [{ label: "Open the library", href: "/library" }],
   },
   {
     id: "this-portfolio",

@@ -47,8 +47,7 @@
 /* Column helpers for content inside a section grid */
 
 .col-rail,
-.col-main,
-.col-full {
+.col-main {
   grid-column: 1 / -1;
 }
 

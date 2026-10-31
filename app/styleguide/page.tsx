@@ -76,7 +76,7 @@ export default function StyleguidePage() {
               plate="photo"
               ratio="4 / 5"
               className="sg-portrait"
-              src="/assets/placeholder.jpg"
+              src="/images/anish-portrait.jpg"
               alt="Portrait of Anish Panthi"
               width={1080}
               height={1080}

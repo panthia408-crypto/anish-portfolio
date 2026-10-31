@@ -1,4 +1,4 @@
-// Journey timeline, certificates and roles. Moved out of app/journey/page.tsx unchanged.
+// Timeline, certificates and roles. Moved out of app/journey/page.tsx; text unchanged apart from light copy edits.
 
 export type Milestone = { year: string; title: string; place: string; text: string };
 export type Credential = { title: string; detail: string };
@@ -6,7 +6,7 @@ export type Credential = { title: string; detail: string };
 export const milestones: Milestone[] = [
   { year: "2020", title: "SEE, Secondary Education", place: "Shree Kalika Nepal Rastriya Secondary School", text: "Completed the School Leaving Examination, building the foundational academic base before entering higher studies." },
   { year: "2020 to 2022", title: "+2 Science", place: "Omega College, Kumarpati", text: "Studied the Physical Science stream. Developed an interest in engineering, physics and problem-solving that led to choosing Industrial Engineering." },
-  { year: "2022", title: "Joined Thapathali Campus, IOE", place: "B.E. Industrial Engineering, Tribhuvan University", text: "Began the journey in Industrial Engineering at the Institute of Engineering and started engaging with student communities from the first semester." },
+  { year: "2022", title: "Joined Thapathali Campus, IOE", place: "B.E. Industrial Engineering, Tribhuvan University", text: "Started Industrial Engineering at the Institute of Engineering and got involved in student communities from the first semester." },
   { year: "2023", title: "Graphic Designer, GAP Thapathali", place: "Regional student club (Gulmi, Arghakhanchi, Palpa)", text: "Contributed to event posters, social media content and visual branding for the club." },
   { year: "2023", title: "Joint Secretary, SOIES Nepal", place: "Society of Industrial Engineering Students", text: "Coordinated conferences, the Industrial Estate Research Program and Microsoft training, and was part of the Yathartha tech fest." },
   { year: "Early 2024", title: "President, GAP Thapathali", place: "Regional student club", text: "Led the \"home far from home\" initiative, connecting students from western Nepal studying at Thapathali Campus. Later stepped down to take on the SOIES presidency." },

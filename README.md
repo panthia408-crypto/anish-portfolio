@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# anishpanthi.com.np
 
-## Getting Started
+Personal site of Anish Panthi. Next.js 16 (App Router, Cache Components) with a read-only Sanity dataset for the library.
 
-First, run the development server:
+The design and the reasoning behind it are in [DESIGN_PLAN.md](DESIGN_PLAN.md). Content still to be supplied is in [TODO_CONTENT.md](TODO_CONTENT.md).
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | What |
+|---|---|
+| `app/styles/tokens.css` | Every color, type size, space and motion value. Change the look here. |
+| `app/styles/` | Base styles, shared components, nav and footer, home, subpages, /soies |
+| `app/components/ui/` | Primitives: Section, Figure, Placeholder, SpecList, links, Reveal |
+| `app/components/home/` | Home page sections, in page order |
+| `app/data/` | Site content: facts, projects, research, journey, tools, writing, SOIES events |
+| `app/lib/` | Sanity fetch (read only, cached hourly) and page metadata helper |
+| `studio/` | Sanity Studio schemas. Extend only; never rename or delete. |
+| `public/files/` | CV, magazine PDF and printed pages |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Placeholders
 
-## Learn More
+Missing content is written as `[PLACEHOLDER: what is needed]` in the data files and renders as a dashed drafting note. To list what is still open:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git grep -n "PLACEHOLDER:" app
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Screenshots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+node scripts/screenshots.mjs ./shots http://localhost:3000            # every page at 375, 768, 1440 px
+node scripts/screenshots.mjs ./shots http://localhost:3000 --dark     # same, dark mode
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The script also reports horizontal overflow and console errors.

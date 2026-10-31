@@ -79,7 +79,7 @@ export const projects: Project[] = [
     role: "Organising team, SOIES Nepal",
     status: "Completed",
     period: "February 2026",
-    summary: "A national-level engineering exhibition covering industrial, mechanical, aerospace and automobile engineering. SOIES Nepal supported and coordinated the event and showcased student projects.",
+    summary: "A national-level engineering exhibition covering industrial, mechanical, aerospace and automobile engineering. SOIES Nepal supported and coordinated the event and put student projects on display.",
     tags: ["Exhibition", "Student projects"],
     links: [{ label: "Full record", href: "/soies" }],
   },

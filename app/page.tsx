@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import About from "./components/home/About";
+import AboutTeaser from "./components/home/AboutTeaser";
 import Contact from "./components/home/Contact";
 import Hero from "./components/home/Hero";
-import Learning from "./components/home/Learning";
-import Research from "./components/home/Research";
+import LearningTeaser from "./components/home/LearningTeaser";
+import ResearchTeaser from "./components/home/ResearchTeaser";
 import Work from "./components/home/Work";
 import Writing from "./components/home/Writing";
 import { site, socials } from "./data/site";
+import "./styles/sections.css";
 import "./styles/home.css";
 
 export const metadata: Metadata = {
@@ -39,13 +40,13 @@ export default function Home() {
       />
       <Hero />
 
-      <Research />
+      <ResearchTeaser />
 
       <Work />
 
-      <About />
+      <AboutTeaser />
 
-      <Learning />
+      <LearningTeaser />
 
       <Writing />
 

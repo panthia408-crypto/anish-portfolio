@@ -6,12 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import { site } from "../data/site";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/#research", label: "Research" },
-  { href: "/projects", label: "Work" },
-  { href: "/blog", label: "Writing" },
-  { href: "/#about", label: "About" },
-  { href: "/#learning", label: "Learning" },
+  { href: "/", label: "Home", match: ["/"] },
+  { href: "/research", label: "Research", match: ["/research"] },
+  { href: "/projects", label: "Work", match: ["/projects", "/soies"] },
+  { href: "/blog", label: "Writing", match: ["/blog"] },
+  { href: "/about", label: "About", match: ["/about", "/journey"] },
+  { href: "/learning", label: "Learning", match: ["/learning"] },
 ];
 
 export default function SiteNav() {
@@ -73,7 +73,7 @@ export default function SiteNav() {
         <li key={link.href}>
           <Link
             href={link.href}
-            aria-current={link.href === pathname ? "page" : undefined}
+            aria-current={link.match.includes(pathname) ? "page" : undefined}
             onClick={() => setMenuOpen(false)}
           >
             {link.label}

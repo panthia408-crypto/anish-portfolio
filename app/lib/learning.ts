@@ -15,7 +15,7 @@ export type LearningEntry = {
   imageHeight?: number;
 };
 
-const LEARNING_QUERY = `*[_type == "learningEntry" && defined(title) && defined(date)] | order(date desc)[0...8]{
+const LEARNING_FIELDS = `{
   _id,
   title,
   date,
@@ -28,10 +28,11 @@ const LEARNING_QUERY = `*[_type == "learningEntry" && defined(title) && defined(
   "imageHeight": image.asset->metadata.dimensions.height
 }`;
 
-/** Newest entries first. Returns an empty list if Sanity can't be reached, so the page still renders. */
-export async function getLearningEntries(): Promise<LearningEntry[]> {
+/** Newest entries first, up to `limit`. Returns an empty list if Sanity can't be reached, so the page still renders. */
+export async function getLearningEntries(limit = 50): Promise<LearningEntry[]> {
+  const query = `*[_type == "learningEntry" && defined(title) && defined(date)] | order(date desc)[0...${limit}]${LEARNING_FIELDS}`;
   try {
-    return await sanityQuery<LearningEntry[]>(LEARNING_QUERY);
+    return await sanityQuery<LearningEntry[]>(query);
   } catch {
     return [];
   }

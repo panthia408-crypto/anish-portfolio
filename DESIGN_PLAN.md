@@ -664,3 +664,7 @@ Also verified: AA contrast for every text token pair in both themes, no horizont
 
 Lighthouse mobile after these changes: home 86 to 90, /soies 86, accessibility, best practices and SEO 100.
 
+### Pages instead of one long landing page
+
+Research, About and Learning were anchors on the home page, so the nav never left it and "Home" stayed marked as current. They are now pages: `/research`, `/about` and `/learning`, alongside `/projects` (Work) and `/blog` (Writing). The home page keeps the hero, short teasers for Research, About and Learning (latest three entries) that link out, the work highlights, the writing pair and Contact. The nav marks the current section by URL; Work also covers `/soies`, About also covers `/journey`. `/library` now redirects to `/learning`.
+

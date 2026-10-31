@@ -11,7 +11,7 @@ const dark = args.includes("--dark");
 const viewportOnly = args.includes("--viewport");
 const only = args.find((arg) => arg.startsWith("--only="))?.slice(7).split(",");
 
-const routes = only ?? ["/", "/projects", "/journey", "/blog", "/soies"];
+const routes = only ?? ["/", "/research", "/projects", "/blog", "/about", "/learning", "/journey", "/soies"];
 const widths = [375, 768, 1440];
 
 await mkdir(outDir, { recursive: true });

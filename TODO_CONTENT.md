@@ -16,7 +16,7 @@ No placeholders are left. `git grep -n "PLACEHOLDER:" app` only finds the sample
 
 ### Adding to the MEP learning log
 
-The "What I'm learning in MEP" section on the home page reads from Sanity. To add an entry:
+The `/learning` page (and the latest three entries on the home page) reads from Sanity. To add an entry:
 
 1. Open Sanity Studio (`cd studio`, then `npm run dev`, or your deployed Studio). If the new type doesn't show, deploy the Studio once with `npx sanity deploy`.
 2. Choose **MEP Learning Log**, then **Create**.

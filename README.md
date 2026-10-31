@@ -20,7 +20,8 @@ npm run lint
 | `app/styles/tokens.css` | Every color, type size, space and motion value. Change the look here. |
 | `app/styles/` | Base styles, shared components, nav and footer, home, subpages, /soies |
 | `app/components/ui/` | Primitives: Section, Figure, Placeholder, SpecList, links, Reveal |
-| `app/components/home/` | Home page sections, in page order |
+| `app/components/home/` | Home page sections and teasers, in page order |
+| `app/components/sections/` | Full Research, About and Learning content, used on their own pages |
 | `app/data/` | Site content: facts, projects, research, journey, tools, writing, SOIES events |
 | `app/lib/` | Sanity fetch (read only, cached hourly) and page metadata helper |
 | `studio/` | Sanity Studio schemas. Extend only; never rename or delete. |

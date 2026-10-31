@@ -3,6 +3,7 @@
 
 export const research = {
   title: "Changing the center of an omnidirectional wind turbine",
+  summary: "My final year project, supervised by Asst. Prof. Suman Acharya. It is in design and simulation now, and the turbine is due to be fabricated and documented by 15 Mangsir.",
   specs: [
     { term: "My role", value: "3D design" },
     { term: "Supervisor", value: "Asst. Prof. Suman Acharya" },
@@ -24,7 +25,7 @@ export const research = {
     {
       title: "What I do",
       body: [
-        "I handle the design side of the project: the 3D model in Fig. 02 and the vent variants we simulate.",
+        "I handle the design side of the project: the 3D model shown here and the vent variants we simulate.",
       ],
     },
     {

@@ -14,8 +14,8 @@ const nextConfig: NextConfig = {
       { source: "/work.html", destination: "/projects", permanent: true },
       { source: "/timeline.html", destination: "/journey", permanent: true },
       { source: "/certifications.html", destination: "/journey", permanent: true },
-      { source: "/library.html", destination: "/#learning", permanent: true },
-      { source: "/library", destination: "/#learning", permanent: true },
+      { source: "/library.html", destination: "/learning", permanent: true },
+      { source: "/library", destination: "/learning", permanent: true },
       { source: "/blog.html", destination: "/blog", permanent: true },
       { source: "/events.html", destination: "/soies", permanent: true },
     ];

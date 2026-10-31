@@ -39,7 +39,7 @@ export default function Hero() {
               </span>
             </p>
             <div className="hero-sheet__actions">
-              <Button href="#research" glyph="↓">
+              <Button href="/research" glyph="→">
                 See the research
               </Button>
               <ArrowLink href={site.cv.href} download>

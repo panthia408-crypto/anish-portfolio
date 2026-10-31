@@ -14,7 +14,7 @@ const magazine = project("industrial-vision-11");
 const indexRows = [
   { item: project("npc-proposal"), href: "/soies" },
   { item: project("soies-website"), href: "https://soiesnepal.org.np", external: true },
-  { item: project("engineers-library"), href: "/library" },
+  { item: project("yathartha-3"), href: "/soies" },
 ];
 
 export default function Work() {

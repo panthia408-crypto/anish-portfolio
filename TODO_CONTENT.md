@@ -12,11 +12,18 @@ Updated 31 October 2026.
 
 ### On the site now
 
-| Where | File | What to provide |
-|---|---|---|
-| Research spec list, "Tools" | `app/data/research.ts` | The software you use for the turbine's CAD model and simulation, as a short comma list (e.g. "SolidWorks, ANSYS Fluent"). Replace the whole `[PLACEHOLDER: ...]` text. |
+No placeholders are left. `git grep -n "PLACEHOLDER:" app` only finds the samples on the hidden `/styleguide` page.
 
-That's the only placeholder visitors can see. The ones in `app/styleguide/page.tsx` are samples on the design reference page.
+### Adding to the MEP learning log
+
+The "What I'm learning in MEP" section on the home page reads from Sanity. To add an entry:
+
+1. Open Sanity Studio (`cd studio`, then `npm run dev`, or your deployed Studio). If the new type doesn't show, deploy the Studio once with `npx sanity deploy`.
+2. Choose **MEP Learning Log**, then **Create**.
+3. Fill in **What I learned** (one line) and **Date**. Optional: **Area**, **Tool or source**, **Note** (1 to 3 sentences), **Image** (landscape), **Link**.
+4. Publish. The site shows the newest 8 entries and refreshes within an hour.
+
+Until the first entry exists, the section shows a short line saying notes will appear there.
 
 ### Worth adding later (nothing shows until you do)
 
@@ -28,7 +35,6 @@ That's the only placeholder visitors can see. The ones in `app/styleguide/page.t
 | Industrial Vision Vol. 10 | The year, and the title of your piece | `app/data/projects.ts` (the two `// CHECK:` comments there) |
 | Yathartha 2.0 | Confirm it was the second edition, and the year | `app/data/projects.ts` |
 | ANSYS workshop dates | The SOIES site lists 31 December 2025 and the site uses that. Older SOIES text said 21 January to 9 February 2026. Correct it if you find out. | `app/data/soies-events.ts` |
-| Library resources | Only Semester VI has links in Sanity. Add `note` documents in Sanity Studio for other semesters; the site picks them up within an hour. | Sanity Studio |
 | Compressed magazine PDF | The issue is 23 MB. A copy under 8 MB would load much faster on mobile data. The link always shows the size, so this is optional. Compressing it properly needs a PDF tool (Acrobat, or Ghostscript), which this machine doesn't have. | Replace `public/files/industrial-vision-vol11.pdf` and update `magazinePdf.size` in `app/data/site.ts` |
 | Google Search Console | Add the site and submit `https://anishpanthi.com.np/sitemap.xml` after deploying | Search Console |
 
@@ -41,6 +47,10 @@ That's the only placeholder visitors can see. The ones in `app/styleguide/page.t
 | Public email | panthia408@gmail.com | Shown in Contact, footer, form error message and structured data |
 | Availability | From 15 Mangsir, for 3 to 5 months | Contact reads "I'm available from 15 Mangsir (early December) for 3 to 5 months." |
 | Research details | Design and simulation phase; fabricated and documented by 15 Mangsir; the aim is to see how changing the vent area and ratio affects torque, and so power generation | Research question, status, method, "Measuring" and "Due" rows rewritten from this |
+| Research tools | SolidWorks and ANSYS CFD | Filled in the Research spec list |
+| Library | Remove it entirely | `/library` page, nav link and project entry removed; old links redirect to the new Learning section. The Sanity `note` documents and schema are untouched. |
+| Accent colour | Replace the orange | Palette changed to cool drafting white with a blueprint-blue accent, in both themes, plus the favicon and social card |
+| MEP learning section | Wanted, updated from Sanity | New "MEP Learning Log" document type in Studio (added alongside the existing schemas) and a Learning section on the home page |
 | Turbine image | CAD model uploaded | Now Fig. 02 in Research (`public/images/turbine-cad.png`) |
 | Photo captions | Not needed | Hero caption is just "Anish Panthi"; the About photo has no caption |
 | Sharper speech photo | Uploaded four | The MechTRIX 2082 photo is now in About, resized to 2400 px (`public/images/anish-mechtrix-speech.jpg`). The old `public/files/about-speech.jpg` is kept but no longer used. |

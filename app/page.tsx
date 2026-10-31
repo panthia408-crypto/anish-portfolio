@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import About from "./components/home/About";
 import Contact from "./components/home/Contact";
 import Hero from "./components/home/Hero";
+import Learning from "./components/home/Learning";
 import Research from "./components/home/Research";
 import Work from "./components/home/Work";
 import Writing from "./components/home/Writing";
@@ -43,6 +44,8 @@ export default function Home() {
       <Work />
 
       <About />
+
+      <Learning />
 
       <Writing />
 

@@ -8,7 +8,7 @@ import Section from "../ui/Section";
 
 export default function Writing() {
   return (
-    <Section id="writing" number="04" label="Writing" title="Printed in Industrial Vision">
+    <Section id="writing" number="05" label="Writing" title="Printed in Industrial Vision">
       <div className="pieces grid">
         {pieces.map((piece, index) => (
           <Reveal key={piece.id} className={`piece piece--${index === 0 ? "lead" : "second"}`} index={index}>

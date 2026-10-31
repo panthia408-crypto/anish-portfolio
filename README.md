@@ -1,6 +1,6 @@
 # anishpanthi.com.np
 
-Personal site of Anish Panthi. Next.js 16 (App Router, Cache Components) with a read-only Sanity dataset for the library.
+Personal site of Anish Panthi. Next.js 16 (App Router, Cache Components) with a read-only Sanity dataset for the MEP learning log.
 
 The design and the reasoning behind it are in [DESIGN_PLAN.md](DESIGN_PLAN.md). Content still to be supplied is in [TODO_CONTENT.md](TODO_CONTENT.md).
 

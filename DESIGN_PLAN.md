@@ -649,3 +649,18 @@ Lighthouse 12, mobile profile, production build on a local machine (runs vary by
 CLS is 0 to 0.007 everywhere. What holds Performance under 90 on some runs is LCP of about 3.5 s under Lighthouse's simulated slow 4G, driven by the shared React and Next runtime plus the web fonts.
 
 Also verified: AA contrast for every text token pair in both themes, no horizontal scroll at 320 px, one h1 per page, no skipped heading levels, alt text on every image, a visible focus ring on every interactive element in a logical tab order, Escape and focus return on the mobile menu and page reader, reduced motion leaves nothing hidden, the contact form posts the same fields to the same endpoint (tested against a mocked endpoint, so no real message was sent), and no console errors on any page.
+
+## 10. Changes after launch review (31 October 2026)
+
+| Change | Detail |
+|---|---|
+| Palette | The warm cream and markup red read too close to an AI product's look. Now: cool drafting white `#f4f5f2`, ink `#121417`, blueprint-blue accent `#2350a8` (dark mode `#7aa2e3`), blue-tinted grid. All text pairs are AA or better (lowest 6.2:1). |
+| Library removed | `/library` and its code are gone; `/library` and `/library.html` redirect to `/#learning`. Sanity `note` content and schema untouched. |
+| MEP learning log | New additive Sanity type `learningEntry` (`studio/schemaTypes/learning.js`). Home section "04 Learning" reads the newest 8 entries, cached for an hour. Sections renumbered: Writing 05, Contact 06. |
+| Motion | One `ScrollAnimator` in the root layout replaces per-component observers. Variants: fade-up, photo wipe with settle, plot wipe (CAD model), hairline draw, staggered lists. Implemented as keyframes with backwards fill so hover effects are never delayed. The clip sits on the image, not the observed element, because Chrome never reports a fully clipped element as intersecting. On-load animations are transform-only to stay off the main thread. Reduced motion skips all of it. |
+| /soies | Stats strip from data, sticky month rail, adaptive photo layouts, hover hint, lightbox with fade, crossfade, swipe and a photo counter. |
+| /projects | Per-type counts strip and an accent bar on hover. |
+| Nav | Home added; Library replaced by Learning. Footer credit line removed. |
+
+Lighthouse mobile after these changes: home 86 to 90, /soies 86, accessibility, best practices and SEO 100.
+

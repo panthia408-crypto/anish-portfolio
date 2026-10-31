@@ -147,16 +147,6 @@ export const projects: Project[] = [
     links: [{ label: "Visit the site", href: "https://soiesnepal.org.np", external: true }],
   },
   {
-    id: "engineers-library",
-    title: "The Engineer's Library",
-    group: "Web",
-    role: "Creator",
-    status: "Live",
-    summary: "An open-access digital library for IOE Industrial Engineering, with semester-wise notes, textbooks and industrial resources.",
-    tags: ["Education", "Open access"],
-    links: [{ label: "Open the library", href: "/library" }],
-  },
-  {
     id: "this-portfolio",
     title: "This Portfolio",
     group: "Web",

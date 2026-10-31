@@ -10,8 +10,8 @@ const links = [
   { href: "/#research", label: "Research" },
   { href: "/projects", label: "Work" },
   { href: "/blog", label: "Writing" },
-  { href: "/library", label: "Library" },
   { href: "/#about", label: "About" },
+  { href: "/#learning", label: "Learning" },
 ];
 
 export default function SiteNav() {

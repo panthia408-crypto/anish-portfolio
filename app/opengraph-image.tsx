@@ -6,11 +6,11 @@ export const alt = "Anish Panthi, Industrial Engineering student";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const paper = "#f4f1ea";
-const ink = "#16150f";
-const graphite = "#5b584f";
-const grid = "rgba(22, 21, 15, 0.07)";
-const accent = "#c8371d";
+const paper = "#f4f5f2";
+const ink = "#121417";
+const graphite = "#575c63";
+const grid = "rgba(35, 80, 168, 0.09)";
+const accent = "#2350a8";
 
 export default function OpengraphImage() {
   return new ImageResponse(

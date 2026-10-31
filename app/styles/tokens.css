@@ -3,19 +3,19 @@
 :root {
   color-scheme: light dark;
 
-  /* Color: paper (light) */
-  --paper: #f4f1ea;
-  --paper-raised: #fbf9f4;
-  --ink: #16150f;
-  --graphite: #5b584f;
-  --pencil: #8a867b;
-  --rule: #d9d4c7;
-  --grid: rgb(22 21 15 / 0.045);
-  --accent: #c8371d;
-  --accent-strong: #a32c16;
-  --hatch: rgb(22 21 15 / 0.06);
-  --on-ink: #f4f1ea;
-  --plate-photo: #ece8de;
+  /* Color: drafting paper (light) with a blueprint-blue accent */
+  --paper: #f4f5f2;
+  --paper-raised: #fbfbfa;
+  --ink: #121417;
+  --graphite: #575c63;
+  --pencil: #8a9097;
+  --rule: #d8dbdf;
+  --grid: rgb(35 80 168 / 0.06);
+  --accent: #2350a8;
+  --accent-strong: #1a3d82;
+  --hatch: rgb(18 20 23 / 0.06);
+  --on-ink: #f4f5f2;
+  --plate-photo: #eceeec;
 
   /* Type families (set by next/font in app/layout.tsx) */
   --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
@@ -67,17 +67,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #12110e;
-    --paper-raised: #1a1915;
-    --ink: #ece8de;
-    --graphite: #a8a396;
-    --pencil: #77736a;
-    --rule: #2c2a24;
-    --grid: rgb(236 232 222 / 0.05);
-    --accent: #e8603f;
-    --accent-strong: #f07a5c;
-    --hatch: rgb(236 232 222 / 0.07);
-    --on-ink: #12110e;
-    --plate-photo: #ece8de;
+    --paper: #0f1114;
+    --paper-raised: #171a1e;
+    --ink: #e7e9ec;
+    --graphite: #a3a9b1;
+    --pencil: #6f767e;
+    --rule: #262a30;
+    --grid: rgb(122 162 227 / 0.07);
+    --accent: #7aa2e3;
+    --accent-strong: #9bbaf0;
+    --hatch: rgb(231 233 236 / 0.07);
+    --on-ink: #0f1114;
+    --plate-photo: #eceeec;
   }
 }

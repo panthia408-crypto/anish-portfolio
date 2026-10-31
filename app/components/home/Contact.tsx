@@ -6,7 +6,7 @@ import ContactForm from "./ContactForm";
 
 export default function Contact() {
   return (
-    <Section id="contact" number="05" label="Contact" title="Hiring an HVAC or MEP intern?">
+    <Section id="contact" number="06" label="Contact" title="Hiring an HVAC or MEP intern?">
       <div className="contact grid">
         <div className="contact__direct col-main">
           <p className="lede">I&apos;m {withPlaceholders(site.availability)}.</p>

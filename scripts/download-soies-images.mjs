@@ -1,8 +1,9 @@
-// One-time script: saves every SOIES photo listed in app/data/soies-events.ts
-// into public/soies/ so they are served from your own website forever.
+// Saves every SOIES photo listed in app/data/soies-events.ts into public/soies/
+// so they are served from this website rather than the SOIES CDN.
 //
 // Run from the project root (anish-portfolio-next):
-//   node scripts/download-soies-images.mjs
+//   node scripts/download-soies-images.mjs          only fetches files that are missing
+//   node scripts/download-soies-images.mjs --force  fetches every file again
 
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -10,9 +11,10 @@ import path from "node:path";
 const SRC = path.join("app", "data", "soies-events.ts");
 const OUT = path.join("public", "soies");
 const CDN = "https://cdn.sanity.io/images/bhcqd45q/production/";
-const WIDTH = 1600; // longest side is limited to this many pixels
-const QUALITY = 80;
+const MAX_SIDE = 2400; // longest side in pixels; smaller originals are kept at their own size
+const QUALITY = 88;
 const PARALLEL = 4;
+const FORCE = process.argv.includes("--force");
 
 let text;
 try {
@@ -32,14 +34,17 @@ const failed = [];
 
 async function download(file) {
   const target = path.join(OUT, file);
-  try {
-    await fs.access(target);
-    skipped++;
-    return;
-  } catch {
-    // file does not exist yet, download it
+  if (!FORCE) {
+    try {
+      await fs.access(target);
+      skipped++;
+      return;
+    } catch {
+      // file does not exist yet, download it
+    }
   }
-  const url = `${CDN}${file}?w=${WIDTH}&q=${QUALITY}`; // no auto=format, so the extension stays truthful
+  // fit=max never upscales. No auto=format, so the extension stays truthful.
+  const url = `${CDN}${file}?w=${MAX_SIDE}&h=${MAX_SIDE}&fit=max&q=${QUALITY}`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());

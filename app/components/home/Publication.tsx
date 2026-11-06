@@ -6,15 +6,16 @@ import { ArrowLink } from "../ui/Links";
 import Reveal from "../ui/Reveal";
 import Section from "../ui/Section";
 
-export default function Writing() {
+export default function Publication() {
   return (
-    <Section id="writing" number="05" label="Writing" title="Printed in Industrial Vision">
+    <Section id="publication" number="02" label="Publication" title="Printed in Industrial Vision">
       <div className="pieces grid">
         {pieces.map((piece, index) => (
           <Reveal key={piece.id} className={`piece piece--${index === 0 ? "lead" : "second"}`} index={index}>
             <article>
               <Link href={`/blog#${piece.id}`} className="piece__link">
                 <Figure
+                  className="piece__page"
                   src={piece.pages[0].src}
                   alt={piece.pages[0].alt}
                   width={piece.pages[0].width}
@@ -31,7 +32,7 @@ export default function Writing() {
           </Reveal>
         ))}
         <div className="pieces__more col-main">
-          <ArrowLink href="/blog">All writing</ArrowLink>
+          <ArrowLink href="/blog">All publications</ArrowLink>
           <ArrowLink href={site.magazinePdf.href} external>
             Industrial Vision Vol. 11, full issue (PDF, {site.magazinePdf.size})
           </ArrowLink>

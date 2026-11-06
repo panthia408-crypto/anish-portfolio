@@ -9,7 +9,7 @@ import { site } from "../data/site";
 import "../styles/pages.css";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Writing",
+  title: "Publication",
   description:
     "Articles and messages by Anish Panthi, first published in Industrial Vision, the annual magazine of SOIES Nepal.",
   path: "/blog",
@@ -19,8 +19,8 @@ export default function BlogPage() {
   return (
     <main id="main-content" className="page">
       <PageHeader
-        crumb="Writing"
-        title="Writing"
+        crumb="Publication"
+        title="Publication"
         lede="Pieces I wrote for Industrial Vision, the annual magazine of SOIES Nepal, shown as they were printed."
       />
 

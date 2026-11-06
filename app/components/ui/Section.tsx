@@ -5,12 +5,14 @@ type SectionProps = {
   number: string;
   label: string;
   title: ReactNode;
-  children: ReactNode;
+  children?: ReactNode;
+  /** Content that runs the full width of the page, after the contained content. */
+  bleed?: ReactNode;
   className?: string;
 };
 
 /** A numbered sheet: hairline, mono label rail, heading, then content. */
-export default function Section({ id, number, label, title, children, className = "" }: SectionProps) {
+export default function Section({ id, number, label, title, children, bleed, className = "" }: SectionProps) {
   const headingId = id ? `${id}-title` : undefined;
 
   return (
@@ -28,6 +30,7 @@ export default function Section({ id, number, label, title, children, className 
         </header>
         {children}
       </div>
+      {bleed}
     </section>
   );
 }

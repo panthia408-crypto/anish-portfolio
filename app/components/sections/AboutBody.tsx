@@ -46,8 +46,8 @@ export default function AboutBody() {
           <p>
             Since my sixth semester, I&apos;ve been part of a wind turbine research project with my teacher,
             handling the design side. The original omnidirectional design is patented, so we&apos;re studying
-            something new: what happens when the shape and ratio of its center area change. As far as we know,
-            nobody has tested that before.
+            something new: what happens to its power when the vent area and vent ratio change. As far as we
+            know, nobody has tested that before.
           </p>
           <p>
             During my term as president of SOIES Nepal, I coordinated our annual magazine, Industrial Vision

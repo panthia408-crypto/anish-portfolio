@@ -9,7 +9,7 @@ const links = [
   { href: "/", label: "Home", match: ["/"] },
   { href: "/research", label: "Research", match: ["/research"] },
   { href: "/projects", label: "Work", match: ["/projects", "/soies"] },
-  { href: "/blog", label: "Writing", match: ["/blog"] },
+  { href: "/blog", label: "Publication", match: ["/blog"] },
   { href: "/about", label: "About", match: ["/about", "/journey"] },
   { href: "/learning", label: "Learning", match: ["/learning"] },
 ];

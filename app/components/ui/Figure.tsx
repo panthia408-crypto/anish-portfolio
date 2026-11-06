@@ -14,6 +14,8 @@ type FigureProps = {
   width?: number;
   height?: number;
   sizes?: string;
+  /** Image quality. Must be listed in images.qualities in next.config.ts (75 or 85). */
+  quality?: number;
   eager?: boolean;
   objectPosition?: string;
   /** Description of the missing image. Renders a hatched drawing frame instead of an image. */
@@ -33,6 +35,7 @@ export default function Figure({
   width,
   height,
   sizes = "100vw",
+  quality,
   eager = false,
   objectPosition,
   placeholder,
@@ -63,6 +66,7 @@ export default function Figure({
             width={width}
             height={height}
             sizes={sizes}
+            quality={quality}
             loading={eager ? "eager" : "lazy"}
             fetchPriority={eager ? "high" : undefined}
             style={objectPosition ? { objectPosition } : undefined}

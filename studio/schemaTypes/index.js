@@ -4,6 +4,7 @@ import note         from './note'
 import downloadable from './downloadable'
 import event        from './event'
 import learning     from './learning'
+import collegeAlbum from './collegeAlbum'
 
 export const schemaTypes = [
   about,
@@ -11,4 +12,5 @@ export const schemaTypes = [
   downloadable,
   event,
   learning,
+  collegeAlbum,
 ]

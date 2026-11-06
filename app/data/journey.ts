@@ -1,5 +1,7 @@
 // Timeline, certificates and roles. Moved out of app/journey/page.tsx; text unchanged apart from light copy edits.
 
+import { events } from "./soies-events";
+
 export type Milestone = { year: string; title: string; place: string; text: string };
 export type Credential = { title: string; detail: string };
 
@@ -11,7 +13,7 @@ export const milestones: Milestone[] = [
   { year: "2023", title: "Joint Secretary, SOIES Nepal", place: "Society of Industrial Engineering Students", text: "Coordinated conferences, the Industrial Estate Research Program and Microsoft training, and was part of the Yathartha tech fest." },
   { year: "Early 2024", title: "President, GAP Thapathali", place: "Regional student club", text: "Led the \"home far from home\" initiative, connecting students from western Nepal studying at Thapathali Campus. Later stepped down to take on the SOIES presidency." },
   { year: "2025", title: "Industrial Vision Vol. 10 and the turbine research", place: "Thapathali Campus, IOE", text: "Principal Correspondent for the tenth issue of the magazine. In the sixth semester I joined my teacher's omnidirectional wind turbine research, handling the 3D design. It is now my final year project." },
-  { year: "2025 to 2026", title: "President, SOIES Nepal", place: "18th Executive Committee", text: "Led 20 events: Yathartha 3.0, the National Math and Physics Olympiad, Ergo Reignite 2.0, a job fair and MOU with Nebico Limited, workshops, alumni talks, and a research partnership proposal to the National Planning Commission." },
+  { year: "2025 to 2026", title: "President, SOIES Nepal", place: "18th Executive Committee", text: `Led ${events.length} events: Yathartha 3.0, the National Math and Physics Olympiad, Ergo Reignite 2.0, a job fair and MOU with Nebico Limited, workshops, alumni talks, and a research partnership proposal to the National Planning Commission.` },
   { year: "August 2026", title: "Industrial Vision Vol. 11", place: "Coordinator and designer", text: "Learned InDesign and designed the whole issue, print ready, with the team. Launched on 14 August 2026." },
   { year: "Now", title: "8th Semester", place: "Thapathali Campus, IOE", text: "My presidency is complete. I'm working on the wind turbine as my final year project, learning AutoCAD MEP, and looking for an HVAC and MEP internship." },
 ];

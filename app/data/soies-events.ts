@@ -38,6 +38,8 @@ export const committee = {
   sourceUrl: "https://soiesnepal.org.np/previous-committees/1",
   groupPhoto: "ce5c800ac9d6f255a5799eee42775443fe8124a9-6000x4000.jpg",
   groupPhotoAlt: "18th Executive Committee of SOIES Nepal",
+  // Profile photo from the committee page, used in the home page gallery.
+  presidentPhoto: "18ff062bf6125fdab78585b8c2beea2847ac459a-1739x2015.png",
   // Names only. No personal photos or contact details are included on purpose.
   team: [
     { name: "Anish Panthi", role: "President" },
@@ -62,6 +64,7 @@ export const events: SoiesEvent[] = [
       "3a0a1b9f3f26cb66df103101d8a44c17025acc9a-1919x1079.png",
       "89ae05b05965365daddeffa74fb044d4c8b934c0-1861x1002.png",
       "17bc8868cda949f4dee61ed785ffe11190974c59-1916x997.png",
+      "8ed49ca45d6bedd16d993151aabaab7113699773-1861x1079.png",
     ],
   },
   {
@@ -74,6 +77,7 @@ export const events: SoiesEvent[] = [
       "e636c359c240969e68d4da9dfc5dc41fd04d1e60-6000x4000.jpg",
       "a13c1d7f02242baac477b017acd3dd88bf0f0e42-6000x4000.jpg",
       "ce5c800ac9d6f255a5799eee42775443fe8124a9-6000x4000.jpg",
+      "c6bc7a03df8f0bf7a3079a619e3f448842466c2e-6000x4000.jpg",
     ],
   },
   {
@@ -87,6 +91,7 @@ export const events: SoiesEvent[] = [
       "4ced84088d4ecab23d853984b574b83de2481543-2048x1536.jpg",
       "c353759373a048ac37288cf6ec6e2b846718c1dd-1080x1160.jpg",
       "1b6352056fa6e18b280a444475385338e94472bd-1536x2048.jpg",
+      "9a75a28d44fb758395df486e8a15482ba0235d67-1080x622.jpg",
     ],
   },
   {
@@ -96,7 +101,9 @@ export const events: SoiesEvent[] = [
     date: "2026-06-20",
     description:
       "An interactive webinar, \"From Nepal to Germany: A Journey in Industrial Engineering\", featuring Er. Ganesh Rana, who shared his experiences, lessons learned, and insights from his professional journey. Designed for students seeking clarity, direction, and a broader perspective on engineering careers.",
-    photos: ["4a85f9feb3c297ebc4bcc9d875952e3a7a33a494-526x526.png"],
+    photos: [
+      "4a85f9feb3c297ebc4bcc9d875952e3a7a33a494-526x526.png",
+    ],
   },
   {
     id: "npc-proposal-submission",
@@ -109,6 +116,7 @@ export const events: SoiesEvent[] = [
       "e5f7f6377407baeafd2a8cb9d5a489cdb355d0cd-2048x1536.jpg",
       "ea98439ef518f8ac744f536c2454c93f49f8a2cf-1536x2048.jpg",
       "a9582b510576ccee358c887c9695beaa6c135646-2048x1536.jpg",
+      "51e525f3899f8d6442eadc472c12bf3d5d7c726a-2048x1536.jpg",
     ],
   },
   {
@@ -149,6 +157,7 @@ export const events: SoiesEvent[] = [
       "27a346b38bd0c992c0a8fd4b090f3a777868f082-2048x1365.jpg",
       "1e0b578778adebedc0fca4396fb9fd292079702b-5184x3456.jpg",
       "bff31df7941dee9f853c77303247d5984667e065-5184x3456.jpg",
+      "750b072c68ddbedf8d9c0e7803a080559394b3fe-5184x3456.jpg",
     ],
   },
   {
@@ -160,6 +169,7 @@ export const events: SoiesEvent[] = [
       "166cd5ac58e8d61bc8649769c1b5a356694dfd28-3000x4000.jpg",
       "56c93d7025f87fdd6109a2fe51ff9a874d5812a7-3000x4000.jpg",
       "846771606ea5825c43f22be3d546a12531d36aa4-3000x4000.jpg",
+      "601d0facd13b67c39022860360c54532e03927d9-3000x4000.jpg",
     ],
   },
   {
@@ -171,6 +181,7 @@ export const events: SoiesEvent[] = [
       "2631f83a73902a156003948950a4fac3b1bfd09c-3936x2624.jpg",
       "68dd86bbdafe0e5df2ac5a278af4880381820890-1200x1600.jpg",
       "27fb42b1029b1091fe96b7dbbfe1f34593ab9a7c-6000x4000.jpg",
+      "d9eab34c118ea53c3c2c7a95d93a2fccc8b59137-2048x1435.jpg",
     ],
   },
   {
@@ -182,6 +193,7 @@ export const events: SoiesEvent[] = [
       "abb4a12c463724e7adcf6d67093e363f1f1674db-1600x1200.jpg",
       "300dbc8fbf29b9a7260ad71614ae2893151b9697-1200x1600.jpg",
       "49547f8841c8c54240f9b6ef5f2ce1a6e95b1691-1200x1600.jpg",
+      "80a41cee3e9202159a0b3219a09f1bc09df1ebff-1200x1600.jpg",
     ],
   },
   {
@@ -194,6 +206,7 @@ export const events: SoiesEvent[] = [
       "7f027f12dc462d366e0576272e0ff46e67376530-2016x1512.jpg",
       "bbc9924bc0f36e886af97c19d3bd3487b4077577-1512x1890.jpg",
       "191fbc53d852fd5610787d4a5c8656ce9c862d3d-1512x1890.jpg",
+      "5bca82abde4d6c1dc2d608bd0cfe7f3187cbcf4d-1512x1890.jpg",
     ],
   },
   {
@@ -205,6 +218,18 @@ export const events: SoiesEvent[] = [
       "55f0abeeb1e5c78d8ac9f9d5aff5b61b29627e1f-1600x1200.jpg",
       "b8d311e64dbe370fea9574166c773250e33c0008-2048x1536.jpg",
       "be1f57b970746f35c799499491c3e7212a81732d-2048x1536.jpg",
+      "85602b85a4f0be46b398d13b058b9d5fa47edd4e-1600x1200.jpg",
+    ],
+  },
+  {
+    id: "national-quiz-2082",
+    title: "National Quiz Competition 2082",
+    type: "competition",
+    date: "2026-01-18",
+    photos: [
+      "4170831a5d88d37ce1e05ab986cdb0feaf7f2481-1600x1200.jpg",
+      "06c84419eaf1ff47cfde11afc1b2567d111412b9-1200x1200.jpg",
+      "e9e6df9cbcf9d27dff72d8cccc48ab86e2d0c664-1600x1200.jpg",
     ],
   },
   {
@@ -216,6 +241,7 @@ export const events: SoiesEvent[] = [
       "dbaeaaa6836625ee9c6d1fe3c2b4b43ce632e83f-1200x1200.jpg",
       "08054d7d203886827f4f837bd06fa6cf11c5203f-1536x2048.jpg",
       "7996b96fd85928af09783af163a8cabc22f9f644-1200x1200.jpg",
+      "ea5c160366d7921e20c4762d9a4ddd23d8222a7d-1200x1200.jpg",
     ],
   },
   {
@@ -228,6 +254,7 @@ export const events: SoiesEvent[] = [
       "ee06f958f9b3f573871e308624d63a44bd7b986f-12000x9000.jpg",
       "d73bc84ffcd0eaa6ee7f6219e5d17540deb99003-2000x1500.jpg",
       "70b5b2e719ec7ff0059130ba8f81b2cbbc7dc221-590x443.jpg",
+      "aaed400b7aa1929bedc1f23153d20c14f434fe92-1638x2048.jpg",
     ],
   },
   {
@@ -241,6 +268,7 @@ export const events: SoiesEvent[] = [
       "24ab21e851483e3769809d0cf16abd783dff676d-1600x1200.jpg",
       "f21ec8763c90f22da68f8c5e93b8b931842b87c9-3000x4000.jpg",
       "e7bb93116ecaa7ae88b5a0a1f803e6a56fc9fe5a-2364x4000.jpg",
+      "d38a16be9d05a181eb9dc7fa4c9e611f1532b448-3000x4000.jpg",
     ],
   },
   {
@@ -255,6 +283,7 @@ export const events: SoiesEvent[] = [
       "f286d5c0e0700f5c5dcc46bdb4cb4928de8f4e28-1280x963.jpg",
       "bc2d06ae02e59305bcc595f16b95e52eac6568ad-1280x963.jpg",
       "9eda653bf9bfecb646003ae1db3ba7b0b092de48-1280x963.jpg",
+      "c92ec05b190f53dc5f8d8a817e7dd68927c70ef3-1280x963.jpg",
     ],
   },
   {
@@ -268,6 +297,7 @@ export const events: SoiesEvent[] = [
       "d6a1aba2ba0c66ea26fa5e91b5d53db301d8991b-1280x963.jpg",
       "28926df70534eaba67c79f58cee27ebf930d77d2-1280x963.jpg",
       "901e567afd904e3034e9c3af9796d56b5bf17e0a-1280x963.jpg",
+      "b2de344a6daa33e7d01761619ac422699f38f848-1280x963.jpg",
     ],
   },
   {
@@ -282,6 +312,7 @@ export const events: SoiesEvent[] = [
       "381a4c7a1559cbfadb5bea4dc9cbbc72a7ca9a9e-1080x1080.jpg",
       "b7e8d539937b24c7b493dd1c77481411273db400-1280x963.jpg",
       "ff566a09772231a02b51fbcbe5c1c3e8082090ed-1080x838.png",
+      "ab5a3459ee1a3c49f2fcba9da5497de33f160a61-1588x935.png",
     ],
   },
   {
@@ -295,6 +326,7 @@ export const events: SoiesEvent[] = [
       "aebd7f3676defe99a59dd29eb28a4eb98da44c71-1542x913.png",
       "24dd673f759eb5962a776817eadc7c5d1cb64d7d-1435x931.png",
       "01bc61fced803a039f045da59463f4a66dd24f16-1471x918.png",
+      "89cd7b2054f028db2ae152a3061005d12cbb1ce9-1879x958.png",
     ],
   },
 ];

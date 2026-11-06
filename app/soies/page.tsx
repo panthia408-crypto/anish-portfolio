@@ -12,8 +12,7 @@ import "../styles/soies.css";
 
 export const metadata: Metadata = pageMetadata({
   title: "SOIES Nepal, 18th Executive Committee",
-  description:
-    "A record of the 18th Executive Committee of SOIES Nepal: 20 events, workshops, competitions and partnerships, 2025 to 2026.",
+  description: `A record of the 18th Executive Committee of SOIES Nepal: ${events.length} events, workshops, competitions and partnerships, 2025 to 2026.`,
   path: "/soies",
 });
 
@@ -58,6 +57,7 @@ export default function SoiesPage() {
           alt={committee.groupPhotoAlt}
           {...imageSize(committee.groupPhoto)}
           sizes="(min-width: 75rem) 75rem, 100vw"
+          quality={85}
           eager
           caption={committee.groupPhotoAlt}
         />

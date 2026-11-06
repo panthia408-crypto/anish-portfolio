@@ -9,7 +9,7 @@ import "../styles/sections.css";
 export const metadata: Metadata = pageMetadata({
   title: "Research",
   description:
-    "Final year research by Anish Panthi: how the vent area and ratio at the center of an omnidirectional wind turbine affect its torque and power output.",
+    "Final year research by Anish Panthi: how the vent area and inlet-to-outlet vent ratio of an omnidirectional wind turbine affect its torque and power output.",
   path: "/research",
 });
 

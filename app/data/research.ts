@@ -2,7 +2,7 @@
 // Any [PLACEHOLDER: ...] left here is listed in TODO_CONTENT.md.
 
 export const research = {
-  title: "Changing the center of an omnidirectional wind turbine",
+  title: "How vent area and vent ratio change an omnidirectional wind turbine's power",
   summary: "My final year project, supervised by Asst. Prof. Suman Acharya. It is in design and simulation now, and the turbine is due to be fabricated and documented by 15 Mangsir.",
   specs: [
     { term: "My role", value: "3D design" },
@@ -18,7 +18,7 @@ export const research = {
     {
       title: "The question",
       body: [
-        "What happens to an omnidirectional wind turbine's torque, and so the power it generates, when the vent at its center changes in area and ratio?",
+        "What happens to an omnidirectional wind turbine's torque, and so the power it generates, when the area of its vents and the ratio of inlet to outlet vent area change?",
         "The original design is patented, so we're studying something new. As far as we know, nobody has tested it before.",
       ],
     },

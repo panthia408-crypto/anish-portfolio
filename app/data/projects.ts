@@ -36,7 +36,7 @@ export const projects: Project[] = [
     role: "3D design",
     status: "In progress",
     period: "Final year project",
-    summary: "Studying how changes in the geometry and proportions of the central area of an omnidirectional wind turbine affect performance. Supervised by Asst. Prof. Suman Acharya.",
+    summary: "Studying how the vent area and inlet-to-outlet vent ratio of an omnidirectional wind turbine affect its torque and power generation. Supervised by Asst. Prof. Suman Acharya.",
     tags: ["Research", "Renewable energy", "3D design"],
   },
   {

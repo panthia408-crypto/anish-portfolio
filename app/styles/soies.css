@@ -1,4 +1,4 @@
-/* /soies: the record of the 18th Executive Committee. */
+/* /soies: the record of the 18th Executive Committee. The photo viewer is .lightbox in components.css. */
 
 .soies-years {
   margin-top: var(--space-3);
@@ -62,7 +62,8 @@
 .soies-event {
   display: grid;
   gap: var(--space-4) var(--space-5);
-  padding-block: var(--space-5) var(--space-6);
+  padding-block: var(--space-5) var(--space-7);
+  scroll-margin-top: calc(var(--nav-h) + var(--space-5));
 }
 
 .soies-event + .soies-event {
@@ -82,7 +83,8 @@
   color: var(--graphite);
 }
 
-.soies-event-type::before {
+.soies-event-type::before,
+.soies-event-count::before {
   content: "· ";
 }
 
@@ -101,21 +103,24 @@
   color: var(--graphite);
 }
 
-/* Photos: one large, then thumbnails. Layout adapts to 1, 2 or 3 photos. */
+/* Photos. "lead": one wide photo over a row of the rest. "row": tall photos side by side
+   (two per row on phones). "single": one photo at its own shape. --n is the number of columns. */
 
 .soies-event-photos {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-2);
 }
 
-.soies-event-photos--1 {
-  grid-template-columns: 1fr;
+.soies-event-photos--lead {
+  grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
 }
 
-.soies-event-photos--2 .soies-photo-thumb {
-  grid-column: 1 / -1;
-  aspect-ratio: 3 / 1;
+.soies-event-photos--row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.soies-event-photos--single {
+  grid-template-columns: minmax(0, 28rem);
 }
 
 .soies-photo {
@@ -124,12 +129,22 @@
   overflow: hidden;
   padding: 0;
   border: 0;
-  background: var(--paper-raised);
+  background: var(--plate-photo);
   cursor: zoom-in;
   aspect-ratio: 4 / 3;
 }
 
-.soies-photo-large {
+.soies-event-photos--lead .soies-photo--lead {
+  grid-column: 1 / -1;
+  aspect-ratio: 3 / 2;
+}
+
+.soies-event-photos--row .soies-photo {
+  aspect-ratio: 3 / 4;
+}
+
+/* An odd photo out on a phone's two-column row takes the full width. */
+.soies-event-photos--row .soies-photo:last-child:nth-child(odd) {
   grid-column: 1 / -1;
   aspect-ratio: 3 / 2;
 }
@@ -138,6 +153,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 35%;
   transition: transform 1200ms var(--ease-out);
 }
 
@@ -204,19 +220,13 @@
 }
 
 @media (min-width: 40rem) {
-  .soies-event-photos--3 {
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+  .soies-event-photos--row {
+    grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
   }
 
-  .soies-event-photos--3 .soies-photo-large {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    aspect-ratio: 4 / 3;
-  }
-
-  .soies-event-photos--3 .soies-photo-thumb {
-    aspect-ratio: auto;
+  .soies-event-photos--row .soies-photo:last-child:nth-child(odd) {
+    grid-column: auto;
+    aspect-ratio: 3 / 4;
   }
 }
 
@@ -234,100 +244,5 @@
 
   .soies-month__events .soies-event:first-child {
     padding-top: 0;
-  }
-}
-
-/* Lightbox */
-
-.soies-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: var(--space-4);
-  padding: var(--space-3) var(--gutter) var(--space-5);
-  background: var(--paper);
-  touch-action: pan-y;
-}
-
-.soies-lightbox:focus {
-  outline: none;
-}
-
-.soies-lightbox-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  border-bottom: var(--hairline);
-  padding-bottom: var(--space-3);
-}
-
-.soies-lightbox-title {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-}
-
-.soies-lightbox-content {
-  display: grid;
-  place-items: center;
-  min-height: 0;
-}
-
-.soies-lightbox-image {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border: var(--hairline);
-  user-select: none;
-}
-
-.soies-lightbox-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-5);
-}
-
-.soies-lightbox-controls button {
-  min-height: 2.75rem;
-  padding: 0 var(--space-3);
-  background: none;
-  border: 0;
-  font-size: var(--step--1);
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: var(--pencil);
-  text-underline-offset: 0.3em;
-  cursor: pointer;
-}
-
-.soies-lightbox-controls button:hover {
-  color: var(--accent);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .soies-lightbox {
-    animation: lightbox-in var(--dur-ui) var(--ease) both;
-  }
-
-  /* Each photo is keyed, so changing photo remounts it and replays this crossfade. */
-  .soies-lightbox-image {
-    animation: lightbox-photo-in 450ms var(--ease-out) both;
-  }
-}
-
-@keyframes lightbox-in {
-  from {
-    opacity: 0;
-  }
-}
-
-@keyframes lightbox-photo-in {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
   }
 }

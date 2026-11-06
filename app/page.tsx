@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import AboutTeaser from "./components/home/AboutTeaser";
 import Contact from "./components/home/Contact";
+import Gallery from "./components/home/Gallery";
 import Hero from "./components/home/Hero";
-import LearningTeaser from "./components/home/LearningTeaser";
-import ResearchTeaser from "./components/home/ResearchTeaser";
+import Publication from "./components/home/Publication";
 import Work from "./components/home/Work";
-import Writing from "./components/home/Writing";
 import { site, socials } from "./data/site";
-import "./styles/sections.css";
 import "./styles/home.css";
 
 export const metadata: Metadata = {
@@ -22,6 +19,7 @@ const personJsonLd = {
   image: `${site.url}/images/anish-portrait.jpg`,
   jobTitle: "Industrial Engineering student",
   email: `mailto:${site.email}`,
+  homeLocation: { "@type": "Place", name: "Malarani-5, Arghakhanchi, Nepal" },
   affiliation: {
     "@type": "CollegeOrUniversity",
     name: "Thapathali Campus, Institute of Engineering, Tribhuvan University",
@@ -40,15 +38,11 @@ export default function Home() {
       />
       <Hero />
 
-      <ResearchTeaser />
-
       <Work />
 
-      <AboutTeaser />
+      <Publication />
 
-      <LearningTeaser />
-
-      <Writing />
+      <Gallery />
 
       <Contact />
     </main>

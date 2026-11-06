@@ -1,4 +1,4 @@
-/* Home page sections. See DESIGN_PLAN.md section 5. */
+/* Home page sections: hero, work belt, publication, gallery and contact. See DESIGN_PLAN.md section 5. */
 
 /* Hero */
 
@@ -9,10 +9,24 @@
   isolation: isolate;
 }
 
-.hero-sheet__grid-bg {
+/* Backdrop: the blueprint grid, and with a mouse a brighter patch and a crosshair that follow it */
+
+.hero-sheet__backdrop {
   position: absolute;
   inset: 0;
   z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-sheet__grid-bg,
+.hero-sheet__spot,
+.hero-sheet__cross {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-sheet__grid-bg {
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px),
@@ -26,6 +40,49 @@
   background-position: -1px -1px;
   mask-image: radial-gradient(ellipse 90% 80% at 25% 10%, #000 35%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 90% 80% at 25% 10%, #000 35%, transparent 80%);
+}
+
+.hero-sheet__spot {
+  background-image:
+    linear-gradient(var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+  mask-image: radial-gradient(circle 220px at var(--mx, 50%) var(--my, 50%), #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle 220px at var(--mx, 50%) var(--my, 50%), #000, transparent 72%);
+  opacity: 0;
+  transition: opacity 500ms var(--ease);
+}
+
+.hero-sheet__cross {
+  opacity: 0;
+  transition: opacity 500ms var(--ease);
+}
+
+.hero-sheet__cross::before,
+.hero-sheet__cross::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--cross);
+}
+
+.hero-sheet__cross::before {
+  right: 0;
+  height: 1px;
+  transform: translateY(var(--my, 0));
+}
+
+.hero-sheet__cross::after {
+  bottom: 0;
+  width: 1px;
+  transform: translateX(var(--mx, 0));
+}
+
+.hero-sheet__backdrop.is-lit .hero-sheet__spot,
+.hero-sheet__backdrop.is-lit .hero-sheet__cross {
+  opacity: 1;
 }
 
 .hero-sheet__layout {
@@ -61,12 +118,33 @@
   letter-spacing: -0.025em;
 }
 
+/* Each word rises out of its own slot on load. */
+.hero-sheet__word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.hero-sheet__word > span {
+  display: inline-block;
+}
+
 .hero-sheet__lede {
   order: 3;
   font-family: var(--font-display);
   font-size: var(--step-2);
   line-height: 1.3;
-  max-width: 30ch;
+  max-width: 34ch;
+}
+
+/* A highlighter stroke, the way a reviewer marks the line that matters. */
+.hero-sheet__mark {
+  color: inherit;
+  background: linear-gradient(var(--mark), var(--mark)) no-repeat 0 90% / 100% 0.36em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .hero-sheet__portrait {
@@ -110,6 +188,8 @@
   align-items: center;
 }
 
+/* Facts: four linked figures, each with a small drawing of what it counts */
+
 .hero-sheet__facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -119,26 +199,183 @@
 
 .hero-sheet__facts li {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-4) var(--space-4) var(--space-4) 0;
   border-bottom: var(--hairline);
 }
 
 .hero-sheet__facts li:nth-child(even) {
-  padding-left: var(--space-4);
   border-left: var(--hairline);
 }
 
-.hero-sheet__fact-figure {
+.hero-fact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-5) var(--space-4) var(--space-5) 0;
+}
+
+.hero-sheet__facts li:nth-child(even) .hero-fact {
+  padding-left: var(--space-4);
+}
+
+/* An accent rule draws across the top of the fact you point at. */
+.hero-fact::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 500ms var(--ease-out);
+}
+
+.hero-fact:hover::before,
+.hero-fact:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.hero-fact__glyph {
+  display: flex;
+  align-items: flex-end;
+  height: 2.75rem;
+  margin-bottom: var(--space-2);
+  color: var(--pencil);
+}
+
+.hero-fact__figure {
   font-family: var(--font-display);
   font-size: var(--step-3);
   line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: color var(--dur-ui) var(--ease);
 }
 
-.hero-sheet__fact-label {
+.hero-fact:hover .hero-fact__figure,
+.hero-fact:focus-visible .hero-fact__figure {
+  color: var(--accent);
+}
+
+.hero-fact__label {
   color: var(--graphite);
   max-width: 22ch;
+}
+
+/* Glyphs */
+
+.glyph {
+  display: block;
+}
+
+.glyph--tally {
+  width: min(100%, 9.5rem);
+  height: 2rem;
+  overflow: visible;
+}
+
+.glyph--tally g {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.glyph--tally line {
+  stroke: currentColor;
+  stroke-width: 1.25;
+  vector-effect: non-scaling-stroke;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.glyph--tally g:nth-child(5n) line {
+  stroke: var(--ink);
+}
+
+.glyph--tally g:last-child line {
+  stroke: var(--accent);
+}
+
+.glyph--cover {
+  position: relative;
+  width: 1.95rem;
+  height: 2.75rem;
+}
+
+.glyph--cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--paper-raised);
+  border: var(--hairline);
+  transform: translate(6px, -2px) rotate(7deg);
+}
+
+.glyph--cover img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 6px 12px -6px rgb(0 0 0 / 0.45);
+  transform: rotate(-4deg);
+  transition: transform 500ms var(--ease-out);
+}
+
+.hero-fact:hover .glyph--cover img,
+.hero-fact:focus-visible .glyph--cover img {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.glyph--turbine {
+  width: 4rem;
+  height: 2.5rem;
+  overflow: visible;
+}
+
+.glyph__shell {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+}
+
+.glyph__rotor path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.glyph__rotor,
+.glyph__boost {
+  transform-origin: 42px 20px;
+}
+
+.glyph__hub {
+  fill: var(--accent);
+}
+
+.glyph__wind line {
+  stroke: var(--pencil);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 5;
+}
+
+.glyph--semester {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 3px;
+  width: min(100%, 9.5rem);
+  height: 0.7rem;
+}
+
+.glyph--semester span {
+  background: var(--graphite);
+  transform-origin: left center;
+}
+
+.glyph--semester .is-now {
+  background: var(--accent);
 }
 
 @media (min-width: 40rem) {
@@ -182,29 +419,372 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
-  .hero-sheet__facts li,
-  .hero-sheet__facts li:nth-child(even) {
-    padding: var(--space-5) var(--space-5) var(--space-5) var(--space-5);
+  .hero-sheet__facts li {
     border-bottom: 0;
     border-left: var(--hairline);
   }
 
   .hero-sheet__facts li:first-child {
-    padding-left: 0;
     border-left: 0;
+  }
+
+  .hero-fact,
+  .hero-sheet__facts li:nth-child(even) .hero-fact {
+    padding: var(--space-5);
+  }
+
+  .hero-sheet__facts li:first-child .hero-fact {
+    padding-left: 0;
   }
 }
 
+/* Hero motion: words rise, the rest settles in order, then the glyphs draw themselves. */
 
-/* Work */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-sheet__word > span {
+    animation: word-rise 1000ms var(--ease-out) calc(80ms + var(--i, 0) * 110ms) both;
+  }
 
-.work-more {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: var(--space-5);
+  .hero-sheet__eyebrow,
+  .hero-sheet__lede,
+  .hero-sheet__status,
+  .hero-sheet__actions {
+    animation: settle-fade var(--dur-settle) var(--ease-out) both;
+  }
+
+  .hero-sheet__lede {
+    animation-delay: 260ms;
+  }
+
+  .hero-sheet__status {
+    animation-delay: 360ms;
+  }
+
+  .hero-sheet__actions {
+    animation-delay: 440ms;
+  }
+
+  .hero-sheet__mark {
+    animation: mark-draw 800ms var(--ease-out) 1100ms both;
+  }
+
+  .hero-sheet__mark ~ .hero-sheet__mark {
+    animation-delay: 1500ms;
+  }
+
+  .hero-sheet__portrait .figure__plate img {
+    animation: image-settle 1600ms var(--ease-out) both;
+  }
+
+  .hero-sheet__facts li {
+    animation: settle-fade var(--dur-settle) var(--ease-out) both;
+  }
+
+  .hero-sheet__facts li:nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .hero-sheet__facts li:nth-child(3) {
+    animation-delay: 160ms;
+  }
+
+  .hero-sheet__facts li:nth-child(4) {
+    animation-delay: 240ms;
+  }
+
+  .glyph--tally line {
+    animation: tick-rise 500ms var(--ease-out) calc(500ms + var(--t, 0) * 28ms) both;
+  }
+
+  .hero-fact:hover .glyph--tally g,
+  .hero-fact:focus-visible .glyph--tally g {
+    animation: tick-wave 700ms var(--ease) calc(var(--t, 0) * 18ms);
+  }
+
+  .glyph__rotor {
+    animation: spin 9s linear infinite;
+  }
+
+  .glyph__boost {
+    animation: spin 1.2s linear infinite paused;
+  }
+
+  .hero-fact:hover .glyph__boost,
+  .hero-fact:focus-visible .glyph__boost {
+    animation-play-state: running;
+  }
+
+  .glyph__wind line {
+    animation: wind 1.4s linear infinite;
+  }
+
+  .glyph--semester span {
+    animation: segment-in 400ms var(--ease-out) calc(600ms + var(--t, 0) * 70ms) both;
+  }
+
+  .glyph--semester .is-now {
+    animation:
+      segment-in 400ms var(--ease-out) calc(600ms + var(--t, 0) * 70ms) both,
+      now-pulse 1.8s ease-in-out 1.6s infinite;
+  }
 }
 
-/* Writing */
+@keyframes word-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes mark-draw {
+  from {
+    background-size: 0% 0.36em;
+  }
+}
+
+@keyframes tick-rise {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes tick-wave {
+  40% {
+    transform: scaleY(0.35);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wind {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+@keyframes segment-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes now-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* Small outlined buttons: pause the belt, shuffle the gallery */
+
+.control-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  background: none;
+  border: var(--hairline);
+  border-radius: var(--radius);
+  color: var(--graphite);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.control-button:hover {
+  color: var(--ink);
+  border-color: var(--pencil);
+}
+
+.control-button__pause {
+  width: 8px;
+  height: 10px;
+  border-inline: 3px solid currentColor;
+}
+
+.control-button__play {
+  width: 0;
+  height: 0;
+  border-left: 8px solid currentColor;
+  border-block: 5px solid transparent;
+}
+
+.control-button__dice {
+  width: 11px;
+  height: 11px;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+  background:
+    radial-gradient(circle, currentColor 1.1px, transparent 1.5px) 25% 25% / 4px 4px no-repeat,
+    radial-gradient(circle, currentColor 1.1px, transparent 1.5px) 75% 75% / 4px 4px no-repeat;
+}
+
+/* Work: the belt runs the full width of the page under the section heading */
+
+.belt {
+  --belt-h: clamp(15rem, 11rem + 14vw, 24rem);
+  --belt-gap: clamp(1rem, 0.6rem + 1.4vw, 1.75rem);
+  --fade: clamp(1rem, 5vw, 5rem);
+  position: relative;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: var(--space-2) var(--space-5);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y pinch-zoom;
+  mask-image: linear-gradient(90deg, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent
+  );
+}
+
+.belt::-webkit-scrollbar {
+  display: none;
+}
+
+/* Once the script runs, the belt moves by transform and never scrolls. */
+.belt[data-live] {
+  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.belt.is-dragging {
+  cursor: grabbing;
+}
+
+.belt__track {
+  position: relative;
+  display: flex;
+  width: max-content;
+  /* Lines the first card up with the page column. */
+  margin-left: max(var(--gutter), calc((100% - var(--container)) / 2 + var(--gutter)));
+  will-change: transform;
+}
+
+.belt__item {
+  flex: none;
+  padding-right: var(--belt-gap);
+}
+
+.belt__card {
+  display: block;
+  width: calc(var(--belt-h) * var(--ratio));
+  -webkit-user-drag: none;
+}
+
+.belt.is-dragging .belt__card {
+  pointer-events: none;
+}
+
+.belt__card:focus-visible {
+  outline-offset: 6px;
+}
+
+.belt__media {
+  position: relative;
+  display: block;
+  height: var(--belt-h);
+  overflow: hidden;
+  background: var(--plate-photo);
+}
+
+.belt__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  transition: transform 900ms var(--ease-out);
+}
+
+/* The magazine stands like a printed copy: the whole A4 page, a soft shadow and a spine. */
+.belt__item--a4 .belt__media {
+  background: var(--paper-raised);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.08),
+    0 10px 18px -12px rgb(0 0 0 / 0.5);
+}
+
+.belt__item--a4 .belt__media::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 7%;
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.2), transparent);
+  pointer-events: none;
+}
+
+/* The website sits in a plain browser frame. */
+.belt__item--screen .belt__media {
+  padding-top: 1.35rem;
+  background: var(--paper-raised);
+  border: var(--hairline);
+}
+
+.belt__item--screen .belt__media::before {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  left: 0.65rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--pencil);
+  box-shadow:
+    0.65rem 0 0 var(--pencil),
+    1.3rem 0 0 var(--pencil);
+}
+
+.belt__item--screen .belt__media img {
+  border-top: var(--hairline);
+}
+
+.belt__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-3);
+}
+
+.belt__meta {
+  color: var(--graphite);
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+}
+
+.belt__title {
+  font-size: var(--step-1);
+  line-height: 1.2;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+@media (hover: hover) {
+  .belt__card:hover .belt__media img {
+    transform: scale(1.045);
+  }
+
+  .belt__card:hover .belt__title {
+    color: var(--accent);
+  }
+}
+
+.belt__controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-3);
+}
+
+/* Publication */
 
 .pieces {
   row-gap: var(--space-8);
@@ -220,6 +800,23 @@
 
 .piece__link {
   display: block;
+}
+
+/* Printed pages: a soft shadow under the sheet, and it lifts a little when you point at it. */
+.piece__page .figure__plate {
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 14px 28px -18px rgb(0 0 0 / 0.45);
+  transition:
+    transform 600ms var(--ease-out),
+    box-shadow 600ms var(--ease-out);
+}
+
+.piece__link:hover .piece__page .figure__plate {
+  transform: translateY(-6px);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 24px 36px -20px rgb(0 0 0 / 0.5);
 }
 
 .piece__kind {
@@ -274,6 +871,161 @@
 
   .piece--second {
     grid-column: 10 / -1;
+  }
+}
+
+/* Gallery: six photos, a random mix on each visit. Wide and narrow tiles swap sides row by row. */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.gallery__tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: var(--plate-photo);
+  cursor: zoom-in;
+}
+
+.gallery__tile--wide {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
+
+.gallery__tile--narrow {
+  aspect-ratio: 4 / 5;
+}
+
+/* On phones the last narrow tile would sit alone, so it takes the full row. */
+.gallery__tile--narrow:last-child {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
+
+.gallery__tile img {
+  object-fit: cover;
+  transition: transform 1200ms var(--ease-out);
+}
+
+.gallery__tile:hover img,
+.gallery__tile:focus-visible img {
+  transform: scale(1.04);
+}
+
+.gallery__tile:focus-visible {
+  outline-offset: 2px;
+}
+
+.gallery__caption {
+  position: absolute;
+  left: var(--space-2);
+  right: var(--space-2);
+  bottom: var(--space-2);
+  width: fit-content;
+  max-width: calc(100% - 2 * var(--space-2));
+  padding: var(--space-1) var(--space-2);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--step--2);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--dur-ui) var(--ease),
+    transform var(--dur-ui) var(--ease);
+}
+
+.gallery__tile:hover .gallery__caption,
+.gallery__tile:focus-visible .gallery__caption {
+  opacity: 1;
+  transform: none;
+}
+
+/* No hover on touch screens, so the captions stay on. */
+@media (hover: none) {
+  .gallery__caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.gallery__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.gallery__note {
+  margin-right: auto;
+  color: var(--graphite);
+}
+
+/* Filters: All, Academic, Extracurricular, Visits and tours */
+
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.gallery-filters__option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  background: none;
+  border: var(--hairline);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  color: var(--graphite);
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
+}
+
+.gallery-filters__option:hover:not(:disabled, [aria-pressed="true"]) {
+  color: var(--ink);
+  border-color: var(--pencil);
+}
+
+.gallery-filters__option[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--on-ink);
+}
+
+.gallery-filters__option:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.gallery-filters__count {
+  font-size: var(--step--2);
+  opacity: 0.7;
+}
+
+@media (min-width: 40rem) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  /* Each row is one wide tile and one narrow one; the wide tile sets the height. */
+  .gallery__tile--narrow,
+  .gallery__tile--narrow:last-child {
+    grid-column: auto;
+    aspect-ratio: auto;
   }
 }
 
@@ -357,92 +1109,5 @@
 @media (min-width: 64rem) {
   .contact__write {
     grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
-  }
-}
-
-/* Hero portrait settles from a slight zoom on load. Transform only, so it runs off the main thread. */
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-sheet__portrait .figure__plate img {
-    animation: image-settle 1600ms var(--ease-out) both;
-  }
-
-  .hero-sheet__facts li {
-    animation: settle-fade var(--dur-settle) var(--ease-out) both;
-  }
-
-  .hero-sheet__facts li:nth-child(2) {
-    animation-delay: 80ms;
-  }
-
-  .hero-sheet__facts li:nth-child(3) {
-    animation-delay: 160ms;
-  }
-
-  .hero-sheet__facts li:nth-child(4) {
-    animation-delay: 240ms;
-  }
-}
-
-/* Teasers: short versions of Research, About and Learning that link to their pages */
-
-.teaser {
-  row-gap: var(--space-6);
-  align-items: start;
-}
-
-.teaser__rail,
-.teaser__text,
-.teaser__main,
-.teaser__figure {
-  grid-column: 1 / -1;
-}
-
-.teaser__text,
-.teaser__main {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-5);
-}
-
-.teaser__text .lede,
-.teaser__main .lede {
-  max-width: 40ch;
-}
-
-.teaser__quote {
-  padding-left: var(--space-5);
-  border-left: 2px solid var(--accent);
-}
-
-.teaser__quote p {
-  font-family: var(--font-display-italic);
-  font-style: italic;
-  font-size: var(--step-2);
-  line-height: 1.25;
-  max-width: 30ch;
-}
-
-.teaser__main .learning__list,
-.teaser__main .learning__empty {
-  align-self: stretch;
-}
-
-@media (min-width: 64rem) {
-  .teaser__rail {
-    grid-column: 1 / span 3;
-  }
-
-  .teaser__text {
-    grid-column: 4 / span 5;
-  }
-
-  .teaser__figure {
-    grid-column: 9 / -1;
-  }
-
-  .teaser__main {
-    grid-column: 4 / -1;
   }
 }
